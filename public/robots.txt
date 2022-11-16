@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nextjs.org/
+
+# Sitemaps
+Sitemap: https://nextjs.org/sitemap.xml
