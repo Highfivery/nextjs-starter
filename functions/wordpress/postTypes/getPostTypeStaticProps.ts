@@ -31,6 +31,7 @@ export default async function getPostTypeStaticProps(
     post?: {
       title?: string;
       content?: string;
+      seo?: {};
     };
   };
 }> {
