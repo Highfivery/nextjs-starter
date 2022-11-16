@@ -1,0 +1,44 @@
+{
+  "name": "highfivery/nextjs-starter",
+  "description": "Next.js Starter",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Highfivery",
+      "email": "info@highfivery.com"
+    }
+  ],
+  "repositories": {
+    "wppackagist": {
+      "type": "composer",
+      "url": "https://wpackagist.org/"
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      "plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
+  },
+  "require": {
+    "webdevstudios/wds-headless-core": "^2.0",
+    "webdevstudios/wds-headless-seo": "^1.0",
+    "webdevstudios/wds-headless-theme": "^1.0",
+    "wpackagist-plugin/add-wpgraphql-seo": "^4.15",
+    "wpackagist-plugin/wordpress-seo": "^18.0",
+    "wpackagist-plugin/wp-graphql": "^1.6"
+  }
+}
