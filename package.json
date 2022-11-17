@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "todo": "leasot '**/*.tsx' '**/*.js' '**/*.scss' '**/*.ts' --ignore '**/node_modules' '**/schema.generated.ts'"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
@@ -48,6 +49,7 @@
     "@wordpress/base-styles": "^4.13.0",
     "babel-loader": "^8.3.0",
     "eslint-plugin-storybook": "^0.6.7",
+    "leasot": "^13.2.0",
     "sass": "^1.56.1"
   }
 }

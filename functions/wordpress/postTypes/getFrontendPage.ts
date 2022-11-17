@@ -7,11 +7,11 @@ import formatManualSeoMeta from "../seo/formatManualSeoMeta";
 
 /**
  * Retrieve data for Frontend-only route (i.e., page does not exist in WordPress).
- *
- * @param  {string} route Frontend route.
- * @return {object}       Object containing Apollo client instance and post data or error object.
  */
-export default async function getFrontendPage(route) {
+export default async function getFrontendPage(route: string): Promise<{
+  menus: {}[];
+  defaultSeo: {};
+}> {
   // Get/create Apollo instance.
   const apolloClient = initializeWpApollo();
 
@@ -25,23 +25,35 @@ export default async function getFrontendPage(route) {
   // Execute query.
   response.post = await apolloClient
     .query({ query: queryDefaultPageData })
-    .then((res) => {
-      const { generalSettings, homepageSettings, siteSeo, menus } = res.data;
+    .then(
+      (res: {
+        data: {
+          generalSettings: {};
+          homepageSettings: {};
+          siteSeo: {};
+          menus: {};
+        };
+      }) => {
+        const { generalSettings, homepageSettings, siteSeo, menus } = res.data;
 
-      // Retrieve menus.
-      response.menus = getMenus(menus);
+        // Retrieve menus.
+        response.menus = getMenus(menus);
 
-      // Retrieve default SEO data.
-      response.defaultSeo = formatDefaultSeoData({ homepageSettings, siteSeo });
-
-      // Determine SEO.
-      return {
-        seo: formatManualSeoMeta(frontendPageSeo?.[route]?.title, route, {
-          generalSettings,
+        // Retrieve default SEO data.
+        response.defaultSeo = formatDefaultSeoData({
+          homepageSettings,
           siteSeo,
-        }),
-      };
-    })
+        });
+
+        // Determine SEO.
+        return {
+          seo: formatManualSeoMeta(frontendPageSeo?.[route]?.title, route, {
+            generalSettings,
+            siteSeo,
+          }),
+        };
+      }
+    )
     .catch((error) => {
       response.error = true;
       response.errorMessage = error.message;

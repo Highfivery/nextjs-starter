@@ -4,9 +4,9 @@ import "../scss/base.scss";
 import "../scss/themes/default.scss";
 
 // Import component dependencies
-import Page from "@/components/templates/Page";
+import Page from "app/components/templates/Page";
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -8,7 +8,7 @@ import getPostTypeStaticProps from "@/functions/wordpress/postTypes/getPostTypeS
 import parse from "html-react-parser";
 
 // Import component dependencies
-import Meta from "@/components/molecules/Meta/Meta";
+import Meta from "app/components/molecules/Meta/Meta";
 
 export default async function Head({ params }: { params: { slug: string } }) {
   // Retreive dynamic page data
