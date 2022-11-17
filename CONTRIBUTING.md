@@ -7,3 +7,11 @@ There are many ways to [contribute](https://github.com/Highfivery/nextjs-starter
 * Review and discuss [pull requests](https://github.com/Highfivery/nextjs-starter/pulls)
 * Level up the [documentation](https://github.com/Highfivery/nextjs-starter/wiki)
 * Monitor and help answer questions in [Github Discussions](https://github.com/Highfivery/nextjs-starter/discussions)
+
+## Finding `@TODO` Comments
+
+A quick and easy way to find areas where you can contribute to the project is by running the following in the project root directory:
+
+```
+npm run todo
+```
