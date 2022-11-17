@@ -1,6 +1,6 @@
-[submodule "components"]
-	path = app/components
-	url = https://github.com/Entermedia-LLC/nextjs-components
 [submodule "scss"]
 	path = scss
 	url = https://github.com/Entermedia-LLC/scss
+[submodule "app/components"]
+	path = app/components
+	url = https://github.com/Entermedia-LLC/nextjs-components
