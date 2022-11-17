@@ -4,7 +4,7 @@
 
 A Next.js 13 CMS-agnostic starter application to build fully-featured headless sites with built-in support for WordPress.
 
-**A big shout-out & thanks to [WebDevStudios](https://github.com/WebDevStudios)** for their work on [nextjs-wordpress-starter](https://github.com/WebDevStudios/nextjs-wordpress-starter), since abandoned, which gave us a great starting point for the WordPress integration piece.
+**A big shout-out & thanks to [WebDevStudios](https://github.com/WebDevStudios)** for their work on [nextjs-wordpress-starter](https://github.com/WebDevStudios/nextjs-wordpress-starter) (since abandoned) which gave us a great starting point for the WordPress integration piece.
 
 ## Introduction
 
