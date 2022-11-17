@@ -12,7 +12,7 @@ const nextConfig = {
     config.resolve.alias["@"] = path.resolve(__dirname, ".");
     config.resolve.alias["@/components"] = path.resolve(
       __dirname,
-      "./app/components"
+      "app/components"
     );
 
     return config;
