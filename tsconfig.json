@@ -24,6 +24,7 @@
       "@/lib/*": ["lib/*"],
       "@/functions/*": ["functions/*"],
       "@/app/*": ["app/*"],
+      "@/scss/*": ["scss/*"],
       "@/components/*": ["app/components/*"]
     }
   },
