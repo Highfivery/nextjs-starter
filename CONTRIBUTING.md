@@ -1,3 +1,4 @@
+# Contributing
 
 There are many ways to [contribute](https://github.com/Highfivery/nextjs-starter/blob/main/CONTRIBUTING.md) to this project:
 
