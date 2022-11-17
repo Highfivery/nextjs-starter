@@ -4,6 +4,10 @@
 
 A Next.js 13 CMS-agnostic starter application to build fully-featured headless sites with built-in support for WordPress.
 
+## Introduction
+
+This project is in **beta** and under **active development** &mdash; not ready for use for production. Our first release is intended to give basic functionality, standardization & WordPress integration.
+
 ## Documentation
 
 Visit https://github.com/Highfivery/nextjs-starter/wiki to view all the documentation.
