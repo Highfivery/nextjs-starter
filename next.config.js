@@ -9,11 +9,9 @@ const nextConfig = {
     config,
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
   ) => {
-    console.log(config.resolve);
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@": path.resolve(__dirname, "."),
-    };
+    config.resolve.alias["@"] = path.resolve(__dirname, ".");
+
+    console.log(config.resolve.alias);
 
     return config;
   },
