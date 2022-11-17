@@ -3,8 +3,8 @@ import { ReactElement, ReactNode } from "react";
 
 // Import global styles
 import "normalize.css/normalize.css";
-import "../scss/base.scss";
-import "../scss/themes/default.scss";
+import "@/scss/base.scss";
+import "@/scss/themes/default.scss";
 
 // Import component dependencies
 import Page from "@/components/templates/Page";
