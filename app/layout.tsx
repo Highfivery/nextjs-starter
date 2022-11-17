@@ -4,7 +4,7 @@ import "../scss/base.scss";
 import "../scss/themes/default.scss";
 
 // Import component dependencies
-import Page from "app/components/templates/Page";
+import Page from "@/components/templates/Page";
 
 export default function RootLayout({
   children,
