@@ -10,7 +10,10 @@ const nextConfig = {
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
   ) => {
     config.resolve.alias["@"] = path.resolve(__dirname, ".");
-    config.resolve.alias["@/components"] = path.resolve(__dirname, "./app");
+    config.resolve.alias["@/components"] = path.resolve(
+      __dirname,
+      "./app/components"
+    );
 
     return config;
   },
