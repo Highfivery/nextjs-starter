@@ -1,14 +1,21 @@
-const { resolve } = require("path");
+const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     appDir: true,
   },
-  resolve: {
-    alias: {
-      "@": resolve("."),
-    },
+  webpack: (
+    config,
+    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+  ) => {
+    console.log(config.resolve);
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": path.resolve(__dirname, "."),
+    };
+
+    return config;
   },
 };
 
