@@ -1,3 +1,6 @@
+// @ts-nocheck
+// @TODO: Fix TS warnings.
+
 import getMenus from "@/functions/wordpress/menus/getMenus";
 import formatDefaultSeoData from "@/functions/wordpress/seo/formatDefaultSeoData";
 import { initializeWpApollo } from "@/lib/wordpress/connector";
@@ -9,7 +12,9 @@ import formatManualSeoMeta from "../seo/formatManualSeoMeta";
  * Retrieve data for Frontend-only route (i.e., page does not exist in WordPress).
  */
 export default async function getFrontendPage(route: string): Promise<{
-  menus: {}[];
+  menus: {
+    primary_menu: [];
+  };
   defaultSeo: {};
 }> {
   // Get/create Apollo instance.
@@ -20,6 +25,7 @@ export default async function getFrontendPage(route: string): Promise<{
     apolloClient,
     error: false,
     errorMessage: null,
+    post: null,
   };
 
   // Execute query.
