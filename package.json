@@ -14,6 +14,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.1",
     "@radix-ui/react-accessible-icon": "^1.0.1",
+    "@radix-ui/react-select": "^1.1.2",
     "@storybook/addon-a11y": "^6.5.13",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
+    "@commitlint/config-conventional": "^17.3.0",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-interactions": "^6.5.13",
@@ -48,7 +50,9 @@
     "@storybook/testing-library": "^0.0.13",
     "@wordpress/base-styles": "^4.13.0",
     "babel-loader": "^8.3.0",
+    "commitlint": "^17.3.0",
     "eslint-plugin-storybook": "^0.6.7",
+    "husky": "^8.0.2",
     "leasot": "^13.2.0",
     "sass": "^1.56.1"
   }
