@@ -16,8 +16,10 @@ export default async function Page() {
 
   return (
     <>
-      {page?.props?.post?.content && (
+      {page?.props?.post?.content ? (
         <RichText>{page.props.post.content}</RichText>
+      ) : (
+        `No content available.`
       )}
     </>
   );
