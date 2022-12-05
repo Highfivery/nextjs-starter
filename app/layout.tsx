@@ -1,7 +1,14 @@
 // Import React.js dependencies
 import { ReactElement, ReactNode } from "react";
 
-// Import global styles
+/**
+ * Import application global styles/CSS framework below.
+ */
+
+/**
+ * Entermedia's minimal CSS framework
+ * @see https://github.com/Entermedia-LLC/scss
+ */
 import "normalize.css/normalize.css";
 import "@/scss/base.scss";
 import "@/scss/themes/default.scss";
