@@ -4,7 +4,11 @@ A Next.js 13 CMS-agnostic starter application to build fully-featured headless s
 
 ## Introduction
 
-This project is in **beta** and under **active development** &mdash; not ready for use for production. Our first release is intended to give basic functionality, standardization & WordPress integration.
+This project is in **beta** and under **active development** &mdash; not ready for use for production. Our first release is intended to give basic functionality, standardization & WordPress integration. Our goal is to create a Next.js starter framework that:
+
+* isn't dependent on a particular theming framework &mdash; setup theming how you like
+* CMS-agnostic with baked in support for WordPress, Drupal & Shopify
+* includes [Storybook](https://storybook.js.org/), [SCSS](https://sass-lang.com/) & [TypeScript](https://www.typescriptlang.org/) integration
 
 ## Documentation
 
