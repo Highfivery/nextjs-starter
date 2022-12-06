@@ -1,3 +1,0 @@
-[submodule "app/components"]
-	path = app/components
-	url = https://github.com/Entermedia-LLC/nextjs-components
