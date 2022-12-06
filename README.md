@@ -9,8 +9,10 @@ A Next.js 13 CMS-agnostic starter application to build fully-featured headless s
 This project is in **beta** and under **active development** &mdash; not ready for use for production. Our first release is intended to give basic functionality, standardization & WordPress integration. Our goal is to create a Next.js starter framework that:
 
 * isn't dependent on a particular theming framework &mdash; setup theming how you like
-* CMS-agnostic with baked in support for WordPress, Drupal & Shopify
-* includes [Storybook](https://storybook.js.org/), [SCSS](https://sass-lang.com/) & [TypeScript](https://www.typescriptlang.org/) integration
+* is CMS-agnostic with baked in support for WordPress, Drupal & Shopify
+* provides out-of-the-box support for [SCSS](https://sass-lang.com/)
+* built-in [Storybook](https://storybook.js.org/) integration
+* helps enforce coding standards with [Stylelint](https://stylelint.io/) & [TypeScript](https://www.typescriptlang.org/)
 
 ## Documentation
 
@@ -29,7 +31,7 @@ There are many ways to [contribute](https://github.com/Highfivery/nextjs-starter
 ## Special Thanks
 
 * [WebDevStudios](https://github.com/WebDevStudios) for their work on [nextjs-wordpress-starter](https://github.com/WebDevStudios/nextjs-wordpress-starter) (since abandoned) giving us a great start for WordPress integration.
-* Development team at [Entermedia](https://www.entermedia.com/) for their work on the [starter components](https://github.com/Entermedia-LLC/nextjs-components) and standarization of [project styles](https://github.com/Entermedia-LLC/scss).
+* Development team at [Entermedia](https://www.entermedia.com/) for their work on the default starter components & [minimal CSS framework](https://github.com/Entermedia-LLC/scss).
 
 ## License
 
