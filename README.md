@@ -12,7 +12,7 @@ This project is in **beta** and under **active development** &mdash; not ready f
 * is CMS-agnostic with baked in support for WordPress, Drupal & Shopify
 * provides out-of-the-box support for [SCSS](https://sass-lang.com/)
 * built-in [Storybook](https://storybook.js.org/) integration
-* helps enforce coding standards with [Stylelint](https://stylelint.io/) & [TypeScript](https://www.typescriptlang.org/)
+* helps enforce coding standards with [Stylelint](https://stylelint.io/), [TypeScript](https://www.typescriptlang.org/) & [commitlint](https://commitlint.js.org/#/)
 
 ## Documentation
 
