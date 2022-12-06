@@ -1,0 +1,3 @@
+[submodule "app/components/scss"]
+	path = app/components/scss
+	url = https://github.com/Entermedia-LLC/scss.git
