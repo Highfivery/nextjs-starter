@@ -7,8 +7,8 @@
  * @see https://github.com/Entermedia-LLC/scss
  */
 import "normalize.css/normalize.css";
-import "@/scss/base.scss";
-import "@/scss/themes/default.scss";
+import "@/theme/base.scss";
+import "@/theme/themes/default.scss";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
