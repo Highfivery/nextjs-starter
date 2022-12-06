@@ -9,7 +9,13 @@
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "todo": "leasot '**/*.tsx' '**/*.js' '**/*.scss' '**/*.ts' --ignore '**/node_modules' '**/schema.generated.ts'"
+    "todo": "leasot '**/*.tsx' '**/*.js' '**/*.scss' '**/*.ts' --ignore '**/node_modules' '**/schema.generated.ts'",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
@@ -42,6 +48,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/cz-commitlint": "^17.3.0",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",
     "@storybook/addon-interactions": "^6.5.14",
@@ -52,9 +59,11 @@
     "@storybook/testing-library": "^0.0.13",
     "@wordpress/base-styles": "^4.13.0",
     "babel-loader": "^8.3.0",
+    "commitizen": "^4.2.6",
     "commitlint": "^17.3.0",
     "eslint-plugin-storybook": "^0.6.8",
     "husky": "^8.0.2",
+    "inquirer": "^8.2.5",
     "leasot": "^13.2.0",
     "sass": "^1.56.1",
     "stylelint": "^14.16.0",
