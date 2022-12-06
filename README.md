@@ -31,7 +31,7 @@ There are many ways to [contribute](https://github.com/Highfivery/nextjs-starter
 ## Special Thanks
 
 * [WebDevStudios](https://github.com/WebDevStudios) for their work on [nextjs-wordpress-starter](https://github.com/WebDevStudios/nextjs-wordpress-starter) (since abandoned) giving us a great start for WordPress integration.
-* Development team at [Entermedia](https://www.entermedia.com/) for their work on the [starter components](https://github.com/Entermedia-LLC/nextjs-components) and standarization of [project styles](https://github.com/Entermedia-LLC/scss).
+* Development team at [Entermedia](https://www.entermedia.com/) for their work on the default starter components & [minimal CSS framework](https://github.com/Entermedia-LLC/scss).
 
 ## License
 
