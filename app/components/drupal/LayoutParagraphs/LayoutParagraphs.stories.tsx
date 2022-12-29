@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as LayoutParagraphsComponent } from ".";
 
 export default {
-  title: "Design System/Drupal/Layout Paragraphs",
+  title: "Drupal Components/Layout Paragraphs",
   component: LayoutParagraphsComponent,
   parameters: {
     layout: "centered",
@@ -20,3 +20,10 @@ const Template: ComponentStory<typeof LayoutParagraphsComponent> = (args) => (
 );
 
 export const RichText = Template.bind({});
+RichText.args = {
+  section: {
+    regions: {
+      "paragraph--rich_text": {},
+    },
+  },
+};

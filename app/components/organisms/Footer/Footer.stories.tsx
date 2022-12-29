@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as FooterComponent } from ".";
 
 export default {
-  title: "Design System/Organisms/Footer",
+  title: "Atomic Design System/Organisms/Footer",
   component: FooterComponent,
   parameters: {
     layout: "fullscreen",

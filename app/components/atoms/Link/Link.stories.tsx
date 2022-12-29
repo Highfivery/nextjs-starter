@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as LinkComponent } from ".";
 
 export default {
-  title: "Design System/Atoms/Link",
+  title: "Atomic Design System/Atoms/Link",
   component: LinkComponent,
   parameters: {
     layout: "centered",

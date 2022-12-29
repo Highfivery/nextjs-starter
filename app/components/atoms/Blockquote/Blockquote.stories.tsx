@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as BlockquoteComponent } from ".";
 
 export default {
-  title: "Design System/Atoms/Blockquote",
+  title: "Atomic Design System/Atoms/Blockquote",
   component: BlockquoteComponent,
   parameters: {
     layout: "centered",

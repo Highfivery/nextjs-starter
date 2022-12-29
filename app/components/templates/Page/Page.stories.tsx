@@ -11,7 +11,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as PageComponent } from ".";
 
 export default {
-  title: "Design System/Templates/Page",
+  title: "Atomic Design System/Templates/Page",
   component: PageComponent,
   parameters: {
     layout: "fullscreen",

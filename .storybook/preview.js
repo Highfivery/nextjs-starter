@@ -18,4 +18,12 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  storySort: {
+    order: [
+      "Atomic Design System",
+      ["Atoms", "Molecules", "Organisms", "Templates"],
+      "Ant Design System",
+      "Drupal Components",
+    ],
+  },
 };
