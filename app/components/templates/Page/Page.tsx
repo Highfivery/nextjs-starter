@@ -3,6 +3,9 @@ import getFrontendPage from "@/functions/wordpress/postTypes/getFrontendPage";
 // Import React.js dependencies
 import React, { ReactElement, ReactNode } from "react";
 
+// Import functions
+import { convertMenu } from "@/components/molecules/Navigation/Navigation.wordpress";
+
 // Import types
 import PropTypes from "prop-types";
 
@@ -23,9 +26,17 @@ export default async function Page({
 
   return (
     <>
-      <Header menu={frontpageData?.menus?.primary_menu} />
+      <Header
+        menu={convertMenu(frontpageData?.menus?.primary_menu, {
+          pathPrefix: "/wordpress",
+        })}
+      />
       {children}
-      <Footer menu={frontpageData?.menus?.primary_menu} />
+      <Footer
+        menu={convertMenu(frontpageData?.menus?.primary_menu, {
+          pathPrefix: "/wordpress",
+        })}
+      />
     </>
   );
 }

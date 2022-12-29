@@ -55,13 +55,13 @@ function NavigationMenu({
               target={item.target ? item.target : "_self"}
               className={cn(isLinkActive(pathname, item.path) && styles.active)}
               onClick={(e) => {
-                item?.onLinkClick(e, index, item);
+                item?.onLinkClick && item.onLinkClick(e, index, item);
               }}
             >
               {item.label}
             </Link>
 
-            {item?.children?.items?.length && (
+            {item?.children?.items?.length > 0 && (
               <>
                 {item?.children?.Title && item.children.Title}
                 <ul
@@ -87,7 +87,7 @@ export interface NavigationItemProps {
   /** Item path. */
   path: string;
   /** Link target. */
-  target?: "_blank" | "_self";
+  target?: string;
   onLinkClick?: (
     event: MouseEvent,
     itemIndex: number,
