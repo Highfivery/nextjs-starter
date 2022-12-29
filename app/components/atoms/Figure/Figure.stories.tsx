@@ -10,7 +10,7 @@ import { default as BlockquoteComponent } from "../Blockquote";
 import { default as ImageComponent } from "next/image";
 
 export default {
-  title: "Design System/Atoms/Figure",
+  title: "Atomic Design System/Atoms/Figure",
   component: FigureComponent,
   parameters: {
     layout: "centered",

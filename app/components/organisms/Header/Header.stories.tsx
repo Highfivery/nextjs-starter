@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as HeaderComponent } from ".";
 
 export default {
-  title: "Design System/Organisms/Header",
+  title: "Atomic Design System/Organisms/Header",
   component: HeaderComponent,
   parameters: {
     layout: "fullscreen",

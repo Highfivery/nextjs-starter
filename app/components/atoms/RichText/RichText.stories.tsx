@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as RichTextComponent } from ".";
 
 export default {
-  title: "Design System/Atoms/Rich Text",
+  title: "Atomic Design System/Atoms/Rich Text",
   component: RichTextComponent,
   parameters: {
     layout: "centered",
@@ -62,10 +62,10 @@ Tag.args = {
   children: `This heading has <strong>Bold Content</strong> and <i>Italics</i>`,
 };
 
-export const Attributes = Template.bind({});
-Attributes.args = {
+export const DataAttributes = Template.bind({});
+DataAttributes.args = {
   tag: "h2",
-  children: `This heading has <strong>Bold Content</strong> and <i>Italics</i>`,
+  children: `This heading has a data attribute applied to it`,
   attributes: {
     "data-att": true,
   },

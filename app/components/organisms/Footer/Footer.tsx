@@ -17,7 +17,7 @@ import styles from "./Footer.module.scss";
 export default function Footer({ menu }: FooterProps): ReactElement {
   return (
     <footer>
-      <Navigation menu={menu} />
+      <Navigation items={menu} />
     </footer>
   );
 }

@@ -17,7 +17,7 @@ import styles from "./header.module.scss";
 export default function Header({ menu }: HeaderProps): ReactElement {
   return (
     <header>
-      <Navigation menu={menu} />
+      <Navigation items={menu} />
     </header>
   );
 }

@@ -32,7 +32,7 @@ const CustomTheme = {
 };
 
 export default {
-  title: "Ant Design/Components/General/Button",
+  title: "Ant Design System/Components/General/Button",
   component: ButtonComponent,
   parameters: {
     layout: "centered",

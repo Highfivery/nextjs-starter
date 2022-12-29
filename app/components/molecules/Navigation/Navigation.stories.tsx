@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as NavigationComponent } from ".";
 
 export default {
-  title: "Design System/Molecules/Navigation",
+  title: "Atomic Design System/Molecules/Navigation",
   component: NavigationComponent,
   parameters: {
     layout: "centered",

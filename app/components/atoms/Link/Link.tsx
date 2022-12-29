@@ -24,10 +24,8 @@ export default function Link({ children, href, ...props }: LinkProps) {
     const { onClick, ...attributes } = props;
 
     return (
-      <NextLink href={href} {...attributes}>
-        <a onClick={onClick} className={props?.className}>
-          {children}
-        </a>
+      <NextLink href={href} {...attributes} onClick={onClick}>
+        {children}
       </NextLink>
     );
   }

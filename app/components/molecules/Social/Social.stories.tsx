@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as SocialComponent } from ".";
 
 export default {
-  title: "Design System/Molecules/Social",
+  title: "Atomic Design System/Molecules/Social",
   component: SocialComponent,
   parameters: {
     layout: "centered",

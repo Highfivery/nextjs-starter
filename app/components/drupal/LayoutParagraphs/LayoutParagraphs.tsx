@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 import styles from "./LayoutParagraphs.module.scss";
 
 // Define the available layout paragraph components
-const paragraphComponents = {
+const paragraphComponents: { [key: string]: string } = {
   "paragraph--rich_text": "@/components/atoms/RichText",
 };
 
