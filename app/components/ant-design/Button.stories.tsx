@@ -3,77 +3,26 @@ import React from "react";
 
 // Import Storybook dependencies
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { storybookArgTypes } from "styles/ant-design/storybook";
 
 // Import component dependencies
-import { Button as ButtonComponent, ConfigProvider, theme } from "antd";
-
-const DefaultAlgorithm = {
-  algorithm: theme.defaultAlgorithm,
-};
-
-const DarkAlgorithm = {
-  algorithm: theme.darkAlgorithm,
-};
-
-const CompactAlgorithm = {
-  algorithm: theme.compactAlgorithm,
-};
-
-const DarkCompactAlgorithm = {
-  algorithm: [theme.compactAlgorithm, theme.darkAlgorithm],
-};
-
-const CustomTheme = {
-  token: {
-    borderRadius: 100,
-    colorPrimary: "#dd0092",
-    colorBgBase: "#000000",
-  },
-};
+import { Button as ButtonComponent, ConfigProvider } from "antd";
 
 export default {
   title: "Ant Design System/Components/General/Button",
   component: ButtonComponent,
   parameters: {
     layout: "centered",
-  },
-  argTypes: {
-    theme: {
-      type: { name: "object", required: false },
-      defaultValue: undefined,
-      description:
-        "Ant Design theme, see: <a href='https://ant.design/docs/react/customize-theme' target='_blank'>customize theme</a>.",
-      control: {
-        type: "multi-select",
-        labels: {
-          DefaultAlgorithm: "Default",
-          DarkAlgorithm: "Dark",
-          CompactAlgorithm: "Compact",
-          DarkCompactAlgorithm: "Dark + Compact",
-          CustomTheme: "Custom Theme",
-        },
-      },
-      options: [
-        "DefaultAlgorithm",
-        "DarkAlgorithm",
-        "CompactAlgorithm",
-        "DarkCompactAlgorithm",
-        "CustomTheme",
-      ],
-      mapping: {
-        DefaultAlgorithm,
-        DarkAlgorithm,
-        CompactAlgorithm,
-        DarkCompactAlgorithm,
-        CustomTheme,
-      },
-      table: {
-        type: {
-          summary: "object",
-        },
-        defaultValue: undefined,
+    docs: {
+      description: {
+        component:
+          "See <a href='https://ant.design/components/button' target='_blank'>Button</a> for examples & API documentation.",
       },
     },
+  },
+  argTypes: {
+    theme: storybookArgTypes.theme,
+    onClick: storybookArgTypes.onClick,
     children: {
       type: { name: "string", required: true },
       defaultValue: undefined,
@@ -248,18 +197,6 @@ export default {
         defaultValue: {
           summary: "primary | ghost | dashed | link | text | default",
         },
-      },
-    },
-    onClick: {
-      type: { name: "string", required: false },
-      defaultValue: undefined,
-      description: "Set the handler to handle <code>click</code> event.",
-      control: "text",
-      table: {
-        type: {
-          summary: "(event) => void",
-        },
-        defaultValue: { summary: undefined },
       },
     },
   },

@@ -23,6 +23,17 @@ export const parameters = {
       "Atomic Design System",
       ["Atoms", "Molecules", "Organisms", "Templates"],
       "Ant Design System",
+      [
+        "Components",
+        [
+          "General",
+          [
+            "Button",
+            "Typography",
+            ["Typography", "Text", "Title", "Paragraph"],
+          ],
+        ],
+      ],
       "Drupal Components",
     ],
   },
