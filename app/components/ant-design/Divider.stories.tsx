@@ -9,7 +9,7 @@ import { storybookArgTypes } from "styles/ant-design/storybook";
 import { Divider as DividerComponent, ConfigProvider } from "antd";
 
 export default {
-  title: "Ant Design System/Components/Layout/Divider",
+  title: "Ant Design/Layout/Divider",
   component: DividerComponent,
   parameters: {
     layout: "fullscreen",

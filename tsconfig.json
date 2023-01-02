@@ -24,8 +24,7 @@
       "@/components/*": ["app/components/*"],
       "@/functions/*": ["functions/*"],
       "@/lib/*": ["lib/*"],
-
-      "@/theme/*": ["styles/minimal/*"],
+      "@/styles/*": ["styles/*"],
       "@/app/*": ["app/*"]
     }
   },

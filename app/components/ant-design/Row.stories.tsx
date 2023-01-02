@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Col, Row as RowComponent, ConfigProvider } from "antd";
 
 export default {
-  title: "Ant Design System/Components/Layout/Grid/Row",
+  title: "Ant Design/Layout/Grid/Row",
   component: RowComponent,
   parameters: {
     layout: "fullscreen",

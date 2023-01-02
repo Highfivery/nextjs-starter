@@ -1,3 +1,0 @@
-[submodule "app/components/scss"]
-	path = styles/minimal
-	url = https://github.com/Entermedia-LLC/scss.git

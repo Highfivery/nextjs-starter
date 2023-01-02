@@ -8,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as LayoutParagraphsComponent } from ".";
 
 export default {
-  title: "Drupal Components/Layout Paragraphs",
+  title: "Drupal/Layout Paragraphs",
   component: LayoutParagraphsComponent,
   parameters: {
     layout: "centered",

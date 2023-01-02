@@ -10,7 +10,7 @@ import { Typography as TypographyComponent, ConfigProvider } from "antd";
 const { Title, Paragraph, Text, Link } = TypographyComponent;
 
 export default {
-  title: "Ant Design System/Components/General/Typography",
+  title: "Ant Design/General/Typography",
   component: TypographyComponent,
   parameters: {
     layout: "fullscreen",

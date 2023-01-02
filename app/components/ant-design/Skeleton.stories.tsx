@@ -9,7 +9,7 @@ import { storybookArgTypes } from "styles/ant-design/storybook";
 import { Skeleton as SkeletonComponent, ConfigProvider } from "antd";
 
 export default {
-  title: "Ant Design System/Components/Feedback/Skeleton",
+  title: "Ant Design/Feedback/Skeleton",
   component: SkeletonComponent,
   parameters: {
     layout: "fullscreen",

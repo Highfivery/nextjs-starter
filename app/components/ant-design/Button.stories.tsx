@@ -9,7 +9,7 @@ import { storybookArgTypes } from "styles/ant-design/storybook";
 import { Button as ButtonComponent, ConfigProvider } from "antd";
 
 export default {
-  title: "Ant Design System/Components/General/Button",
+  title: "Ant Design/General/Button",
   component: ButtonComponent,
   parameters: {
     layout: "centered",

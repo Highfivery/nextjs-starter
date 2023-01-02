@@ -14,7 +14,7 @@ import "@/theme/base.scss";
 import "@/theme/themes/default.scss";
 
 // Import component dependencies
-import Page from "@/components/templates/Page";
+import Page from "@/components/atomic-design/templates/Page";
 
 export default function RootLayout({
   children,
