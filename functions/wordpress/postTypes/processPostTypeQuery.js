@@ -108,6 +108,7 @@ export default async function processPostTypeQuery(
       return newPost;
     })
     .catch((error) => {
+      console.log(error);
       response.error = true;
       response.errorMessage = error.message;
 

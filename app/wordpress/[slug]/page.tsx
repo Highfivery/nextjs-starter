@@ -6,7 +6,7 @@ import getPostTypeStaticPaths from "@/functions/wordpress/postTypes/getPostTypeS
 import getPostTypeStaticProps from "@/functions/wordpress/postTypes/getPostTypeStaticProps";
 
 // Import component dependencies
-import RichText from "@/components/atoms/RichText";
+import RichText from "@/components/atomic-design/atoms/RichText";
 
 export default async function Page({
   params,

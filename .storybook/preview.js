@@ -2,14 +2,6 @@
  * Import application global styles/CSS framework below.
  */
 
-/**
- * Entermedia's minimal CSS framework
- * @see https://github.com/Entermedia-LLC/scss
- */
-import "normalize.css/normalize.css";
-import "@/theme/base.scss";
-import "@/theme/themes/default.scss";
-
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -20,10 +12,22 @@ export const parameters = {
   },
   storySort: {
     order: [
-      "Atomic Design System",
+      "Atomic Design",
       ["Atoms", "Molecules", "Organisms", "Templates"],
-      "Ant Design System",
-      "Drupal Components",
+      "Ant Design",
+      [
+        "Components",
+        [
+          "General",
+          [
+            "Button",
+            "Typography",
+            ["Typography", "Text", "Title", "Paragraph"],
+          ],
+        ],
+      ],
+      "Drupal",
+      "WordPress",
     ],
   },
 };

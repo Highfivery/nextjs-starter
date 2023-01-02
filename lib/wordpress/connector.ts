@@ -29,6 +29,7 @@ let wpApolloClient;
  * @return {object}       Apollo client instance.
  */
 export function createWpApolloClient(auth = false) {
+  console.log();
   return new ApolloClient({
     ssrMode: false,
     link: new HttpLink({
