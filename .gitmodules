@@ -1,0 +1,3 @@
+[submodule "styles/scss"]
+	path = styles/atomic-design
+	url = https://github.com/Entermedia-LLC/scss

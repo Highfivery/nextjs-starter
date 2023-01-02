@@ -9,9 +9,7 @@ import { ReactElement, ReactNode } from "react";
  * Entermedia's minimal CSS framework
  * @see https://github.com/Entermedia-LLC/scss
  */
-import "normalize.css/normalize.css";
-import "@/theme/base.scss";
-import "@/theme/themes/default.scss";
+import "@/styles/atomic-design/style.scss";
 
 // Import component dependencies
 import Page from "@/components/atomic-design/templates/Page";
