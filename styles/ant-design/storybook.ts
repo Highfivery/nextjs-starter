@@ -18,17 +18,12 @@ const DarkCompactAlgorithm = {
 };
 
 const CustomTheme = {
-  token: {
-    borderRadius: 100,
-    colorPrimary: "#dd0092",
-    colorBgBase: "#000000",
-  },
+  token: {},
 };
 
 export const storybookArgTypes = {
   onClick: {
     type: { name: "string", required: false },
-    defaultValue: undefined,
     description: "Set the handler to handle <code>click</code> event.",
     control: "text",
     table: {
@@ -40,7 +35,6 @@ export const storybookArgTypes = {
   },
   theme: {
     type: { name: "object", required: false },
-    defaultValue: undefined,
     description:
       "Ant Design theme, see: <a href='https://ant.design/docs/react/customize-theme' target='_blank'>customize theme</a>.",
     control: {
@@ -71,12 +65,11 @@ export const storybookArgTypes = {
       type: {
         summary: "object",
       },
-      defaultValue: undefined,
+      defaultValue: "DefaultAlgorithm",
     },
   },
   code: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description: "Code style.",
     control: {
       type: "boolean",
@@ -90,7 +83,6 @@ export const storybookArgTypes = {
   },
   copyable: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description:
       "Whether to be copyable, customize it via setting an object. See <code><a href='https://ant.design/components/typography#copyable'>copyable</a></code>.",
     control: {
@@ -105,7 +97,6 @@ export const storybookArgTypes = {
   },
   delete: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description: "Deleted line style.",
     control: {
       type: "boolean",
@@ -119,7 +110,6 @@ export const storybookArgTypes = {
   },
   disabled: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description: "Disabled content.",
     control: {
       type: "boolean",
@@ -133,7 +123,6 @@ export const storybookArgTypes = {
   },
   editable: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description:
       "If editable. Can control edit state when is object. See <code><a href='https://ant.design/components/typography#editable'>editable</a></code>.",
     control: {
@@ -148,7 +137,6 @@ export const storybookArgTypes = {
   },
   ellipsis: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description:
       "Display ellipsis when text overflows, can configure rows and expandable by using object. See <code><a href='https://ant.design/components/typography#ellipsis'>ellipsis</a></code>.",
     control: {
@@ -163,7 +151,6 @@ export const storybookArgTypes = {
   },
   mark: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description: "Marked style.",
     control: {
       type: "boolean",
@@ -177,7 +164,6 @@ export const storybookArgTypes = {
   },
   italic: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description: "Italic style.",
     control: {
       type: "boolean",
@@ -191,7 +177,6 @@ export const storybookArgTypes = {
   },
   type: {
     type: { name: "string", required: false },
-    defaultValue: null,
     description: "Content type.",
     control: "select",
     options: ["secondary", "success", "warning", "danger"],
@@ -204,7 +189,6 @@ export const storybookArgTypes = {
   },
   underline: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description: "Underlined style.",
     control: {
       type: "boolean",
@@ -218,7 +202,6 @@ export const storybookArgTypes = {
   },
   strong: {
     type: { name: "boolean", required: false },
-    defaultValue: false,
     description: "Bold style.",
     control: {
       type: "boolean",
