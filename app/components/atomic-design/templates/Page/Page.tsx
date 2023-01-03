@@ -1,12 +1,8 @@
-import getFrontendPage from "@/functions/wordpress/postTypes/getFrontendPage";
-
 // Import React.js dependencies
 import React, { ReactElement, ReactNode } from "react";
 
-// Import functions
-import { convertMenu } from "@/components/atomic-design/molecules/Navigation/Navigation.wordpress";
-
 // Import types
+import { NavigationItemProps } from "@/components/atomic-design/molecules/Navigation/Navigation";
 import PropTypes from "prop-types";
 
 // Import component dependencies
@@ -20,24 +16,12 @@ import styles from "./page.module.scss";
 /**
  * Render the Header component.
  */
-export default async function Page({
-  children,
-}: PageProps): Promise<ReactElement> {
-  const frontpageData = await getFrontendPage("/");
-
+export default function Page({ children, menu }: PageProps) {
   return (
     <>
-      <Header
-        menu={convertMenu(frontpageData?.menus?.primary_menu, {
-          pathPrefix: "/wordpress",
-        })}
-      />
+      <Header menu={menu} />
       {children}
-      <Footer
-        menu={convertMenu(frontpageData?.menus?.primary_menu, {
-          pathPrefix: "/wordpress",
-        })}
-      />
+      <Footer menu={menu} />
     </>
   );
 }
@@ -45,6 +29,8 @@ export default async function Page({
 export interface PageProps {
   /** Child component(s) to render. */
   children: ReactElement | ReactNode;
+  /** Menu used in the header & footer. */
+  menu?: NavigationItemProps[];
 }
 
 Page.propTypes = {
@@ -53,4 +39,5 @@ Page.propTypes = {
     PropTypes.object,
     PropTypes.element,
   ]).isRequired,
+  menu: PropTypes.array,
 };

@@ -24,7 +24,6 @@ export default {
     theme: storybookArgTypes.theme,
     active: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description: "Show animation effect.",
       control: {
         type: "boolean",
@@ -38,7 +37,6 @@ export default {
     },
     avatar: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description:
         "Show avatar placeholder. See <code><a href='https://ant.design/components/skeleton#skeletonavatarprops'>SkeletonAvatarProps</a></code>.",
       control: {
@@ -53,7 +51,6 @@ export default {
     },
     loading: {
       type: { name: "boolean", required: false },
-      defaultValue: undefined,
       description: "Display the skeleton when true.",
       control: {
         type: "boolean",
@@ -67,7 +64,6 @@ export default {
     },
     paragraph: {
       type: { name: "boolean", required: false },
-      defaultValue: true,
       description:
         "Show paragraph placeholder. See <code><a href='https://ant.design/components/skeleton#skeletonparagraphprops'>SkeletonParagraphProps</a></code>.",
       control: {
@@ -82,7 +78,6 @@ export default {
     },
     round: {
       type: { name: "boolean", required: false },
-      defaultValue: undefined,
       description: "Show paragraph and title radius when true.",
       control: {
         type: "boolean",
@@ -96,7 +91,6 @@ export default {
     },
     title: {
       type: { name: "boolean", required: false },
-      defaultValue: true,
       description:
         "Show title placeholder. See <code><a href='https://ant.design/components/skeleton#skeletontitleprops'>SkeletonTitleProps</a></code>.",
       control: {

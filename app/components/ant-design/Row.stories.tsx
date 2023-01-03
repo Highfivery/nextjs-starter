@@ -22,7 +22,6 @@ export default {
   argTypes: {
     align: {
       type: { name: "string", required: false },
-      defaultValue: "top",
       description: "Vertical alignment.",
       control: "select",
       options: ["top", "middle", "bottom", "stretch"],
@@ -36,7 +35,6 @@ export default {
     },
     gutter: {
       type: { name: "string", required: false },
-      defaultValue: 0,
       description:
         "Spacing between grids, could be a number or a object like { xs: 8, sm: 16, md: 24}. Or you can use array to make horizontal and vertical spacing work at the same time <code>[horizontal, vertical]</code>.",
       control: "object",
@@ -49,7 +47,6 @@ export default {
     },
     justify: {
       type: { name: "string", required: false },
-      defaultValue: "start",
       description: "Horizontal arrangement.",
       control: "select",
       options: [
@@ -70,7 +67,6 @@ export default {
     },
     wrap: {
       type: { name: "boolean", required: false },
-      defaultValue: true,
       description: "Auto wrap line.",
       control: {
         type: "boolean",
