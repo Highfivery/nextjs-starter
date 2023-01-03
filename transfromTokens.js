@@ -1,3 +1,4 @@
+// @TODO: Convert into typescript. 
 const fs = require('fs');
 const _ = require('lodash');
 const StyleDictionary = require('style-dictionary');
@@ -11,6 +12,9 @@ const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
 console.log('Build started...');
 console.log('\n==============================================');
 
+/**
+ * Font weight values
+ */
 const fontWeightMap = {
   thin: 100,
   Thin: 100,
@@ -202,7 +206,17 @@ StyleDictionary.registerFormat({
   }
 });
 
+/**
+ * Removes any special characters from theme name
+ */
+function convertToSafeThemeName(themeName) {
+  const safeName = themeName.replace(' ', '-').replace(/[^0-9a-zA-Z-]/g, "");
+  return safeName;
+}
 
+/**
+ * Style dictionary config
+ */
 function getStyleDictionaryConfig(themeName, themeTokenSets) {
   return {
     source: themeTokenSets,
@@ -226,22 +240,18 @@ function getStyleDictionaryConfig(themeName, themeTokenSets) {
   };
 }
 
-function convertToSafeThemeName(themeName) {
-  const safeName = themeName.replace(' ', '-').replace(/[^0-9a-zA-Z-]/g, "");
-  return safeName;
-}
-
+// Read config files and run style dictionary config
 const configBlob = fs.readFileSync('sd-config.json');
 const config = JSON.parse(configBlob);
 const dirPath = config.tokenSetsDirPath;
 const themeMetaBlob = fs.readFileSync(config.tokenSetsThemeMetaPath);
 const themeMeta = JSON.parse(themeMetaBlob);
-
-
 themeMeta.map(theme => {
   const { name: themeName, selectedTokenSets } = theme;
+  // Filter token sets based on the theme prop
   const filteredTokenSets = selectedTokenSets ? _.filter(Object.keys(selectedTokenSets), key => selectedTokenSets[key] !== 'disabled') : [];
   const themeTokenSets = _.map(filteredTokenSets, set => dirPath + '/' + set + '.json');
+  // Run style dictionary config
   const themeConfig = getStyleDictionaryConfig(themeName, themeTokenSets);
   const SD = StyleDictionary.extend(themeConfig);
   SD.buildAllPlatforms();
