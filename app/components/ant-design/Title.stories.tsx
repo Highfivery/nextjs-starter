@@ -32,7 +32,6 @@ export default {
     ellipsis: storybookArgTypes.ellipsis,
     level: {
       type: { name: "number", required: false },
-      defaultValue: 1,
       description:
         "Set content importance. Match with <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code>.",
       control: "select",

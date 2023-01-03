@@ -22,7 +22,6 @@ export default {
   argTypes: {
     flex: {
       type: { name: "string", required: false },
-      defaultValue: undefined,
       description: "Flex layout style.",
       control: "string",
       table: {
@@ -34,7 +33,6 @@ export default {
     },
     offset: {
       type: { name: "number", required: false },
-      defaultValue: 0,
       description: "The number of cells to offset Col from the left.",
       control: "number",
       table: {
@@ -46,7 +44,6 @@ export default {
     },
     order: {
       type: { name: "number", required: false },
-      defaultValue: 0,
       description: "Raster order.",
       control: "number",
       table: {
@@ -58,7 +55,6 @@ export default {
     },
     pull: {
       type: { name: "number", required: false },
-      defaultValue: 0,
       description: "The number of cells that raster is moved to the left.",
       control: "number",
       table: {
@@ -70,7 +66,6 @@ export default {
     },
     push: {
       type: { name: "number", required: false },
-      defaultValue: 0,
       description: "The number of cells that raster is moved to the right.",
       control: "number",
       table: {
@@ -82,7 +77,6 @@ export default {
     },
     span: {
       type: { name: "number", required: false },
-      defaultValue: "none",
       description:
         "Raster number of cells to occupy, 0 corresponds to <code>display: none</code>.",
       control: "number",
@@ -95,7 +89,6 @@ export default {
     },
     xs: {
       type: { name: "number", required: false },
-      defaultValue: undefined,
       description:
         "<code>screen < 576px</code> and also default setting, could be a span value or an object containing above props.",
       control: "object",
@@ -108,7 +101,6 @@ export default {
     },
     md: {
       type: { name: "number", required: false },
-      defaultValue: undefined,
       description:
         "<code>screen < 768px</code> and also default setting, could be a span value or an object containing above props.",
       control: "object",
@@ -121,7 +113,6 @@ export default {
     },
     lg: {
       type: { name: "number", required: false },
-      defaultValue: undefined,
       description:
         "<code>screen < 992px</code> and also default setting, could be a span value or an object containing above props.",
       control: "object",
@@ -134,7 +125,6 @@ export default {
     },
     xg: {
       type: { name: "number", required: false },
-      defaultValue: undefined,
       description:
         "<code>screen < 1200px</code> and also default setting, could be a span value or an object containing above props.",
       control: "object",
@@ -147,7 +137,6 @@ export default {
     },
     xxl: {
       type: { name: "number", required: false },
-      defaultValue: undefined,
       description:
         "<code>screen < 1600px</code> and also default setting, could be a span value or an object containing above props.",
       control: "object",

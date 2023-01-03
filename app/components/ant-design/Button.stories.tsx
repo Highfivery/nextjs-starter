@@ -25,7 +25,6 @@ export default {
     onClick: storybookArgTypes.onClick,
     children: {
       type: { name: "string", required: true },
-      defaultValue: undefined,
       description: "Button content.",
       control: "text",
       table: {
@@ -37,7 +36,6 @@ export default {
     },
     block: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description: "Option to fit button width to its parent width.",
       control: {
         type: "boolean",
@@ -51,7 +49,6 @@ export default {
     },
     danger: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description: "Set the danger status of button.",
       control: {
         type: "boolean",
@@ -65,7 +62,6 @@ export default {
     },
     disabled: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description: "Disabled state of button.",
       control: {
         type: "boolean",
@@ -79,7 +75,6 @@ export default {
     },
     ghost: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description:
         "Make background transparent and invert text and border colors.",
       control: {
@@ -94,7 +89,6 @@ export default {
     },
     href: {
       type: { name: "string", required: false },
-      defaultValue: undefined,
       description: "Redirect url of link button.",
       control: "text",
       table: {
@@ -106,7 +100,6 @@ export default {
     },
     htmlType: {
       type: { name: "string", required: false },
-      defaultValue: "button",
       description:
         "Set the original html type of button, see: <a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type' target='_blank'>MDN</a>.",
       control: "select",
@@ -120,7 +113,6 @@ export default {
     },
     icon: {
       type: { name: "string", required: false },
-      defaultValue: undefined,
       description: "Set the icon component of button.",
       control: "text",
       table: {
@@ -132,7 +124,6 @@ export default {
     },
     loading: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description: "Set the loading status of button.",
       control: {
         type: "object",
@@ -146,7 +137,6 @@ export default {
     },
     shape: {
       type: { name: "string", required: false },
-      defaultValue: "default",
       description: "Can be set button shape.",
       control: "select",
       options: ["default", "circle", "round"],
@@ -159,7 +149,6 @@ export default {
     },
     size: {
       type: { name: "string", required: false },
-      defaultValue: "middle",
       description: "Set the size of button.",
       control: "select",
       options: ["large", "middle", "small"],
@@ -172,7 +161,6 @@ export default {
     },
     target: {
       type: { name: "string", required: false },
-      defaultValue: undefined,
       description:
         "Same as target attribute of a, works when href is specified.",
       control: "text",
@@ -185,7 +173,6 @@ export default {
     },
     type: {
       type: { name: "string", required: false },
-      defaultValue: "default",
       description:
         "Can be set to <code>primary</code> <code>ghost</code> <code>dashed</code> <code>link</code> <code>text</code> <code>default</code>.",
       control: "select",

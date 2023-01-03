@@ -33,7 +33,6 @@ export default {
     mark: storybookArgTypes.mark,
     keyboard: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description: "Keyboard style.",
       control: {
         type: "boolean",

@@ -24,7 +24,6 @@ export default {
     theme: storybookArgTypes.theme,
     children: {
       type: { name: "string", required: false },
-      defaultValue: undefined,
       description: "The wrapped title.",
       control: "text",
       table: {
@@ -36,7 +35,6 @@ export default {
     },
     className: {
       type: { name: "string", required: false },
-      defaultValue: undefined,
       description: "The className of container.",
       control: "text",
       table: {
@@ -48,7 +46,6 @@ export default {
     },
     dashed: {
       type: { name: "boolean", required: false },
-      defaultValue: false,
       description: "Whether line is dashed.",
       control: {
         type: "boolean",
@@ -62,7 +59,6 @@ export default {
     },
     orientation: {
       type: { name: "string", required: false },
-      defaultValue: "center",
       description: "The position of title inside divider.",
       control: "select",
       options: ["left", "right", "center"],
@@ -77,7 +73,6 @@ export default {
     },
     orientationMargin: {
       type: { name: "string", required: false },
-      defaultValue: undefined,
       description:
         "The margin-left/right between the title and its closest border, while the <code>orientation</code> must be <code>left</code> or <code>right</code>.",
       control: "text",
@@ -90,7 +85,6 @@ export default {
     },
     plain: {
       type: { name: "boolean", required: false },
-      defaultValue: true,
       description: "Divider text show as plain style.",
       control: {
         type: "boolean",
@@ -104,7 +98,6 @@ export default {
     },
     style: {
       type: { name: "string", required: false },
-      defaultValue: undefined,
       description: "The style object of container.",
       control: "object",
       table: {
@@ -116,7 +109,6 @@ export default {
     },
     type: {
       type: { name: "string", required: false },
-      defaultValue: "horizontal",
       description: "The direction type of divider.",
       control: "select",
       options: ["horizontal", "vertical"],
