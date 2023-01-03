@@ -1,0 +1,30 @@
+name: Generate Design Tokens With Style Dictionary
+on:
+  push:
+    branches:
+      - figma-tokens
+    paths:
+      - figma-tokens/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Node Dependencies
+      run: npm install
+    - name: Transform tokens
+      run: npm run transfromTokens
+    - name: Commit Generated Platform Deliverables
+      id: "auto-commit-action"
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update design tokens
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "develop"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        pr_label: "Update the design tokens"
+        pr_title: "Update design tokens"
