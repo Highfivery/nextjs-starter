@@ -2,11 +2,12 @@
 import { notFound } from "next/navigation";
 
 // Import WordPress dependencies
-import getPostTypeStaticPaths from "@/functions/wordpress/postTypes/getPostTypeStaticPaths";
-import getPostTypeStaticProps from "@/functions/wordpress/postTypes/getPostTypeStaticProps";
+import connector from "@/lib/wordpress/connector";
+import queryPageById from "@/lib/wordpress/pages/queryPageById";
+import formatBlockData from "@/functions/wordpress/blocks/formatBlockData";
 
 // Import component dependencies
-import RichText from "@/components/atomic-design/atoms/RichText";
+import Blocks from "@/components/wordpress/Blocks/Blocks";
 
 export default async function Page({
   params,
@@ -15,29 +16,20 @@ export default async function Page({
   params: { slug: string };
   searchParams: { id: string };
 }) {
-  // Retreive dynamic page data
-  let page = await getPostTypeStaticProps(params, "page");
-  if (page.notFound) {
-    page = await getPostTypeStaticProps(params, "post");
-  }
-
-  if (page.notFound) {
+  const { page } = await connector(queryPageById, { id: params?.slug });
+  if (!page) {
     notFound();
   }
 
-  return (
-    <>
-      {page?.props?.post?.content && (
-        <RichText>{page.props.post.content}</RichText>
-      )}
-    </>
-  );
+  const blocks = page?.blocksJSON
+    ? await formatBlockData(JSON.parse(page?.blocksJSON))
+    : [];
+
+  return <Blocks blocks={blocks} />;
 }
 
-export async function generateStaticParams() {
-  const posts = await getPostTypeStaticPaths("page");
-
+/*export async function generateStaticParams() {
   return posts?.paths?.map((post) => ({
     slug: post.params.slug[0],
   }));
-}
+}*/

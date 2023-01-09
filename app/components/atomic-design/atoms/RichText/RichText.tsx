@@ -25,6 +25,7 @@ import "@/styles/atomic-design/style.scss";
 import styles from "./RichText.module.scss";
 
 // Parser options
+// @TODO: Add additional HTML element to component types
 const options: HTMLReactParserOptions = {
   replace: (domNode: DOMNode) => {
     if (domNode.constructor.name === "Element") {
@@ -152,6 +153,7 @@ RichText.propTypes = {
   tag: PropTypes.string.isRequired,
 };
 
+// @TODO: Fix console warning: Warning: RichText: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
 RichText.defaultProps = {
   dropCap: false,
   tag: "div",
