@@ -1,4 +1,5 @@
 name: Generate Design Tokens With figma-tokens-transformer plugin
+
 on:
   push:
     branches:
@@ -12,22 +13,24 @@ jobs:
 
     steps:
     - name: Checkout
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
     - name: Setup Node 16
       uses: actions/setup-node@v3
       with:
         node-version: '16.x'
-    - name: Transform tokens
+    - name: Install Dependencies
+      run: npm ci
+    - name: Transform Tokens
       run: LICENSE_KEY=${{ secrets.LICENSE_KEY }} LICENSE_EMAIL=${{ secrets.LICENSE_EMAIL }} npx figma-tokens-transformer transform
     - name: Commit Generated Platform Deliverables
-      id: "auto-commit-action"
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Update design tokens
-    - name: pull-request
+    - name: Pull Request
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "develop"
         github_token: ${{ secrets.GITHUB_TOKEN }}
         pr_label: "Update the design tokens"
         pr_title: "Update design tokens"
+
