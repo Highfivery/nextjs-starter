@@ -33,8 +33,7 @@ export default function displayBlock(block: BlockProps, index: number) {
     }
 
     case 'core/button': {
-      /* @TODO: Fix TypeScript error */
-      /*  @ts-ignore */
+
       const { text, className, url, ...props} = attributes;
       const Button = dynamic(() => import('@wordpress/components').then(mod => mod.Button))
       const buttonStyle = getBlockStyles(props);
