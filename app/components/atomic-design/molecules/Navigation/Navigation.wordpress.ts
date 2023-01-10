@@ -15,7 +15,7 @@ export function convertMenu(
   const convertMenuArray = (
     menuArray: MenuItemProps[]
   ): NavigationItemProps[] => {
-    return menuArray.map((item) => {
+    return menuArray?.map((item) => {
       return {
         label: item.label,
         path:

@@ -2,25 +2,26 @@
 import { notFound } from "next/navigation";
 
 // Import WordPress dependencies
-import getPostTypeStaticProps from "@/functions/wordpress/postTypes/getPostTypeStaticProps";
+import connector from "@/lib/wordpress/connector";
+import queryPageById from "@/lib/wordpress/pages/queryPageById";
+import formatBlockData from "@/functions/wordpress/blocks/formatBlockData";
 
 // Import component dependencies
-import RichText from "@/components/atomic-design/atoms/RichText";
+import Blocks from "@/components/wordpress/Blocks/Blocks";
+
+// Import styles
+import "@/styles/wordpress/style.scss";
+import "@wordpress/block-library/src/button/style.scss";
 
 export default async function Page() {
-  // Retreive dynamic page data
-  let page = await getPostTypeStaticProps({ slug: "/" }, "page");
-  if (page.notFound) {
+  const { page } = await connector(queryPageById, { id: "/" });
+  if (!page) {
     notFound();
   }
 
-  return (
-    <>
-      {page?.props?.post?.content ? (
-        <RichText>{page.props.post.content}</RichText>
-      ) : (
-        `No content available.`
-      )}
-    </>
-  );
+  const blocks = page?.blocksJSON
+    ? await formatBlockData(JSON.parse(page?.blocksJSON))
+    : [];
+
+  return <Blocks blocks={blocks} />;
 }

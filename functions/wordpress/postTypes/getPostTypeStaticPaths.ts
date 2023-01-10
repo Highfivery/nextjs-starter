@@ -1,33 +1,16 @@
-import isHierarchicalPostType from "@/functions/wordpress/postTypes/isHierarchicalPostType";
-import isValidPostType from "@/functions/wordpress/postTypes/isValidPostType";
-import { initializeWpApollo } from "@/lib/wordpress/connector";
+// Import library dependencies
 import { postTypes } from "@/lib/wordpress/_config/postTypes";
-import { gql } from "@apollo/client";
 
-/**
- * Retrieve static paths by post type.
- *
- * @param  {string} postType WP post type.
- * @return {object}          Post type paths.
- */
-export default async function getPostTypeStaticPaths(
-  postType: string
-): Promise<null | {
-  paths: [
-    {
-      params: {
-        slug: string;
-      };
-    }
-  ];
-}> {
+// Import function dependencies
+import isValidPostType from "./isValidPostType";
+import isHierarchicalPostType from "./isHierarchicalPostType";
+
+export default async function getPostTypeStaticPaths(postType) {
   if (!postType || !isValidPostType(postType)) {
     return null;
   }
 
   // Retrieve post type plural name.
-  // @TODO: Fix TS warning.
-  // @ts-ignore
   const pluralName = postTypes[postType].pluralName;
 
   // Check if post type is hierarchical.
@@ -35,72 +18,4 @@ export default async function getPostTypeStaticPaths(
 
   // Determine path field based on hierarchy.
   const pathField = isHierarchical || postType === "post" ? "uri" : "slug";
-
-  // Construct query based on post type.
-  const query = gql`
-    query GET_SLUGS {
-      ${pluralName}(first: 10000) {
-        edges {
-          node {
-            ${pathField}
-          }
-        }
-      }
-    }
-  `;
-
-  // Get/create Apollo instance.
-  const apolloClient = initializeWpApollo();
-
-  // Execute query.
-  const posts = await apolloClient
-    // @TODO: Fix TS warning.
-    // @ts-ignore
-    .query({ query })
-    // @TODO: Fix TS warning.
-    // @ts-ignore
-    .then((response) => response?.data?.[pluralName]?.edges ?? [])
-    .catch(() => []);
-
-  // Process paths.
-  const paths = posts
-    // @TODO: Fix TS warning.
-    // @ts-ignore
-    .map((post) => {
-      // Trim leading and trailing slashes then split into array on inner slashes.
-      const slug = post.node[pathField].replace(/^\/|\/$/g, "").split("/");
-
-      // Handle year/month/date slug format for posts.
-      if (postType === "post") {
-        return {
-          params: {
-            year: slug?.shift() || "", // [0]
-            month: slug?.shift() || "", // [1]
-            day: slug?.shift() || "", // [2]
-            slug: slug?.shift() || "", // [3]
-          },
-        };
-      }
-
-      return {
-        params: {
-          slug,
-        },
-      };
-    })
-    // Filter out certain posts with custom routes (e.g., homepage).
-    // @TODO: Fix TS warning.
-    // @ts-ignore
-    .filter((post) =>
-      Array.isArray(post.params.slug)
-        ? !!post.params.slug.join("/").length
-        : !!post.params.slug.length
-    );
-
-  return {
-    paths,
-    // @TODO: Fix TS warning.
-    // @ts-ignore
-    fallback: "blocking",
-  };
 }

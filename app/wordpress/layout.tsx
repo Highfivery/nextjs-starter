@@ -1,9 +1,7 @@
 // Import React.js dependencies
 import { ReactElement, ReactNode } from "react";
 
-// Import functions
-import getFrontendPage from "@/functions/wordpress/postTypes/getFrontendPage";
-import { convertMenu } from "@/components/atomic-design/molecules/Navigation/Navigation.wordpress";
+import queryDefaultPageData from "@/lib/wordpress/pages/queryDefaultPageData";
 
 /**
  * Import application global styles/CSS framework below.
@@ -23,7 +21,8 @@ export default async function RootLayout({
 }: {
   children: ReactElement | ReactNode;
 }) {
-  const frontpageData = await getFrontendPage("/");
+  //const data = await queryDefaultPageData();
+  //console.log(data);
 
   return (
     <html lang="en">
@@ -33,15 +32,7 @@ export default async function RootLayout({
       */}
       <head />
       <body>
-        {/* @TODO: See https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
-        {/* @ts-expect-error Server Component */}
-        <Page
-          menu={convertMenu(frontpageData?.menus?.primary_menu, {
-            pathPrefix: "/wordpress",
-          })}
-        >
-          {children}
-        </Page>
+        <Page menu={[]}>{children}</Page>
       </body>
     </html>
   );
