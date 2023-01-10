@@ -107,6 +107,8 @@ export default {
 } as ComponentMeta<typeof SkeletonComponent>;
 
 const Template: ComponentStory<typeof SkeletonComponent> = (args) => {
+  /* @TODO: Fix TypeScript error */
+  /*  @ts-ignore */
   const { theme, ...props } = args;
 
   return (

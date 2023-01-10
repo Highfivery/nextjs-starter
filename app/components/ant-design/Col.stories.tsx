@@ -151,6 +151,8 @@ export default {
 } as ComponentMeta<typeof ColComponent>;
 
 const Template: ComponentStory<typeof ColComponent> = (args) => {
+  /* @TODO: Fix TypeScript error */
+  /*  @ts-ignore */
   const { theme, ...props } = args;
 
   return (

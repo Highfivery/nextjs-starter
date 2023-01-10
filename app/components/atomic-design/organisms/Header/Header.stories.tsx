@@ -29,12 +29,14 @@ Header.args = {
     {
       label: "About",
       path: "/about",
-      children: [
-        {
-          label: "Our Story",
-          path: "/about/our-story",
-        },
-      ],
+      children: {
+        items: [
+          {
+            label: "Our Story",
+            path: "/about/our-story",
+          },
+        ],
+      },
     },
   ],
 };

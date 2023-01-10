@@ -190,6 +190,8 @@ export default {
 } as ComponentMeta<typeof ButtonComponent>;
 
 const Template: ComponentStory<typeof ButtonComponent> = (args) => (
+  /* @TODO: Fix TypeScript error */
+  /*  @ts-ignore */
   <ConfigProvider theme={args.theme}>
     <ButtonComponent {...args}>{args.children}</ButtonComponent>
   </ConfigProvider>

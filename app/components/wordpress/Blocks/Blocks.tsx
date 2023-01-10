@@ -1,14 +1,18 @@
 "use client";
 
+// Import functions
 import displayBlock from "@/functions/wordpress/blocks/displayBlock";
 
-export default function Blocks({ blocks }) {
+// Import types
+import { BlockProps } from "@/types/wordpress/blocks";
+
+export default function Blocks(props: { blocks: BlockProps[] }) {
   return (
     <>
       {
         // If there are blocks, loop over and display.
-        !!blocks?.length &&
-          blocks.map((block, index) => {
+        !!props?.blocks?.length &&
+          props.blocks.map((block: BlockProps, index: number) => {
             return displayBlock(block, index);
           })
       }

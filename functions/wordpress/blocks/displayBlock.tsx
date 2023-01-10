@@ -1,20 +1,28 @@
 // Import Next.js dependencies
 import dynamic from "next/dynamic";
 
+// Import package dependencies
+import parse from "html-react-parser";
+import cn from "classnames";
+
 // Import function dependencies
 import getBlockStyles from "@/functions/wordpress/blocks/getBlockStyles";
+import getBlockClasses from "@/functions/wordpress/blocks/getBlockClasses";
+
+// Import types
+import { BlockProps, CoreButtonBlockProps } from "@/types/wordpress/blocks";
 
 // Import component dependencies
-import RichText from "@/components/atomic-design/atoms/RichText";
 import Blocks from "@/components/wordpress/Blocks/Blocks";
-import { paragr } from "@wordpress/components";
 
-export default function displayBlock(
-  block: {},
-  index: number,
-  designSystem: "ant" | "atomic" | "wordpress"
-) {
+export default function displayBlock(block: BlockProps, index: number) {
   const { attributes, name, innerBlocks } = block;
+
+  // @TODO: Fix TypeScript error.
+  // @ts-ignore
+  const Text = dynamic(() =>
+    import("@/components/wordpress/Text").then((mod) => mod.default)
+  );
 
   // prettier-ignore
   switch (name) {
@@ -25,39 +33,39 @@ export default function displayBlock(
     }
 
     case 'core/button': {
-      const { text, className, ...props} = attributes;
+      /* @TODO: Fix TypeScript error */
+      /*  @ts-ignore */
+      const { text, className, url, ...props} = attributes;
       const Button = dynamic(() => import('@wordpress/components').then(mod => mod.Button))
       const buttonStyle = getBlockStyles(props);
+      const buttonHtmlText = parse(String(text));
 
-      return <Button key={index} style={buttonStyle} className={className}><RichText>{text}</RichText></Button>
+      const classNames = getBlockClasses(attributes);
+      if(className) {
+        classNames.push(className);
+      }
+
+      return <Button key={index} style={buttonStyle} className={cn(classNames)} href={url || undefined}>{buttonHtmlText || ""}</Button>
     }
 
     case 'core/paragraph': {
-      console.log(block);
-      // @TODO: Parse remaining props into the component
       const { content, className, anchor, ...props} = attributes;
-      // @TODO: Fix TypeScript error
-      const RichText = dynamic(() => {
-        switch(designSystem) {
-          case "wordpress":
-          case "atomic":
-            return import('@/components/atomic-design/atoms/RichText').then(mod => mod.default)
-          default:
-            return import('@/components/atomic-design/atoms/RichText').then(mod => mod.default)
-        }
-
-      })
       const paragraphStyle = getBlockStyles(props);
 
-      return <RichText tag="p" {...attributes} id={anchor} key={index} style={paragraphStyle} className={className}>{content}</RichText>
+      return <Text Tag="p" {...props} id={anchor} key={index} style={paragraphStyle} className={className}>{content || ""}</Text>
     }
 
     case 'core/heading': {
-      const { text, className, anchor, ...props} = attributes;
-      const Heading = dynamic(() => import('@wordpress/components').then(mod => mod.Button))
-      const buttonStyle = getBlockStyles(props);
+      const { level, content, className, style, ...props } = attributes;
+      const headingStyle = getBlockStyles(props);
 
-      return <Heading key={index} style={buttonStyle} className={className}><RichText>{text}</RichText></Heading>
+      const classNames = getBlockClasses(attributes);
+      if(className) {
+        classNames.push(className);
+      }
+
+      // @TODO: Fix TypeScript error
+      return <Text key={index} Tag={`h${level}`} className={classNames} style={headingStyle} elementStyles={style?.elements}>{content || ""}</Text>
     }
   }
 }

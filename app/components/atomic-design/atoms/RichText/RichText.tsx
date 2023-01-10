@@ -4,6 +4,9 @@ import React, { ReactElement, ReactNode } from "react";
 // Import Next.js dependencies
 import Image from "next/image";
 
+// Import package dependencies
+import PropTypes from "prop-types";
+
 // Import functions
 import cn from "classnames";
 import parse, {
@@ -17,11 +20,7 @@ import Link from "../Link";
 import Figure from "../Figure";
 import Blockquote from "../Blockquote";
 
-// Import types
-import PropTypes from "prop-types";
-
 // Import styles
-import "@/styles/atomic-design/style.scss";
 import styles from "./RichText.module.scss";
 
 // Parser options
@@ -92,29 +91,31 @@ export default function RichText({
   attributes,
   children,
   className,
-  dropCap,
+  dropCap = false,
   id,
   style,
-  tag,
+  Tag = "div",
 }: RichTextProps) {
-  const tagClassName = tag !== "div" ? tag : "";
+  const tagClassName = Tag !== "div" ? Tag : "";
 
   const html = parse(String(children), options);
 
-  return React.createElement(
-    String(tag),
-    {
-      ...attributes,
-      className: cn(
+  return (
+    /* @TODO: Fix TypeScript error */
+    /*  @ts-ignore */
+    <Tag
+      {...attributes}
+      id={id || null}
+      style={style}
+      className={cn(
         styles.richtext,
         styles?.[tagClassName],
         dropCap && styles.dropcap,
         className
-      ),
-      id: id || null,
-      style: style,
-    },
-    html
+      )}
+    >
+      {html}
+    </Tag>
   );
 }
 
@@ -132,7 +133,7 @@ export interface RichTextProps {
   /** Inline styles. */
   style?: {};
   /** The type of element to render. */
-  tag: "div" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+  Tag: string;
 }
 
 RichText.propTypes = {
@@ -150,11 +151,5 @@ RichText.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.string,
   }),
-  tag: PropTypes.string.isRequired,
-};
-
-// @TODO: Fix console warning: Warning: RichText: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
-RichText.defaultProps = {
-  dropCap: false,
-  tag: "div",
+  Tag: PropTypes.string.isRequired,
 };

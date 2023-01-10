@@ -277,6 +277,8 @@ export default {
 } as ComponentMeta<typeof PaginationComponent>;
 
 const Template: ComponentStory<typeof PaginationComponent> = (args) => {
+  /* @TODO: Fix TypeScript error */
+  /*  @ts-ignore */
   const { theme, ...props } = args;
 
   return (
