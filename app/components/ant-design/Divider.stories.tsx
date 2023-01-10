@@ -125,6 +125,8 @@ export default {
 } as ComponentMeta<typeof DividerComponent>;
 
 const Template: ComponentStory<typeof DividerComponent> = (args) => {
+  /* @TODO: Fix TypeScript error */
+  /*  @ts-ignore */
   const { theme, children, ...props } = args;
 
   return (

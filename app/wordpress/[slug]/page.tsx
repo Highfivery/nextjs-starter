@@ -1,6 +1,9 @@
 // Import Next.js dependencies
 import { notFound } from "next/navigation";
 
+// Import functions
+import getPostTypeStaticPaths from "@/functions/wordpress/postTypes/getPostTypeStaticPaths";
+
 // Import WordPress dependencies
 import connector from "@/lib/wordpress/connector";
 import queryPageById from "@/lib/wordpress/pages/queryPageById";
@@ -28,8 +31,8 @@ export default async function Page({
   return <Blocks blocks={blocks} />;
 }
 
-/*export async function generateStaticParams() {
-  return posts?.paths?.map((post) => ({
-    slug: post.params.slug[0],
-  }));
-}*/
+export async function generateStaticParams() {
+  const pages = await getPostTypeStaticPaths("page");
+
+  return pages;
+}

@@ -4,7 +4,7 @@
  */
 
 // Import React.js dependencies
-import React from "react";
+import React, { ReactElement, ReactNode } from "react";
 
 /**
  * WordPress dependencies
@@ -182,9 +182,11 @@ Icon.args = {
 };
 
 export const groupedIcons = () => {
-  const GroupContainer = ({ children }) => (
-    <div style={{ display: "inline-flex" }}>{children}</div>
-  );
+  const GroupContainer = ({
+    children,
+  }: {
+    children: ReactElement | ReactNode;
+  }) => <div style={{ display: "inline-flex" }}>{children}</div>;
 
   return (
     <GroupContainer>

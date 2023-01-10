@@ -1,3 +1,3 @@
-export default function convertParagraphRegionToProps(fields): {} {
+export default function convertParagraphRegionToProps(fields: {}): {} {
   return {};
 }

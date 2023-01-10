@@ -39,6 +39,8 @@ export default {
 } as ComponentMeta<typeof ParagraphComponent>;
 
 const Template: ComponentStory<typeof ParagraphComponent> = (args) => {
+  /* @TODO: Fix TypeScript error */
+  /*  @ts-ignore */
   const { theme, ...props } = args;
 
   return (

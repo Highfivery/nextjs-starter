@@ -21,11 +21,9 @@ export default function Figure(props: FigureProps) {
   return (
     <figure className={cn(props?.className, styles.figure)}>
       {props.children}
-      {props?.caption && (
-        <figcaption>
-          <RichText>{props.caption}</RichText>
-        </figcaption>
-      )}
+      {/* @TODO: Fix TypeScript error */
+      /*  @ts-ignore */}
+      {props?.caption && <RichText Tag="figcaption">{props.caption}</RichText>}
     </figure>
   );
 }

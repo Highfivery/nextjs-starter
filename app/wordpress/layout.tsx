@@ -7,14 +7,7 @@ import queryDefaultPageData from "@/lib/wordpress/pages/queryDefaultPageData";
  * Import application global styles/CSS framework below.
  */
 
-/**
- * Entermedia's minimal CSS framework
- * @see https://github.com/Entermedia-LLC/scss
- */
-import "@/styles/atomic-design/style.scss";
-
-// Import component dependencies
-import Page from "@/components/atomic-design/templates/Page";
+import "@/styles/wordpress/style.scss";
 
 export default async function RootLayout({
   children,
@@ -31,9 +24,7 @@ export default async function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
-        <Page menu={[]}>{children}</Page>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -10,10 +10,9 @@ import formatBlockData from "@/functions/wordpress/blocks/formatBlockData";
 import Blocks from "@/components/wordpress/Blocks/Blocks";
 
 // Import styles
-import "@/styles/wordpress/style.scss";
-import "@wordpress/block-library/src/button/style.scss";
 
 export default async function Page() {
+  // @TODO: Looking at the console, it appears this component is getting called twice. Likely for a good reason, but would like to find out why.
   const { page } = await connector(queryPageById, { id: "/" });
   if (!page) {
     notFound();

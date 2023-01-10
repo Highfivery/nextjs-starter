@@ -30,6 +30,8 @@ export default {
 const BasicStructureTemplate: ComponentStory<typeof LayoutComponent> = (
   args
 ) => {
+  /* @TODO: Fix TypeScript error */
+  /*  @ts-ignore */
   const { theme } = args;
 
   return (
