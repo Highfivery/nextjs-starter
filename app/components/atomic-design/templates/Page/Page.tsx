@@ -10,7 +10,6 @@ import Header from "@/components/atomic-design/organisms/Header/Header";
 import Footer from "@/components/atomic-design/organisms/Footer/Footer";
 
 // Import styles
-import "@/styles/atomic-design/style.scss";
 import styles from "./page.module.scss";
 
 /**

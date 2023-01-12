@@ -11,7 +11,6 @@ import PropTypes from "prop-types";
 import RichText from "../RichText";
 
 // Import styles
-import "@/styles/atomic-design/style.scss";
 import styles from "./Figure.module.scss";
 
 /**

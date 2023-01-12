@@ -9,7 +9,6 @@ import { NavigationItemProps } from "@/components/atomic-design/molecules/Naviga
 import Navigation from "@/components/atomic-design/molecules/Navigation/Navigation";
 
 // Import styles
-import "@/styles/atomic-design/style.scss";
 import styles from "./Footer.module.scss";
 
 /**

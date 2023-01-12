@@ -19,7 +19,6 @@ import isLinkActive from "@/functions/isLinkActive";
 import Link from "@/components/atomic-design/atoms/Link";
 
 // Import styles
-import "@/styles/atomic-design/style.scss";
 import styles from "./Navigation.module.scss";
 
 /**

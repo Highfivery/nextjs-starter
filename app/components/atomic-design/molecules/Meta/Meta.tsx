@@ -1,9 +1,6 @@
 // Import React.js dependencies
 import { ReactElement } from "react";
 
-// Import functions
-import parse from "html-react-parser";
-
 // Import types
 import PropTypes from "prop-types";
 

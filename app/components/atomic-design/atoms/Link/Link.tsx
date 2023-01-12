@@ -11,9 +11,6 @@ import { isRelativeUrl } from "@/functions/isRelativeUrl";
 // Import types
 import PropTypes from "prop-types";
 
-// Impoty styles
-import "@/styles/atomic-design/style.scss";
-
 /**
  * Render a link component.
  */

@@ -8,7 +8,6 @@ import cn from "classnames";
 import PropTypes from "prop-types";
 
 // Import styles
-import "@/styles/atomic-design/style.scss";
 import styles from "./Blockquote.module.scss";
 
 /**

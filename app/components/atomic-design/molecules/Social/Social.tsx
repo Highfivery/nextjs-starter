@@ -11,7 +11,6 @@ import { ReactSVG } from "react-svg";
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 
 // Component styles
-import "@/styles/atomic-design/style.scss";
 import styles from "./Social.module.scss";
 
 /**
