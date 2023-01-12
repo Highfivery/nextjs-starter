@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof RichTextComponent> = (args) => (
 
 export const ContentSamples = Template.bind({});
 ContentSamples.args = {
-  tag: "div",
+  Tag: "div",
   children: `<h1>H1</h1>
   <h2>H2</h2>
   <h3>H3</h3>
@@ -58,13 +58,13 @@ ContentSamples.args = {
 
 export const Tag = Template.bind({});
 Tag.args = {
-  tag: "h2",
+  Tag: "h2",
   children: `This heading has <strong>Bold Content</strong> and <i>Italics</i>`,
 };
 
 export const DataAttributes = Template.bind({});
 DataAttributes.args = {
-  tag: "h2",
+  Tag: "h2",
   children: `This heading has a data attribute applied to it`,
   attributes: {
     "data-att": true,
@@ -73,12 +73,12 @@ DataAttributes.args = {
 
 export const ParsedImage = Template.bind({});
 ParsedImage.args = {
-  tag: "div",
+  Tag: "div",
   children: `This is a parsed image <img src="https://picsum.photos/200/300" alt="Test image" />`,
 };
 
 export const ParsedExternalLink = Template.bind({});
 ParsedExternalLink.args = {
-  tag: "div",
+  Tag: "div",
   children: `This is a <a href="https://www.google.com">parsed external link</a>.`,
 };
