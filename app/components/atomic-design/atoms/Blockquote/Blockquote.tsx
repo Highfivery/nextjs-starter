@@ -16,7 +16,10 @@ import styles from "./Blockquote.module.scss";
  */
 export default function Blockquote(props: BlockquoteProps) {
   return (
-    <blockquote className={cn(props?.className, styles.blockquote)}>
+    <blockquote
+      cite={props?.cite}
+      className={cn(props?.className, styles.blockquote)}
+    >
       {props.children}
     </blockquote>
   );
@@ -27,6 +30,8 @@ export interface BlockquoteProps {
   children: ReactElement | ReactNode;
   /** Optional classNames. */
   className?: string;
+  /** Optional citation URL */
+  cite?: string;
 }
 
 Blockquote.propTypes = {
@@ -37,4 +42,5 @@ Blockquote.propTypes = {
     PropTypes.node,
   ]).isRequired,
   className: PropTypes.string,
+  cite: PropTypes.string,
 };
