@@ -1,8 +1,11 @@
 // Import types
 import { CoreBlockProps } from "@/types/wordpress/blocks";
 
+/**
+ * Converts WP GraphQL Gutenberg blocks attributes response to WP classes.
+ */
 export default function getBlockStyles(
-  attributes: Omit<CoreBlockProps, "innerBlocks" | "name">
+  attributes: CoreBlockProps["attributes"]
 ) {
   const { backgroundColor, textColor, fontSize, gradient } = attributes;
 

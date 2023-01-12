@@ -10,11 +10,21 @@ import getBlockStyles from "@/functions/wordpress/blocks/getBlockStyles";
 import getBlockClasses from "@/functions/wordpress/blocks/getBlockClasses";
 
 // Import types
-import { BlockProps, CoreButtonBlockProps } from "@/types/wordpress/blocks";
+import {
+  BlockProps,
+  CoreButtonBlockProps,
+  CoreBlockProps,
+  CoreParagraphBlockProps,
+  CoreHeadingBlockProps,
+} from "@/types/wordpress/blocks";
 
 // Import component dependencies
 import Blocks from "@/components/wordpress/Blocks/Blocks";
 
+/**
+ * Outputs a Gutenberg block component.
+ * @TODO: Fix TypeScript errors.
+ */
 export default function displayBlock(block: BlockProps, index: number) {
   const { attributes, name, innerBlocks } = block;
 
@@ -33,8 +43,7 @@ export default function displayBlock(block: BlockProps, index: number) {
     }
 
     case 'core/button': {
-
-      const { text, className, url, ...props} = attributes;
+      const { text, className, url, ...props} = attributes as CoreButtonBlockProps['attributes'] & CoreBlockProps['attributes'];
       const Button = dynamic(() => import('@wordpress/components').then(mod => mod.Button))
       const buttonStyle = getBlockStyles(props);
       const buttonHtmlText = parse(String(text));
@@ -48,14 +57,14 @@ export default function displayBlock(block: BlockProps, index: number) {
     }
 
     case 'core/paragraph': {
-      const { content, className, anchor, ...props} = attributes;
+      const { content, className, anchor, ...props} = attributes as CoreParagraphBlockProps['attributes'] & CoreBlockProps['attributes'];;
       const paragraphStyle = getBlockStyles(props);
 
       return <Text Tag="p" {...props} id={anchor} key={index} style={paragraphStyle} className={className}>{content || ""}</Text>
     }
 
     case 'core/heading': {
-      const { level, content, className, style, ...props } = attributes;
+      const { level, content, className, style, ...props } = attributes as CoreHeadingBlockProps['attributes'] & CoreBlockProps['attributes'];;
       const headingStyle = getBlockStyles(props);
 
       const classNames = getBlockClasses(attributes);
