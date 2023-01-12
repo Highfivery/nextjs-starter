@@ -63,6 +63,7 @@
     "commitizen": "^4.2.6",
     "commitlint": "^17.3.0",
     "eslint-plugin-storybook": "^0.6.8",
+    "figma-tokens-transformer": "^1.1.2",
     "husky": "^8.0.2",
     "inquirer": "^8.2.5",
     "leasot": "^13.2.0",
