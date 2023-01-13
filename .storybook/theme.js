@@ -10,5 +10,5 @@ export default create({
   brandTitle: "Next.js Starter",
   brandUrl: "https://github.com/Highfivery/nextjs-starter",
   brandImage:
-    "https://raw.githubusercontent.com/Highfivery/nextjs-starter/8d57589e0fcef4875944bb15ed16aa07fe49aebd/public/nextjs-starter.svg",
+    "https://raw.githubusercontent.com/Highfivery/nextjs-starter/952a4ed25887fb2a1c97e08cfa308da408210d7b/public/nextjs-starter.svg",
 });
