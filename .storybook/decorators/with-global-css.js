@@ -6,13 +6,13 @@ import classnames from "classnames";
 /**
  * WordPress dependencies
  */
-import { useEffect } from "@wordpress/element";
+import { useEffect, useState } from "react";
 
 /**
  * Internal dependencies
  */
-import basicStyles from "@/styles/atomic-design/base.scss";
-import wordPressStyles from "@/styles/wordpress/style.scss";
+import basicStyles from "!css-loader!sass-loader!@/styles/atomic-design/base.scss";
+import wordPressStyles from "!css-loader!sass-loader!@/styles/wordpress/style.scss";
 
 /**
  * A Storybook decorator to inject global CSS.
@@ -22,26 +22,23 @@ import wordPressStyles from "@/styles/wordpress/style.scss";
  */
 
 const config = {
-  none: {
+  shared: {
     lazyStyles: [],
     externalStyles: [],
     classes: [],
   },
-  basic: {
-    lazyStyles: [basicStyles],
+  ant: {
+    lazyStyles: [
+      basicStyles
+    ],
     externalStyles: [],
     classes: [],
   },
   wordpress: {
-    lazyStyles: [wordPressStyles],
-    externalStyles: [
-      // wp-admin loads "global" stylesheets which contain some broadly scoped styles
-      // that affect wp-components
-      "https://wordpress.org/gutenberg/wp-admin/css/common.min.css",
-      "https://wordpress.org/gutenberg/wp-admin/css/forms.min.css",
-      // Icon components need to support dashicons for backwards compatibility
-      "https://wordpress.org/gutenberg/wp-includes/css/dashicons.min.css",
+    lazyStyles: [
+      wordPressStyles,
     ],
+    externalStyles: [],
     // In wp-admin, these classes are added to the body element,
     // which is used as a class scope for some relevant styles in the external
     // stylesheets listed above. We simulate that here by adding the classes to a wrapper element.
@@ -50,19 +47,23 @@ const config = {
 };
 
 export const WithGlobalCSS = (Story, context) => {
+  const [styles, setStyles] = useState([]);
   const { lazyStyles, externalStyles, classes } = config[context.globals.css];
 
+  console.log(context)
+
   useEffect(() => {
-    lazyStyles.forEach((style) => style.use());
-    return () => lazyStyles.forEach((style) => style.unuse());
-  }, [context.globals.css]);
+    setStyles(lazyStyles);
+  }, [context.globals.css], lazyStyles);
 
   return (
     <div className={classnames(classes)}>
       {externalStyles.map((stylesheet) => (
         <link key={stylesheet} rel="stylesheet" href={stylesheet} />
       ))}
-
+      {styles.map((style) => (
+        <style>{style.toString()}</style>
+      ))}
       <Story {...context} />
     </div>
   );

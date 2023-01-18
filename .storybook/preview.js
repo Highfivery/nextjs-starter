@@ -1,32 +1,33 @@
 /**
  * Internal dependencies
  */
-//import { WithGlobalCSS } from "./decorators/with-global-css";
+import { WithGlobalCSS } from "./decorators/with-global-css";
 
 /**
  * Import application global styles/CSS framework below.
  */
 
-/*export const globalTypes = {
+export const globalTypes = {
   css: {
     name: "Global CSS",
     description: "Inject global CSS that may be loaded in certain contexts.",
-    defaultValue: "basic",
+    defaultValue: "shared",
     toolbar: {
       icon: "document",
       items: [
-        { value: "none", title: "None" },
-        { value: "basic", title: "Font only" },
+        { value: "shared", title: "Shared Styles" },
+        { value: "ant", title: "Ant Styles" },
         {
           value: "wordpress",
-          title: "WordPress (common, forms, dashicons)",
+          title: "WordPress Styles",
         },
       ],
     },
   },
-};*/
+};
 
-//export const decorators = [WithGlobalCSS];
+
+export const decorators = [WithGlobalCSS];
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
