@@ -16,7 +16,9 @@ export const globalTypes = {
       icon: "document",
       items: [
         { value: "shared", title: "Shared Styles" },
-        { value: "ant", title: "Ant Styles" },
+        { value: "antLight", title: "Ant-Light theme" },
+        { value: "antDark", title: "Ant-Dark theme" },
+        { value: "atomic", title: "Atomic Styles" },
         {
           value: "wordpress",
           title: "WordPress Styles",

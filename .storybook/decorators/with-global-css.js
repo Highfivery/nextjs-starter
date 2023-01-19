@@ -4,15 +4,18 @@
 import classnames from "classnames";
 
 /**
- * WordPress dependencies
+ * React dependencies
  */
 import { useEffect, useState } from "react";
+import { ConfigProvider } from 'antd';
 
 /**
- * Internal dependencies
+ * Import styles
  */
-import basicStyles from "!css-loader!sass-loader!@/styles/atomic-design/base.scss";
+import light from '@/tokens/light.json';
+import dark from '@/tokens/dark.json';
 import wordPressStyles from "!css-loader!sass-loader!@/styles/wordpress/style.scss";
+import atomicStyles from "!css-loader!sass-loader!@/styles/atomic-design/style.scss"
 
 /**
  * A Storybook decorator to inject global CSS.
@@ -27,9 +30,21 @@ const config = {
     externalStyles: [],
     classes: [],
   },
-  ant: {
+  antLight: {
     lazyStyles: [
-      basicStyles
+      light
+    ],
+    externalStyles: [],
+    classes: [],
+  },
+  antDark: {
+    lazyStyles: [
+      dark
+    ],
+  },
+  atomic: {
+    lazyStyles: [
+      atomicStyles
     ],
     externalStyles: [],
     classes: [],
@@ -47,24 +62,31 @@ const config = {
 };
 
 export const WithGlobalCSS = (Story, context) => {
-  const [styles, setStyles] = useState([]);
   const { lazyStyles, externalStyles, classes } = config[context.globals.css];
 
-  console.log(context)
+  const [styles, setStyles] = useState([]);
+  const [token, setToken] = useState(light);
 
+  // useEffect - Changes the lazy styles as per the selected option
   useEffect(() => {
-    setStyles(lazyStyles);
+    if(context.globals.css === 'antDark' || context.globals.css === 'antLight') {
+      setToken(...lazyStyles)
+    } else {
+      setStyles(lazyStyles)
+    }
   }, [context.globals.css], lazyStyles);
 
   return (
     <div className={classnames(classes)}>
-      {externalStyles.map((stylesheet) => (
+      {externalStyles?.map((stylesheet) => (
         <link key={stylesheet} rel="stylesheet" href={stylesheet} />
       ))}
-      {styles.map((style) => (
+      {styles?.map((style) => (
         <style>{style.toString()}</style>
       ))}
-      <Story {...context} />
+       <ConfigProvider theme={{token}}>
+        <Story {...context} />
+      </ConfigProvider>
     </div>
   );
 };
