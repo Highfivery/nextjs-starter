@@ -7,7 +7,6 @@ import displayBlock from "@/functions/wordpress/blocks/displayBlock";
 import { BlockProps } from "@/types/wordpress/blocks";
 
 export default function Blocks(props: { blocks: BlockProps[] }) {
-  console.log(props.blocks);
   return (
     <>
       {

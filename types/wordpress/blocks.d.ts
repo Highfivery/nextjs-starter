@@ -21,6 +21,7 @@ export interface CoreBlockProps {
       };
     };
     textColor?: string;
+    visibility?: {};
   };
   innerBlocks?: BlockProps[];
   name: string;
@@ -55,9 +56,62 @@ export interface CoreHeadingBlockProps extends CoreBlockProps {
   };
 }
 
+// gutenberg-ant-design/button
+export interface GutenbergAntDesignButtonBlockProps extends CoreBlockProps {
+  attributes: {
+    text?: string;
+    block?: boolean;
+    danger?: boolean;
+    disabled?: boolean;
+    ghost?: boolean;
+    href?: string;
+    htmlType?: string;
+    icon?: string;
+    loading?: number;
+    shape?: "default" | "circle" | "round";
+    size?: "large" | "middle" | "small";
+    target?: string;
+    type?: "primary" | "ghost" | "dashed" | "link" | "text" | "default";
+  };
+}
+
+// gutenberg-ant-design/row
+export interface GutenbergAntDesignRowBlockProps extends CoreBlockProps {
+  attributes: {
+    gutter?: number | {} | [];
+    align?: string | {};
+    visibility?: {};
+    justify?: string | {};
+    wrap?: boolean;
+  };
+}
+
+// gutenberg-ant-design/col
+type GutenbergAntDesignColScreenProps = {
+  flex?: string | number;
+  offset?: number;
+  order?: number;
+  pull?: number;
+  push?: number;
+  span?: number;
+};
+export interface GutenbergAntDesignColBlockProps extends CoreBlockProps {
+  attributes: {
+    xs?: GutenbergAntDesignColScreenProps;
+    sm?: GutenbergAntDesignColScreenProps;
+    md?: GutenbergAntDesignColScreenProps;
+    lg?: GutenbergAntDesignColScreenProps;
+    xl?: GutenbergAntDesignColScreenProps;
+    xxl?: GutenbergAntDesignColScreenProps;
+  };
+}
+
 export type BlockProps =
   | CoreParagraphBlockProps
   | CoreParagraphBlockProps
   | CoreButtonsBlockProps
   | CoreButtonBlockProps
-  | CoreHeadingBlockProps;
+  | CoreHeadingBlockProps
+  | GutenbergAntDesignButtonBlockProps
+  | GutenbergAntDesignRowBlockProps
+  | GutenbergAntDesignColBlockProps;

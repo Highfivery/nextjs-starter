@@ -27,7 +27,6 @@ export default async function Page({
   const blocks = page?.blocksJSON
     ? await formatBlockData(JSON.parse(page?.blocksJSON))
     : [];
-
   return <Blocks blocks={blocks} />;
 }
 

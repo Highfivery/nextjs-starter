@@ -2,7 +2,6 @@
 import dynamic from "next/dynamic";
 
 // Import package dependencies
-import parse from "html-react-parser";
 import cn from "classnames";
 
 // Import function dependencies
@@ -12,68 +11,154 @@ import getBlockClasses from "@/functions/wordpress/blocks/getBlockClasses";
 // Import types
 import {
   BlockProps,
-  CoreButtonBlockProps,
   CoreBlockProps,
-  CoreParagraphBlockProps,
-  CoreHeadingBlockProps,
+  GutenbergAntDesignButtonBlockProps,
+  GutenbergAntDesignRowBlockProps,
+  GutenbergAntDesignColBlockProps,
 } from "@/types/wordpress/blocks";
 
 // Import component dependencies
 import Blocks from "@/components/wordpress/Blocks/Blocks";
 
+// @TODO: Could we load this dynamically instead, only needed on certain components
+import { theme } from "antd";
+
 /**
  * Outputs a Gutenberg block component.
- * @TODO: Fix TypeScript errors.
  */
 export default function displayBlock(block: BlockProps, index: number) {
   const { attributes, name, innerBlocks } = block;
 
-  // @TODO: Fix TypeScript error.
-  // @ts-ignore
-  const Text = dynamic(() =>
-    import("@/components/wordpress/Text").then((mod) => mod.default)
-  );
-
-  // prettier-ignore
   switch (name) {
-    /* -- CORE BLOCKS -- */
-    case 'core/buttons': {
-      const ButtonGroup = dynamic(() => import('@wordpress/components').then(mod => mod.ButtonGroup))
-      return <ButtonGroup key={index}>{!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}</ButtonGroup>
+    /* -- GUTENBERG ANT DESIGN BLOCKS -- */
+    case "gutenberg-ant-design/button": {
+      const {
+        text,
+        block: buttonBlock,
+        danger,
+        disabled,
+        ghost,
+        href,
+        htmlType,
+        icon,
+        loading,
+        shape,
+        size,
+        target,
+        type,
+      } = attributes as GutenbergAntDesignButtonBlockProps["attributes"] &
+        CoreBlockProps["attributes"];
+      console.log(attributes);
+
+      const Button = dynamic(() => import("antd").then((mod) => mod.Button));
+      // @TODO: Fix TypeScript error.
+      const Icon = icon
+        ? dynamic(() => import("@ant-design/icons").then((mod) => mod[icon]))
+        : undefined;
+
+      const buttonClasses = getBlockClasses(block);
+      const buttonProps = {
+        block: buttonBlock,
+        danger,
+        disabled,
+        href,
+        ghost,
+        htmlType,
+        icon: Icon ? <Icon /> : undefined,
+        loading: loading ? { delay: loading } : undefined,
+        shape,
+        size,
+        target,
+        type,
+        className: buttonClasses,
+      };
+
+      // @TODO: Fix TypeScript error.
+      return (
+        <Button {...buttonProps} key={index}>
+          {text}
+        </Button>
+      );
     }
 
-    case 'core/button': {
-      const { text, className, url, ...props} = attributes as CoreButtonBlockProps['attributes'] & CoreBlockProps['attributes'];
-      const Button = dynamic(() => import('@wordpress/components').then(mod => mod.Button))
-      const buttonStyle = getBlockStyles(props);
-      const buttonHtmlText = parse(String(text));
+    case "gutenberg-ant-design/row": {
+      const { gutter, align, justify, wrap, styles } =
+        attributes as GutenbergAntDesignRowBlockProps["attributes"] &
+          CoreBlockProps["attributes"];
+      console.log(block);
 
-      const classNames = getBlockClasses(attributes);
-      if(className) {
-        classNames.push(className);
+      const Row = dynamic(() => import("antd").then((mod) => mod.Row));
+
+      if (Array.isArray(gutter)) {
+        // Clean to remove any blank values.
+        gutter?.forEach((sizes, index) => {
+          for (const [key, value] of Object.entries(sizes)) {
+            if (value === "") {
+              delete gutter[index][key];
+            }
+          }
+        });
       }
 
-      return <Button key={index} style={buttonStyle} className={cn(classNames)} href={url || undefined}>{buttonHtmlText || ""}</Button>
-    }
+      // @TODO: Fix TypeScript error.
+      const rowClasses = getBlockClasses(block);
+      const rowProps = {
+        gutter,
+        align,
+        justify,
+        wrap,
+        className: cn(rowClasses),
+      };
 
-    case 'core/paragraph': {
-      const { content, className, anchor, ...props} = attributes as CoreParagraphBlockProps['attributes'] & CoreBlockProps['attributes'];;
-      const paragraphStyle = getBlockStyles(props);
-
-      return <Text Tag="p" {...props} id={anchor} key={index} style={paragraphStyle} className={className}>{content || ""}</Text>
-    }
-
-    case 'core/heading': {
-      const { level, content, className, style, ...props } = attributes as CoreHeadingBlockProps['attributes'] & CoreBlockProps['attributes'];;
-      const headingStyle = getBlockStyles(props);
-
-      const classNames = getBlockClasses(attributes);
-      if(className) {
-        classNames.push(className);
-      }
-
+      const { useToken } = theme;
       // @TODO: Fix TypeScript error
-      return <Text key={index} Tag={`h${level}`} className={classNames} style={headingStyle} elementStyles={style?.elements}>{content || ""}</Text>
+      const { token } = useToken();
+
+      // @TODO: Fix TypeScript error.
+      return (
+        <div key={index}>
+          <Row {...rowProps}>
+            {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
+          </Row>
+          <style jsx>{`
+            .ant-row {
+              background-color: ${styles.xs["background-color"]};
+            }
+
+            @media (min-width: ${token.screenSM}px) {
+              .ant-row {
+                background-color: ${styles.sm["background-color"]};
+              }
+            }
+          `}</style>
+        </div>
+      );
+    }
+
+    case "gutenberg-ant-design/col": {
+      const { xs, sm, md, lg, xl, xxl } =
+        attributes as GutenbergAntDesignColBlockProps["attributes"] &
+          CoreBlockProps["attributes"];
+
+      const Col = dynamic(() => import("antd").then((mod) => mod.Col));
+
+      // @TODO: Fix TypeScript error.
+      const colClasses = getBlockClasses(block);
+      const colProps = {
+        xs,
+        sm,
+        md,
+        lg,
+        xl,
+        xxl,
+        className: cn(colClasses),
+      };
+
+      return (
+        <Col {...colProps} key={index}>
+          {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
+        </Col>
+      );
     }
   }
 }

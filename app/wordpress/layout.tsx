@@ -7,7 +7,7 @@ import queryDefaultPageData from "@/lib/wordpress/pages/queryDefaultPageData";
  * Import application global styles/CSS framework below.
  */
 
-import "@/styles/wordpress/style.scss";
+import "@/styles/gutenberg/style.scss";
 
 export default async function RootLayout({
   children,
