@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
+
 /**
  * Handle markup that contains HTML.
- * @TODO: Fix TypeScript error.
  */
-export default function createMarkup(props) {
+export default function createMarkup(props : ReactNode) {
   return { __html: props };
 }

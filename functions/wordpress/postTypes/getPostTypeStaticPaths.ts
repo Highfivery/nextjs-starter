@@ -9,7 +9,7 @@ import connector from "@/lib/wordpress/connector";
 import isValidPostType from "./isValidPostType";
 import isHierarchicalPostType from "./isHierarchicalPostType";
 
-export default async function getPostTypeStaticPaths(postType) {
+export default async function getPostTypeStaticPaths(postType: keyof typeof postTypes) {
   if (!postType || !isValidPostType(postType)) {
     return null;
   }
@@ -31,10 +31,11 @@ export default async function getPostTypeStaticPaths(postType) {
         }
       }
     }
-  }`).then((response) => response?.[pluralName]?.edges ?? []);
+  }`, '').then((response) => response?.[pluralName]?.edges ?? []);
 
+  //@TODO: Assign type for posts if required
   const paths = posts
-    .map((post) => {
+    .map((post: any) => {
       // Trim leading and trailing slashes then split into array on inner slashes.
       const slug = post.node[pathField].replace(/^\/|\/$/g, "");
 
@@ -43,7 +44,7 @@ export default async function getPostTypeStaticPaths(postType) {
       };
     })
     // Filter out certain posts with custom routes (e.g., homepage).
-    .filter((post) =>
+    .filter((post: any) =>
       Array.isArray(post.slug)
         ? !!post.slug.join("/").length
         : !!post.slug.length

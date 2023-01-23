@@ -3,7 +3,7 @@
  *
  * @see https://nextjs.org/docs/api-reference/next/router#router-object
  */
-export default function isLinkActive(asPath: string, path: string) {
+export default function isLinkActive(asPath: string, path: string): boolean {
   if (!asPath || !path) {
     return false;
   }

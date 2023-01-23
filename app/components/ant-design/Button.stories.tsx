@@ -189,11 +189,11 @@ export default {
   },
 } as ComponentMeta<typeof ButtonComponent>;
 
-const Template: ComponentStory<typeof ButtonComponent> = (args) => (
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const Template: ComponentStory<typeof ButtonComponent & typeof ConfigProvider> = (args) => (
   <ConfigProvider theme={args.theme}>
-    <ButtonComponent {...args}>{args.children}</ButtonComponent>
+    <ButtonComponent {...args as typeof ButtonComponent}>
+      {args.children}
+    </ButtonComponent>
   </ConfigProvider>
 );
 

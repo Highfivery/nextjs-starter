@@ -25,9 +25,13 @@ import { theme } from "antd";
 /**
  * Outputs a Gutenberg block component.
  */
-export default function displayBlock(block: BlockProps, index: number) {
+export default function DisplayBlock(block: BlockProps, index: number) {
   const { attributes, name, innerBlocks } = block;
 
+  // @TODO: Check if we can use this conditionally
+  const { useToken } = theme;
+  const { token } = useToken();
+  
   switch (name) {
     /* -- GUTENBERG ANT DESIGN BLOCKS -- */
     case "gutenberg-ant-design/button": {
@@ -50,9 +54,9 @@ export default function displayBlock(block: BlockProps, index: number) {
       console.log(attributes);
 
       const Button = dynamic(() => import("antd").then((mod) => mod.Button));
-      // @TODO: Fix TypeScript error.
+      // @TODO: import icon type has no type signature 
       const Icon = icon
-        ? dynamic(() => import("@ant-design/icons").then((mod) => mod[icon]))
+        ? dynamic(() => import("@ant-design/icons").then((mod : any) => mod[icon]))
         : undefined;
 
       const buttonClasses = getBlockClasses(block);
@@ -69,10 +73,9 @@ export default function displayBlock(block: BlockProps, index: number) {
         size,
         target,
         type,
-        className: buttonClasses,
+        className: cn(buttonClasses),
       };
 
-      // @TODO: Fix TypeScript error.
       return (
         <Button {...buttonProps} key={index}>
           {text}
@@ -99,7 +102,6 @@ export default function displayBlock(block: BlockProps, index: number) {
         });
       }
 
-      // @TODO: Fix TypeScript error.
       const rowClasses = getBlockClasses(block);
       const rowProps = {
         gutter,
@@ -109,11 +111,6 @@ export default function displayBlock(block: BlockProps, index: number) {
         className: cn(rowClasses),
       };
 
-      const { useToken } = theme;
-      // @TODO: Fix TypeScript error
-      const { token } = useToken();
-
-      // @TODO: Fix TypeScript error.
       return (
         <div key={index}>
           <Row {...rowProps}>
@@ -121,12 +118,12 @@ export default function displayBlock(block: BlockProps, index: number) {
           </Row>
           <style jsx>{`
             .ant-row {
-              background-color: ${styles.xs["background-color"]};
+              background-color: ${styles.xs["backgroundColor"]};
             }
 
             @media (min-width: ${token.screenSM}px) {
               .ant-row {
-                background-color: ${styles.sm["background-color"]};
+                background-color: ${styles.sm["backgroundColor"]};
               }
             }
           `}</style>
@@ -141,7 +138,6 @@ export default function displayBlock(block: BlockProps, index: number) {
 
       const Col = dynamic(() => import("antd").then((mod) => mod.Col));
 
-      // @TODO: Fix TypeScript error.
       const colClasses = getBlockClasses(block);
       const colProps = {
         xs,

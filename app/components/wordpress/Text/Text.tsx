@@ -2,46 +2,26 @@
 import React, { ReactElement, ReactNode } from "react";
 
 // Import Next.js dependencies
-import Image from "next/image";
-
-// Import package dependencies
-import PropTypes from "prop-types";
+import Link from "next/link";
 
 // Import functions
-import cn from "classnames";
+import convertVarToCss from "@/functions/wordpress/convertVartoCss";
+
+// Import package dependencies
 import parse, {
   HTMLReactParserOptions,
-  domToReact,
   DOMNode,
-  Element,
+  domToReact,
+  Element
 } from "html-react-parser";
-
-// Import component dependencies
-import Link from "../Link";
-import Figure from "../Figure";
-import Blockquote from "../Blockquote";
-
-// Import styles
-import styles from "./RichText.module.scss";
+import cn from "classnames";
+import PropTypes from "prop-types";
 
 // Parser options
-// @TODO: Add additional HTML element to component types
+// @TODO: Add additional HTML element to component types, see the atomic design RichText component for examples
 const options: HTMLReactParserOptions = {
   replace: (domNode: DOMNode) => {
     if (domNode instanceof Element && domNode.attribs) {
-      if (domNode.name === "img") {
-        const { src, alt, width = 100, height = 100 } = domNode.attribs;
-
-        return (
-          <Image
-            src={src}
-            alt={alt}
-            width={Number(width)}
-            height={Number(height)}
-          />
-        );
-      }
-
       if (domNode.name === "a") {
         const { href, class: className } = domNode.attribs;
 
@@ -51,34 +31,23 @@ const options: HTMLReactParserOptions = {
           </Link>
         );
       }
-
-      if (domNode.name === "blockquote") {
-        const { class: className } = domNode.attribs;
-
-        return (
-          <Figure className={className}>
-            <Blockquote>{domToReact(domNode.children)}</Blockquote>
-          </Figure>
-        );
-      }
     }
   },
 };
 
 /**
- * Render the RichText component.
+ * Will eventually be replaced with WP core Text component
+ * @see https://developer.wordpress.org/block-editor/reference-guides/components/text/
  */
-export default function RichText({
+export default function Text({
   attributes,
   children,
+  Tag = "div",
   className,
-  dropCap = false,
   id,
   style,
-  Tag = "div",
-}: RichTextProps) {
-  const tagClassName = Tag !== "div" ? Tag : "";
-
+  elementStyles,
+}: TextProps) {
   const html = parse(String(children), options);
 
   return (
@@ -86,44 +55,50 @@ export default function RichText({
       {...attributes}
       id={id || undefined}
       style={style}
-      className={cn(
-        styles.richtext,
-        styles?.[tagClassName],
-        dropCap && styles.dropcap,
-        className
-      )}
+      className={cn(className)}
     >
       {html}
+      <style jsx>{`
+        ${Tag} :global(a) {
+          color: ${convertVarToCss(elementStyles?.link?.color?.text) ||
+          "inherit"};
+        }
+      `}</style>
     </Tag>
   );
 }
 
-export interface RichTextProps {
+export interface TextProps {
   /** Optional element attributes. */
   attributes?: {};
   /** Child component(s) to render. */
   children: ReactElement | ReactNode;
   /** Optional classNames. */
-  className?: string;
-  /** Whether or not there should be a drop cap. */
-  dropCap?: boolean;
+  className?: string | string[];
   /** Optional element ID. */
   id?: string;
   /** Inline styles. */
   style?: {};
   /** The type of element to render. */
   Tag: keyof JSX.IntrinsicElements;
+  /** Element styles. */
+  elementStyles?: {
+    link?: {
+      color?: {
+        text?: string;
+      };
+    };
+  };
 }
 
-RichText.propTypes = {
+Text.propTypes = {
   attributes: PropTypes.object,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
     PropTypes.element,
   ]).isRequired,
-  className: PropTypes.string,
-  dropCap: PropTypes.bool,
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   id: PropTypes.string,
   style: PropTypes.shape({
     backgroundColor: PropTypes.string,
@@ -131,4 +106,5 @@ RichText.propTypes = {
     fontSize: PropTypes.string,
   }),
   Tag: PropTypes.string.isRequired,
+  elementStyles: PropTypes.object,
 };

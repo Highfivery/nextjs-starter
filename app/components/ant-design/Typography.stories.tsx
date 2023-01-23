@@ -26,9 +26,8 @@ export default {
   },
 } as ComponentMeta<typeof TypographyComponent>;
 
-const Template: ComponentStory<typeof TypographyComponent> = (args) => (
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const Template: ComponentStory<typeof TypographyComponent & typeof ConfigProvider> = (args) => (
+
   <ConfigProvider theme={args.theme}>
     <TypographyComponent>
       <Title>Introduction</Title>

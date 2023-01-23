@@ -51,9 +51,7 @@ export default {
   },
 } as ComponentMeta<typeof TextComponent>;
 
-const Template: ComponentStory<typeof TextComponent> = (args) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const Template: ComponentStory<typeof TextComponent & typeof ConfigProvider> = (args) => {
   const { theme, ...props } = args;
 
   return (
