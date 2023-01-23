@@ -33,8 +33,8 @@ export default async function getPostTypeStaticPaths(postType: keyof typeof post
     }
   }`, '').then((response) => response?.[pluralName]?.edges ?? []);
 
-  //@TODO: Assign type for posts if required
   const paths = posts
+    //@TODO: Assign type for posts if required
     .map((post: any) => {
       // Trim leading and trailing slashes then split into array on inner slashes.
       const slug = post.node[pathField].replace(/^\/|\/$/g, "");
@@ -44,6 +44,7 @@ export default async function getPostTypeStaticPaths(postType: keyof typeof post
       };
     })
     // Filter out certain posts with custom routes (e.g., homepage).
+     //@TODO: Assign type for posts if required
     .filter((post: any) =>
       Array.isArray(post.slug)
         ? !!post.slug.join("/").length

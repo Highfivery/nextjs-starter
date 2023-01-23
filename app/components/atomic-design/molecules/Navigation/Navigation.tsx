@@ -57,7 +57,7 @@ function NavigationMenu({
               {item.label}
             </Link>
 
-            {item?.children?.items && (
+            {(item?.children?.items && item.children.items.length > 0) && (
               <>
                 {item?.children?.Title && item.children.Title}
                 <ul
@@ -83,7 +83,7 @@ export interface NavigationItemProps {
   /** Item path. */
   path: string;
   /** Link target. */
-  target?: "_blank" | "_self" | undefined;
+  target?: string;
   onLinkClick?: (
     event: React.MouseEvent<Element, MouseEvent>,
     itemIndex: number,

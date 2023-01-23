@@ -9,7 +9,7 @@ export default function getBlockClasses(block: BlockProps) {
   const { attributes }: any = block;
 
   const classes = [];
-
+  
   if (attributes?.visibility) {
     for (const [screenSize] of Object.entries(attributes.visibility)) {
       if (attributes.visibility[screenSize] === "hidden") {

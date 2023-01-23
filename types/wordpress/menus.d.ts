@@ -4,6 +4,6 @@ export interface MenuItemProps {
   parentId?: string;
   label: string;
   path: string;
-  target?: "_self" | "_blank" | undefined;
+  target?: string;
   children?: MenuItem[];
 }

@@ -46,7 +46,7 @@ export interface LinkProps extends NextLinkProps {
   /** Anchor href. */
   href: string;
   /** Target */
-  target?: "_blank" | "_self";
+  target?: string;
   /** Optional classNames. */
   className?: string;
 }
