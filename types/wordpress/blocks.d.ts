@@ -1,4 +1,4 @@
-import { RowProps } from "antd";
+import { RowProps, ButtonProps } from "antd";
 
 export interface CoreBlockProps {
   attributes: {
@@ -67,7 +67,7 @@ export interface GutenbergAntDesignButtonBlockProps extends CoreBlockProps {
     disabled?: boolean;
     ghost?: boolean;
     href?: string;
-    htmlType?: "submit"| "button" | "reset";
+    htmlType?: ButtonProps.htmlType;
     icon?: string;
     loading?: number;
     shape?: "default" | "circle" | "round";
