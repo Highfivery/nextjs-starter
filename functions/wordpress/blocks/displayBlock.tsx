@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import cn from "classnames";
 
 // Import function dependencies
-import getBlockStyles from "@/functions/wordpress/blocks/getBlockStyles";
 import getBlockClasses from "@/functions/wordpress/blocks/getBlockClasses";
 
 // Import types

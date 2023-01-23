@@ -4,7 +4,7 @@ import { BlockProps } from "@/types/wordpress/blocks";
 /**
  * Converts WP GraphQL Gutenberg blocks attributes response to WP classes.
  */
-export default function getBlockStyles(block: BlockProps) {
+export default function getBlockClasses(block: BlockProps) {
   const { attributes } = block;
 
   const classes = [];
