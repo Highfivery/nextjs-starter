@@ -7,10 +7,10 @@ import getPostTypeStaticPaths from "@/functions/wordpress/postTypes/getPostTypeS
 // Import WordPress dependencies
 import connector from "@/lib/wordpress/connector";
 import queryPageById from "@/lib/wordpress/pages/queryPageById";
-import formatBlockData from "@/functions/wordpress/blocks/formatBlockData";
+import formatBlockData from "@/functions/gutenberg/formatBlockData";
 
 // Import component dependencies
-import Blocks from "@/components/wordpress/Blocks/Blocks";
+import Blocks from "@/components/gutenberg/Blocks/Blocks";
 
 export default async function Page({
   params,

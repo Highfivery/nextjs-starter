@@ -1,12 +1,12 @@
-// Import types
-import { BlockProps } from "@/types/wordpress/blocks";
+// Import TypeScript definitions
+import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
 /**
  * Creates a hierarchical array from the WP GraphQL Gutenberg blocks response.
  * @TODO: Fix TypeScript errors.
  */
 export default async function formatBlockData(
-  blocks: BlockProps[] | undefined
+  blocks: GutenbergGlobalBlockProps[] | undefined
 ) {
   if (!blocks || !blocks.length) {
     return [];
