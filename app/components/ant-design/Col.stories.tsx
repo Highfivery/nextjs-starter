@@ -150,9 +150,7 @@ export default {
   },
 } as ComponentMeta<typeof ColComponent>;
 
-const Template: ComponentStory<typeof ColComponent> = (args) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const Template: ComponentStory<typeof ColComponent & typeof ConfigProvider> = (args) => {
   const { theme, ...props } = args;
 
   return (

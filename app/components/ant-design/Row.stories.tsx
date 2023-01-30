@@ -81,9 +81,7 @@ export default {
   },
 } as ComponentMeta<typeof RowComponent>;
 
-const Template: ComponentStory<typeof RowComponent> = (args) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const Template: ComponentStory<typeof RowComponent & typeof ConfigProvider> = (args) => {
   const { theme, ...props } = args;
 
   return (

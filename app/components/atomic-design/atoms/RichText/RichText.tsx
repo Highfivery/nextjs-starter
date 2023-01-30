@@ -13,6 +13,7 @@ import parse, {
   HTMLReactParserOptions,
   domToReact,
   DOMNode,
+  Element,
 } from "html-react-parser";
 
 // Import component dependencies
@@ -27,12 +28,8 @@ import styles from "./RichText.module.scss";
 // @TODO: Add additional HTML element to component types
 const options: HTMLReactParserOptions = {
   replace: (domNode: DOMNode) => {
-    if (domNode.constructor.name === "Element") {
-      // @TODO: Fix TS warning.
-      // @ts-ignore
+    if (domNode instanceof Element && domNode.attribs) {
       if (domNode.name === "img") {
-        // @TODO: Fix TS warning.
-        // @ts-ignore
         const { src, alt, width = 100, height = 100 } = domNode.attribs;
 
         return (
@@ -45,38 +42,22 @@ const options: HTMLReactParserOptions = {
         );
       }
 
-      // @TODO: Fix TS warning.
-      // @ts-ignore
       if (domNode.name === "a") {
-        // @TODO: Fix TS warning.
-        // @ts-ignore
         const { href, class: className } = domNode.attribs;
 
         return (
           <Link href={href} className={className}>
-            {/*
-            // @TODO: Fix TS warning.
-            // @ts-ignore */}
             {domToReact(domNode.children)}
           </Link>
         );
       }
 
-      // @TODO: Fix TS warning.
-      // @ts-ignore
       if (domNode.name === "blockquote") {
-        // @TODO: Fix TS warning, parse <cite> & pass it's value to the Figure caption prop.
-        // @ts-ignore
         const { class: className } = domNode.attribs;
 
         return (
           <Figure className={className}>
-            <Blockquote>
-              {/*
-              // @TODO: Fix TS warning.
-              // @ts-ignore */}
-              {domToReact(domNode.children)}
-            </Blockquote>
+            <Blockquote>{domToReact(domNode.children)}</Blockquote>
           </Figure>
         );
       }
@@ -101,11 +82,9 @@ export default function RichText({
   const html = parse(String(children), options);
 
   return (
-    /* @TODO: Fix TypeScript error */
-    /*  @ts-ignore */
     <Tag
       {...attributes}
-      id={id || null}
+      id={id || undefined}
       style={style}
       className={cn(
         styles.richtext,
@@ -133,7 +112,7 @@ export interface RichTextProps {
   /** Inline styles. */
   style?: {};
   /** The type of element to render. */
-  Tag: string;
+  Tag: keyof JSX.IntrinsicElements;
 }
 
 RichText.propTypes = {

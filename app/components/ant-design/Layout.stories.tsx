@@ -27,11 +27,9 @@ export default {
   },
 } as ComponentMeta<typeof LayoutComponent>;
 
-const BasicStructureTemplate: ComponentStory<typeof LayoutComponent> = (
+const BasicStructureTemplate: ComponentStory<typeof LayoutComponent & typeof ConfigProvider> = (
   args
 ) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
   const { theme } = args;
 
   return (

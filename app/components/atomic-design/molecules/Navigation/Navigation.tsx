@@ -1,6 +1,3 @@
-// @TODO: Fix TS warning for pathname ~line 56
-// @ts-nocheck
-
 "use client";
 
 import PropTypes from "prop-types";
@@ -29,9 +26,9 @@ import styles from "./Navigation.module.scss";
 function NavigationMenu({
   items,
 }: {
-  menu: NavigationItemProps[];
+  items: NavigationItemProps[];
 }): ReactElement | null {
-  const pathname = usePathname();
+  const pathname = usePathname() as string;
 
   if (!items || !items?.length) {
     return null;
@@ -61,7 +58,7 @@ function NavigationMenu({
               {item.label}
             </Link>
 
-            {item?.children?.items?.length > 0 && (
+            {(item?.children?.items && item.children.items.length > 0) && (
               <>
                 {item?.children?.Title && item.children.Title}
                 <ul
@@ -89,7 +86,7 @@ export interface NavigationItemProps {
   /** Link target. */
   target?: string;
   onLinkClick?: (
-    event: MouseEvent,
+    event: React.MouseEvent<Element, MouseEvent>,
     itemIndex: number,
     item: NavigationItemProps
   ) => void;

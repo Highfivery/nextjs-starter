@@ -266,26 +266,19 @@ export default {
   },
 } as ComponentMeta<typeof InputComponent>;
 
-const Template: ComponentStory<typeof InputComponent> = (args) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const Template: ComponentStory<typeof InputComponent & typeof ConfigProvider> = (args) => {
   const { theme, ...props } = args;
 
   return (
     <ConfigProvider theme={theme}>
-      <InputComponent {...props} />
+      <InputComponent placeholder="Basic" />
     </ConfigProvider>
   );
 };
 
 export const Basic = Template.bind({});
-Basic.args = {
-  placeholder: "Basic usage",
-};
 
-const SizesTemplate: ComponentStory<typeof InputComponent> = (args) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const SizesTemplate: ComponentStory<typeof InputComponent & typeof ConfigProvider> = (args) => {
   const { theme } = args;
 
   return (
@@ -326,9 +319,7 @@ const selectAfter = (
   </Select>
 );
 
-const PrePostTabTemplate: ComponentStory<typeof InputComponent> = (args) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const PrePostTabTemplate: ComponentStory<typeof InputComponent & typeof ConfigProvider> = (args) => {
   const { theme } = args;
 
   return (
@@ -401,9 +392,7 @@ const options = [
   },
 ];
 
-const InputGroupTemplate: ComponentStory<typeof InputComponent> = (args) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const InputGroupTemplate: ComponentStory<typeof InputComponent & typeof ConfigProvider> = (args) => {
   const { theme } = args;
 
   return (

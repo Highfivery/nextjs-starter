@@ -18,6 +18,7 @@
     }
   },
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
     "@radix-ui/react-accessible-icon": "^1.0.1",
     "@radix-ui/react-select": "^1.1.2",
     "@storybook/addon-a11y": "^6.5.15",
