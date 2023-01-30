@@ -7,9 +7,7 @@ const { useBreakpoint } = Grid;
 
 // Import internal component dependencies
 import Blocks from "../Blocks/Blocks";
-
-// Import internal functions
-import generateStyles from "@/functions/gutenberg/generateStyles";
+import { BlockStyle } from "./BlockStyle";
 
 // Import TypeScript definitions
 import {
@@ -19,27 +17,7 @@ import {
   GutenbergAntDesignTitleBlockProps,
 } from "@/types/gutenberg";
 
-// @TODO: Pull these values in dynamically from antd
-const screens: { [key: string]: { antdToken: string } } = {
-  xs: {
-    antdToken: "screenXS",
-  },
-  sm: {
-    antdToken: "screenSM",
-  },
-  md: {
-    antdToken: "screenMD",
-  },
-  lg: {
-    antdToken: "screenLG",
-  },
-  xl: {
-    antdToken: "screenXL",
-  },
-  xxl: {
-    antdToken: "screenXXL",
-  },
-};
+
 
 // Registered blocks
 const RegisteredBlocks: {
@@ -62,46 +40,20 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
     const { useToken } = theme;
     const { token } = useToken();
 
-    // @TODO: There's got to be a way to clean-up the styles so we can reuse on all components... while keeping scoped classes
+    const className = "ant-typography";
+    const Component = ({ className }: { className: string }) => (
+      <Title className={className} {...titleProps}>
+        {text}
+      </Title>
+    );
+
     return (
-      <>
-        <Title {...titleProps}>{text}</Title>
-        <style jsx>{`
-          .ant-typography {
-            ${generateStyles(block, "xs")}
-          }
-
-          @media (min-width: ${token[screens.sm.antdToken as keyof typeof token]}px) {
-            .ant-typography {
-              ${generateStyles(block, "sm")}
-            }
-          }
-
-          @media (min-width: ${token[screens.md.antdToken as keyof typeof token]}px) {
-            .ant-typography {
-              ${generateStyles(block, "md")}
-            }
-          }
-
-          @media (min-width: ${token[screens.lg.antdToken as keyof typeof token]}px) {
-            .ant-typography {
-              ${generateStyles(block, "lg")}
-            }
-          }
-
-          @media (min-width: ${token[screens.xl.antdToken as keyof typeof token]}px) {
-            .ant-typography {
-              ${generateStyles(block, "xl")}
-            }
-          }
-
-          @media (min-width: ${token[screens.xxl.antdToken as keyof typeof token]}px) {
-            .ant-typography {
-              ${generateStyles(block, "xxl")}
-            }
-          }
-        `}</style>
-      </>
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
     );
   },
 };
@@ -116,49 +68,21 @@ RegisteredBlocks["gutenberg-ant-design/row"] = {
     const { useToken } = theme;
     const { token } = useToken();
 
-    // @TODO: Fix TypeScript error below
-    // @TODO: There's got to be a way to clean-up the styles so we can reuse on all components... while keeping scoped classes
+    const className = "ant-row";
+
+    const Component = ({ className }: { className: string }) => (
+      <Row {...api} className={className}>
+        {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
+      </Row>
+    );
+
     return (
-      <>
-        <Row {...api}>
-          {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
-          <style jsx>{`
-            .ant-row {
-              ${generateStyles(block, "xs")}
-            }
-
-            @media (min-width: ${token[screens.sm.antdToken as keyof typeof token]}px) {
-              .ant-row {
-                ${generateStyles(block, "sm")}
-              }
-            }
-
-            @media (min-width: ${token[screens.md.antdToken as keyof typeof token]}px) {
-              .ant-row {
-                ${generateStyles(block, "md")}
-              }
-            }
-
-            @media (min-width: ${token[screens.lg.antdToken as keyof typeof token]}px) {
-              .ant-row {
-                ${generateStyles(block, "lg")}
-              }
-            }
-
-            @media (min-width: ${token[screens.xl.antdToken as keyof typeof token]}px) {
-              .ant-row {
-                ${generateStyles(block, "xl")}
-              }
-            }
-
-            @media (min-width: ${token[screens.xxl.antdToken as keyof typeof token]}px) {
-              .ant-row {
-                ${generateStyles(block, "xxl")}
-              }
-            }
-          `}</style>
-        </Row>
-      </>
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
     );
   },
 };
@@ -173,53 +97,25 @@ RegisteredBlocks["gutenberg-ant-design/col"] = {
     const { useToken } = theme;
     const { token } = useToken();
 
+    const className = "ant-col";
+
+    const Component = ({ className }: { className: string }) => (
+      <Col {...api} className={className}>
+        {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
+      </Col>
+    );
     return (
-      <>
-        <Col {...api}>
-          {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
-        </Col>
-        <style jsx>{`
-          .ant-col {
-            ${generateStyles(block, "xs")}
-          }
-
-          @media (min-width: ${token[screens.sm.antdToken as keyof typeof token]}px) {
-            .ant-col {
-              ${generateStyles(block, "sm")}
-            }
-          }
-
-          @media (min-width: ${token[screens.md.antdToken as keyof typeof token]}px) {
-            .ant-col {
-              ${generateStyles(block, "md")}
-            }
-          }
-
-          @media (min-width: ${token[screens.lg.antdToken as keyof typeof token]}px) {
-            .ant-col {
-              ${generateStyles(block, "lg")}
-            }
-          }
-
-          @media (min-width: ${token[screens.xl.antdToken as keyof typeof token]}px) {
-            .ant-col {
-              ${generateStyles(block, "xl")}
-            }
-          }
-
-          @media (min-width: ${token[screens.xxl.antdToken as keyof typeof token]}px) {
-            .ant-col {
-              ${generateStyles(block, "xxl")}
-            }
-          }
-        `}</style>
-      </>
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
     );
   },
 };
 
 export default function Block({ block }: { block: GutenbergGlobalBlockProps }) {
-  console.log(block);
   const currentScreens = useBreakpoint();
   const {
     name,
