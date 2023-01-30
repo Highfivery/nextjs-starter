@@ -4,7 +4,14 @@ import { RowProps, ColProps, TypographyProps } from "antd";
 export interface GutenbergAntDesignAttributes {
   api?: {};
   visibility?: {};
-  styles?: { [key: string]: string | undefined };
+  styles?:
+    | {
+        // @TODO: key should be one of the screen sizes: xs, sm, md, etc.
+        [key: string]: {
+          backgroundType: string;
+        };
+      }
+    | undefined;
 }
 
 export interface GutenbergGlobalBlockProps {
