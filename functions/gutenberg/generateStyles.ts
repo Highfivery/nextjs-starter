@@ -1,5 +1,5 @@
 // Import TypeScript definitions
-import { GutenbergGlobalBlockProps, GutenbergAntDesignAttributes } from "@/types/gutenberg";
+import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
 /**
  * Converts the Gutenberg Ant Design plugin styles attribute to styles
@@ -35,7 +35,7 @@ export default function generateStyles(
     attributes: { styles },
   } = block;
 
-  const stylesArr = styles as GutenbergAntDesignAttributes['styles']
+  const stylesArr = styles as GutenbergGlobalBlockProps['attributes']['styles']
   
 
   let cssStyles = ``;
