@@ -17,8 +17,6 @@ import {
   GutenbergAntDesignTitleBlockProps,
 } from "@/types/gutenberg";
 
-
-
 // Registered blocks
 const RegisteredBlocks: {
   [key: string]: {
@@ -48,63 +46,12 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
     );
 
     return (
-<<<<<<< HEAD
-      <>
-        <Title {...titleProps}>{text}</Title>
-        <style jsx>{`
-          .ant-typography {
-            ${generateStyles(block, "xs")}
-          }
-
-          @media (min-width: ${token[
-              screens.sm.antdToken as keyof typeof token
-            ]}px) {
-            .ant-typography {
-              ${generateStyles(block, "sm")}
-            }
-          }
-
-          @media (min-width: ${token[
-              screens.md.antdToken as keyof typeof token
-            ]}px) {
-            .ant-typography {
-              ${generateStyles(block, "md")}
-            }
-          }
-
-          @media (min-width: ${token[
-              screens.lg.antdToken as keyof typeof token
-            ]}px) {
-            .ant-typography {
-              ${generateStyles(block, "lg")}
-            }
-          }
-
-          @media (min-width: ${token[
-              screens.xl.antdToken as keyof typeof token
-            ]}px) {
-            .ant-typography {
-              ${generateStyles(block, "xl")}
-            }
-          }
-
-          @media (min-width: ${token[
-              screens.xxl.antdToken as keyof typeof token
-            ]}px) {
-            .ant-typography {
-              ${generateStyles(block, "xxl")}
-            }
-          }
-        `}</style>
-      </>
-=======
       <BlockStyle
         className={className}
         block={block}
         token={token}
         Component={Component}
       />
->>>>>>> f200deacf2da74e0c9cbc50ae10b77abc8c96ec9
     );
   },
 };
@@ -128,65 +75,12 @@ RegisteredBlocks["gutenberg-ant-design/row"] = {
     );
 
     return (
-<<<<<<< HEAD
-      <>
-        <Row {...api}>
-          {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
-          <style jsx>{`
-            .ant-row {
-              ${generateStyles(block, "xs")}
-            }
-
-            @media (min-width: ${token[
-                screens.sm.antdToken as keyof typeof token
-              ]}px) {
-              .ant-row {
-                ${generateStyles(block, "sm")}
-              }
-            }
-
-            @media (min-width: ${token[
-                screens.md.antdToken as keyof typeof token
-              ]}px) {
-              .ant-row {
-                ${generateStyles(block, "md")}
-              }
-            }
-
-            @media (min-width: ${token[
-                screens.lg.antdToken as keyof typeof token
-              ]}px) {
-              .ant-row {
-                ${generateStyles(block, "lg")}
-              }
-            }
-
-            @media (min-width: ${token[
-                screens.xl.antdToken as keyof typeof token
-              ]}px) {
-              .ant-row {
-                ${generateStyles(block, "xl")}
-              }
-            }
-
-            @media (min-width: ${token[
-                screens.xxl.antdToken as keyof typeof token
-              ]}px) {
-              .ant-row {
-                ${generateStyles(block, "xxl")}
-              }
-            }
-          `}</style>
-        </Row>
-      </>
-=======
       <BlockStyle
         className={className}
         block={block}
         token={token}
         Component={Component}
       />
->>>>>>> f200deacf2da74e0c9cbc50ae10b77abc8c96ec9
     );
   },
 };
