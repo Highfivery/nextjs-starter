@@ -21,7 +21,7 @@ export default function generateStyles(
     color: "color",
   };
 
-  const definitionOutput = (property: string, value: string) => {
+  const definitionOutput = (property: string, value: string | undefined) => {
     if (property === "background-image") {
       //return `background-image: url('${value.originalImageURL}');\n`;
     } else if (property === "background-repeat") {
@@ -35,21 +35,23 @@ export default function generateStyles(
     attributes: { styles },
   } = block;
 
+  const stylesArr = styles as GutenbergGlobalBlockProps['attributes']['styles']
+  
+
   let cssStyles = ``;
-  if (styles && typeof styles[screenSize] !== "undefined") {
+  if (stylesArr?.[screenSize as keyof typeof styles]) {
     for (const [style] of Object.entries(availableStyles)) {
+      // @TODO: styles is a object of type { [key: string]: string | undefined } so style doesn't really exist on styles[screenSize]. This seems to be incorrect and needs discussion with ben.
+      const key = style as any
       if (
-        // @TODO: Fix TypeScript error
-        typeof styles[screenSize][style] !== "undefined" &&
-        styles[screenSize][style]
+        stylesArr?.[screenSize as keyof typeof styles]?.[key]
       ) {
         cssStyles += definitionOutput(
           availableStyles[style],
-          styles[screenSize][style]
+          stylesArr?.[screenSize as keyof typeof styles]?.[key]
         );
       }
     }
   }
-
   return cssStyles;
 }

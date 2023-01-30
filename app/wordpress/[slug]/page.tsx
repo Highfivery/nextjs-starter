@@ -12,6 +12,9 @@ import formatBlockData from "@/functions/gutenberg/formatBlockData";
 // Import component dependencies
 import Blocks from "@/components/gutenberg/Blocks/Blocks";
 
+// Import TypeScript definitions
+import { GutenbergBlockProps } from "@/types/gutenberg";
+
 export default async function Page({
   params,
   searchParams,
@@ -27,7 +30,7 @@ export default async function Page({
   const blocks = page?.blocksJSON
     ? await formatBlockData(JSON.parse(page?.blocksJSON))
     : [];
-  return <Blocks blocks={blocks} />;
+  return  <Blocks blocks={blocks as GutenbergBlockProps[]} />;
 }
 
 export async function generateStaticParams() {

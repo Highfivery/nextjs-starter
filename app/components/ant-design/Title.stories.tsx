@@ -50,9 +50,7 @@ export default {
   },
 } as ComponentMeta<typeof TitleComponent>;
 
-const Template: ComponentStory<typeof TitleComponent> = (args) => {
-  /* @TODO: Fix TypeScript error */
-  /*  @ts-ignore */
+const Template: ComponentStory<typeof TitleComponent & typeof ConfigProvider> = (args) => {
   const { theme, ...props } = args;
 
   return (

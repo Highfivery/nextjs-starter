@@ -9,7 +9,8 @@ import formatBlockData from "@/functions/gutenberg/formatBlockData";
 // Import component dependencies
 import Blocks from "@/components/gutenberg/Blocks/Blocks";
 
-// Import styles
+// Import TypeScript definitions
+import { GutenbergBlockProps } from "@/types/gutenberg";
 
 export default async function Page() {
   // @TODO: Looking at the console, it appears this component is getting called twice. Likely for a good reason, but would like to find out why.
@@ -23,5 +24,5 @@ export default async function Page() {
     ? await formatBlockData(JSON.parse(page?.blocksJSON))
     : [];
 
-  return <Blocks blocks={blocks} />;
+  return <Blocks blocks={blocks as GutenbergBlockProps[]} />;
 }

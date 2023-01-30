@@ -71,31 +71,31 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
             ${generateStyles(block, "xs")}
           }
 
-          @media (min-width: ${token[screens.sm.antdToken]}px) {
+          @media (min-width: ${token[screens.sm.antdToken as keyof typeof token]}px) {
             .ant-typography {
               ${generateStyles(block, "sm")}
             }
           }
 
-          @media (min-width: ${token[screens.md.antdToken]}px) {
+          @media (min-width: ${token[screens.md.antdToken as keyof typeof token]}px) {
             .ant-typography {
               ${generateStyles(block, "md")}
             }
           }
 
-          @media (min-width: ${token[screens.lg.antdToken]}px) {
+          @media (min-width: ${token[screens.lg.antdToken as keyof typeof token]}px) {
             .ant-typography {
               ${generateStyles(block, "lg")}
             }
           }
 
-          @media (min-width: ${token[screens.xl.antdToken]}px) {
+          @media (min-width: ${token[screens.xl.antdToken as keyof typeof token]}px) {
             .ant-typography {
               ${generateStyles(block, "xl")}
             }
           }
 
-          @media (min-width: ${token[screens.xxl.antdToken]}px) {
+          @media (min-width: ${token[screens.xxl.antdToken as keyof typeof token]}px) {
             .ant-typography {
               ${generateStyles(block, "xxl")}
             }
@@ -127,31 +127,31 @@ RegisteredBlocks["gutenberg-ant-design/row"] = {
               ${generateStyles(block, "xs")}
             }
 
-            @media (min-width: ${token[screens.sm.antdToken]}px) {
+            @media (min-width: ${token[screens.sm.antdToken as keyof typeof token]}px) {
               .ant-row {
                 ${generateStyles(block, "sm")}
               }
             }
 
-            @media (min-width: ${token[screens.md.antdToken]}px) {
+            @media (min-width: ${token[screens.md.antdToken as keyof typeof token]}px) {
               .ant-row {
                 ${generateStyles(block, "md")}
               }
             }
 
-            @media (min-width: ${token[screens.lg.antdToken]}px) {
+            @media (min-width: ${token[screens.lg.antdToken as keyof typeof token]}px) {
               .ant-row {
                 ${generateStyles(block, "lg")}
               }
             }
 
-            @media (min-width: ${token[screens.xl.antdToken]}px) {
+            @media (min-width: ${token[screens.xl.antdToken as keyof typeof token]}px) {
               .ant-row {
                 ${generateStyles(block, "xl")}
               }
             }
 
-            @media (min-width: ${token[screens.xxl.antdToken]}px) {
+            @media (min-width: ${token[screens.xxl.antdToken as keyof typeof token]}px) {
               .ant-row {
                 ${generateStyles(block, "xxl")}
               }
@@ -183,31 +183,31 @@ RegisteredBlocks["gutenberg-ant-design/col"] = {
             ${generateStyles(block, "xs")}
           }
 
-          @media (min-width: ${token[screens.sm.antdToken]}px) {
+          @media (min-width: ${token[screens.sm.antdToken as keyof typeof token]}px) {
             .ant-col {
               ${generateStyles(block, "sm")}
             }
           }
 
-          @media (min-width: ${token[screens.md.antdToken]}px) {
+          @media (min-width: ${token[screens.md.antdToken as keyof typeof token]}px) {
             .ant-col {
               ${generateStyles(block, "md")}
             }
           }
 
-          @media (min-width: ${token[screens.lg.antdToken]}px) {
+          @media (min-width: ${token[screens.lg.antdToken as keyof typeof token]}px) {
             .ant-col {
               ${generateStyles(block, "lg")}
             }
           }
 
-          @media (min-width: ${token[screens.xl.antdToken]}px) {
+          @media (min-width: ${token[screens.xl.antdToken as keyof typeof token]}px) {
             .ant-col {
               ${generateStyles(block, "xl")}
             }
           }
 
-          @media (min-width: ${token[screens.xxl.antdToken]}px) {
+          @media (min-width: ${token[screens.xxl.antdToken as keyof typeof token]}px) {
             .ant-col {
               ${generateStyles(block, "xxl")}
             }
