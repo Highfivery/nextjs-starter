@@ -17,8 +17,6 @@ import {
   GutenbergAntDesignTitleBlockProps,
 } from "@/types/gutenberg";
 
-
-
 // Registered blocks
 const RegisteredBlocks: {
   [key: string]: {

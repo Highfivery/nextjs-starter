@@ -9,6 +9,7 @@ export default function generateStyles(
   screenSize: string
 ) {
   const availableStyles: { [key: string]: string } = {
+    backgroundGradient: "background",
     backgroundColor: "background-color",
     backgroundImage: "background-image",
     backgroundRepeat: "background-repeat",
@@ -21,9 +22,16 @@ export default function generateStyles(
     color: "color",
   };
 
-  const definitionOutput = (property: string, value: string | undefined) => {
-    if (property === "background-image") {
-      //return `background-image: url('${value.originalImageURL}');\n`;
+
+
+  const definitionOutput = (
+    property: string,
+    value: {
+      originalImageURL: string; 
+    } | string | undefined
+  ) => {
+    if (property === "background-image" && typeof value === "object") {
+      return `background-image: url('${value.originalImageURL}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else {
@@ -35,23 +43,48 @@ export default function generateStyles(
     attributes: { styles },
   } = block;
 
-  const stylesArr = styles as GutenbergGlobalBlockProps['attributes']['styles']
-  
+  const stylesArr = styles as GutenbergGlobalBlockProps["attributes"]["styles"];
 
-  let cssStyles = ``;
   if (stylesArr?.[screenSize as keyof typeof styles]) {
-    for (const [style] of Object.entries(availableStyles)) {
-      // @TODO: styles is a object of type { [key: string]: string | undefined } so style doesn't really exist on styles[screenSize]. This seems to be incorrect and needs discussion with ben.
-      const key = style as any
-      if (
-        stylesArr?.[screenSize as keyof typeof styles]?.[key]
-      ) {
+    let cssStyles = ``;
+
+    // Handle background types
+    const backgroundType =
+      typeof stylesArr[screenSize] !== "undefined" &&
+      typeof stylesArr[screenSize].backgroundType !== "undefined"
+        ? stylesArr[screenSize].backgroundType
+        : false;
+    const filteredStyles = [];
+    switch (backgroundType) {
+      case "gradient":
+        filteredStyles.push("backgroundImage");
+        filteredStyles.push("backgroundRepeat");
+        filteredStyles.push("backgroundSize");
+        filteredStyles.push("backgroundPosition");
+        filteredStyles.push("backgroundColor");
+        break;
+      case "classic":
+        filteredStyles.push("backgroundGradient");
+        break;
+    }
+
+    const filteredAvailableStyles = { ...availableStyles };
+    for (const [key] of Object.entries(filteredAvailableStyles)) {
+      if (filteredStyles.includes(key)) {
+        delete filteredAvailableStyles[key];
+      }
+    }
+
+    for (const [style] of Object.entries(filteredAvailableStyles)) {
+      const key = style as keyof GutenbergGlobalBlockProps["attributes"]["styles"];
+      if (stylesArr?.[screenSize as keyof typeof styles]?.[key]) {
         cssStyles += definitionOutput(
-          availableStyles[style],
+          filteredAvailableStyles[style],
           stylesArr?.[screenSize as keyof typeof styles]?.[key]
         );
       }
     }
+
+    return cssStyles;
   }
-  return cssStyles;
 }
