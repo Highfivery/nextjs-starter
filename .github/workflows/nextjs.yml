@@ -28,12 +28,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Update submodules
-        run: |
-          git submodule update --init --recursive
-          git submodule update --recursive --remote
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -78,8 +78,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} npm run build
-      - name: Static HTML export with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
