@@ -41,6 +41,13 @@ export interface GutenbergAntDesignTitleBlockProps
   };
 }
 
+export interface GutenbergAntDesignParagraphBlockProps
+  extends GutenbergGlobalBlockProps {
+  attributes: {
+    api: TypographyProps & { text: string };
+  };
+}
+
 export type GutenbergBlockProps =
   | GutenbergAntDesignRowBlockProps
   | GutenbergAntDesignColBlockProps;

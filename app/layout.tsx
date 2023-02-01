@@ -5,16 +5,11 @@ import { ReactElement, ReactNode } from "react";
  * Import application global styles/CSS framework below.
  */
 
-import "@/styles/gutenberg/style.scss";
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: ReactElement | ReactNode;
 }) {
-  //const data = await queryDefaultPageData();
-  //console.log(data);
-
   return (
     <html lang="en">
       {/*
