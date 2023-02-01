@@ -31,48 +31,73 @@ interface BlockStyleProps {
   // style token object
   token: Object;
   // component that needs to be rendered
-  Component: ({ className }: { className: string }) => JSX.Element
+  Component: ({ className }: { className: string }) => JSX.Element;
 }
 
-export const BlockStyle = ({className, block, token, Component}: BlockStyleProps) => {
+export const BlockStyle = ({
+  className,
+  block,
+  token,
+  Component,
+}: BlockStyleProps) => {
+  // Handle custom CSS
+  if (block?.attributes?.styles?.custom) {
+  }
+
   return (
     <>
-    <Component className={className} />
-    <style jsx>{`
-      .${className} {
-        ${generateStyles(block, "xs")}
-      }
-
-      @media (min-width: ${token[screens.sm.antdToken as keyof typeof token]}px) {
+      <Component className={className} />
+      <style jsx>{`
         .${className} {
-          ${generateStyles(block, "sm")}
+          ${generateStyles(block, "xs")}
         }
-      }
 
-      @media (min-width: ${token[screens.md.antdToken as keyof typeof token]}px) {
-        .${className} {
-          ${generateStyles(block, "md")}
+        ${
+          /* @TODO: Find a way to make the class name scoped, see #11 */
+          block?.attributes?.styles?.xs?.custom &&
+          block.attributes.styles.xs.custom.replace("selector", `.${className}`)
         }
-      }
 
-      @media (min-width: ${token[screens.lg.antdToken as keyof typeof token]}px) {
-        .${className} {
-          ${generateStyles(block, "lg")}
+        @media (min-width: ${token[
+          screens.sm.antdToken as keyof typeof token
+        ]}px) {
+          .${className} {
+            ${generateStyles(block, "sm")}
+          }
         }
-      }
 
-      @media (min-width: ${token[screens.xl.antdToken as keyof typeof token]}px) {
-        .${className} {
-          ${generateStyles(block, "xl")}
+        @media (min-width: ${token[
+            screens.md.antdToken as keyof typeof token
+          ]}px) {
+          .${className} {
+            ${generateStyles(block, "md")}
+          }
         }
-      }
 
-      @media (min-width: ${token[screens.xxl.antdToken as keyof typeof token]}px) {
-        .${className} {
-          ${generateStyles(block, "xxl")}
+        @media (min-width: ${token[
+            screens.lg.antdToken as keyof typeof token
+          ]}px) {
+          .${className} {
+            ${generateStyles(block, "lg")}
+          }
         }
-      }
-    `}</style>
+
+        @media (min-width: ${token[
+            screens.xl.antdToken as keyof typeof token
+          ]}px) {
+          .${className} {
+            ${generateStyles(block, "xl")}
+          }
+        }
+
+        @media (min-width: ${token[
+            screens.xxl.antdToken as keyof typeof token
+          ]}px) {
+          .${className} {
+            ${generateStyles(block, "xxl")}
+          }
+        }
+      `}</style>
     </>
-  )
-}
+  );
+};
