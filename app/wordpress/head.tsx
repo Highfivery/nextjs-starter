@@ -1,7 +1,6 @@
 // Import WordPress dependencies
 import connector from "@/lib/wordpress/connector";
 import queryPageById from "@/lib/wordpress/pages/queryPageById";
-import formatBlockData from "@/functions/gutenberg/formatBlockData";
 
 // Import internal component dependencies
 import Meta from "@/components/atomic-design/molecules/Meta/Meta";

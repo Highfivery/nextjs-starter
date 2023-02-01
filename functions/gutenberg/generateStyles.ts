@@ -22,14 +22,19 @@ export default function generateStyles(
     color: "color",
   };
 
-
-
   const definitionOutput = (
-    property: string,
-    value: {
-      originalImageURL: string; 
-    } | string | undefined
+    property: string | undefined,
+    value:
+      | {
+          originalImageURL: string;
+        }
+      | string
+      | undefined
   ) => {
+    if (typeof property == "undefined") {
+      return null;
+    }
+
     if (property === "background-image" && typeof value === "object") {
       return `background-image: url('${value.originalImageURL}');\n`;
     } else if (property === "background-repeat") {
@@ -76,7 +81,8 @@ export default function generateStyles(
     }
 
     for (const [style] of Object.entries(filteredAvailableStyles)) {
-      const key = style as keyof GutenbergGlobalBlockProps["attributes"]["styles"];
+      const key =
+        style as keyof GutenbergGlobalBlockProps["attributes"]["styles"];
       if (stylesArr?.[screenSize as keyof typeof styles]?.[key]) {
         cssStyles += definitionOutput(
           filteredAvailableStyles[style],

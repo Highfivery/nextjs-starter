@@ -8,6 +8,7 @@ const { useBreakpoint } = Grid;
 // Import internal component dependencies
 import Blocks from "../Blocks/Blocks";
 import { BlockStyle } from "./BlockStyle";
+import RichText from "@/components/atomic-design/atoms/RichText";
 
 // Import TypeScript definitions
 import {
@@ -15,6 +16,7 @@ import {
   GutenbergAntDesignRowBlockProps,
   GutenbergAntDesignColBlockProps,
   GutenbergAntDesignTitleBlockProps,
+  GutenbergAntDesignParagraphBlockProps,
 } from "@/types/gutenberg";
 
 // Registered blocks
@@ -102,6 +104,37 @@ RegisteredBlocks["gutenberg-ant-design/col"] = {
         {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
       </Col>
     );
+    return (
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
+    );
+  },
+};
+
+RegisteredBlocks["gutenberg-ant-design/paragraph"] = {
+  Component: ({ block }: { block: GutenbergAntDesignParagraphBlockProps }) => {
+    const Paragraph = dynamic(() =>
+      import("antd").then((mod) => mod.Typography.Paragraph)
+    );
+    const { attributes } = block;
+
+    const { api } = attributes;
+    const { text, ...paragraphProps } = api;
+
+    const { useToken } = theme;
+    const { token } = useToken();
+
+    const className = "ant-typography";
+    const Component = ({ className }: { className: string }) => (
+      <Paragraph className={className} {...paragraphProps}>
+        <RichText>{text}</RichText>
+      </Paragraph>
+    );
+
     return (
       <BlockStyle
         className={className}

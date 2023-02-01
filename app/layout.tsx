@@ -1,25 +1,22 @@
-// Import React.js dependencies
+/**
+ * Import React.js dependencies
+ */
 import { ReactElement, ReactNode } from "react";
 
 /**
  * Import provider dependencies
  */
-import { Providers } from "../providers";
+import { Providers } from "./providers";
 
 /**
  * Import application global styles/CSS framework below.
  */
 
-import "@/styles/gutenberg/style.scss";
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: ReactElement | ReactNode;
 }) {
-  //const data = await queryDefaultPageData();
-  //console.log(data);
-
   return (
     <html lang="en">
       {/*

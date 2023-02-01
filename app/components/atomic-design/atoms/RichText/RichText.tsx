@@ -4,9 +4,6 @@ import React, { ReactElement, ReactNode } from "react";
 // Import Next.js dependencies
 import Image from "next/image";
 
-// Import package dependencies
-import PropTypes from "prop-types";
-
 // Import functions
 import cn from "classnames";
 import parse, {
@@ -112,23 +109,5 @@ export interface RichTextProps {
   /** Inline styles. */
   style?: {};
   /** The type of element to render. */
-  Tag: keyof JSX.IntrinsicElements;
+  Tag?: keyof JSX.IntrinsicElements;
 }
-
-RichText.propTypes = {
-  attributes: PropTypes.object,
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.element,
-  ]).isRequired,
-  className: PropTypes.string,
-  dropCap: PropTypes.bool,
-  id: PropTypes.string,
-  style: PropTypes.shape({
-    backgroundColor: PropTypes.string,
-    color: PropTypes.string,
-    fontSize: PropTypes.string,
-  }),
-  Tag: PropTypes.string.isRequired,
-};
