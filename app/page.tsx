@@ -1,8 +1,8 @@
 /**
- * Import @antd dependencies
+ * Import the page template
  */
-import { Typography } from "antd";
+import Homepage from "@/components/atomic-design/templates/Homepage";
 
 export default function Page() {
-  return <Typography.Title>Next.js Starter</Typography.Title>;
+  return <Homepage />;
 }
