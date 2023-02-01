@@ -2,6 +2,11 @@
 import { ReactElement, ReactNode } from "react";
 
 /**
+ * Import provider dependencies
+ */
+import { Providers } from "../providers";
+
+/**
  * Import application global styles/CSS framework below.
  */
 
@@ -22,7 +27,9 @@ export default async function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
