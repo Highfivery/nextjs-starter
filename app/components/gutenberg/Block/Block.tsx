@@ -185,7 +185,7 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
     const { api, settings } = attributes;
     const { src, alt } = api;
     const imageProps = {
-      alt: alt ? alt : src.alt,
+      alt: alt ? alt : src.alt ? src.alt : "",
       src: src.url,
       width: settings?.size?.width ? settings.size.width : src.width,
       height: settings?.size?.height ? settings.size.height : src.height,
