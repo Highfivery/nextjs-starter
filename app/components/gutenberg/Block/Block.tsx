@@ -17,6 +17,8 @@ import {
   GutenbergAntDesignColBlockProps,
   GutenbergAntDesignTitleBlockProps,
   GutenbergAntDesignParagraphBlockProps,
+  GutenbergAntDesignButtonBlockProps,
+  GutenbergAntDesignImageBlockProps,
 } from "@/types/gutenberg";
 
 // Registered blocks
@@ -133,6 +135,69 @@ RegisteredBlocks["gutenberg-ant-design/paragraph"] = {
       <Paragraph className={className} {...paragraphProps}>
         <RichText>{text}</RichText>
       </Paragraph>
+    );
+
+    return (
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
+    );
+  },
+};
+
+RegisteredBlocks["gutenberg-ant-design/button"] = {
+  Component: ({ block }: { block: GutenbergAntDesignButtonBlockProps }) => {
+    const Button = dynamic(() => import("antd").then((mod) => mod.Button));
+    const { attributes } = block;
+
+    const { api } = attributes;
+    const { text, ...buttonProps } = api;
+
+    const { useToken } = theme;
+    const { token } = useToken();
+
+    const className = "ant-button";
+    const Component = ({ className }: { className: string }) => (
+      <Button className={className} {...buttonProps}>
+        {text}
+      </Button>
+    );
+
+    return (
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
+    );
+  },
+};
+
+RegisteredBlocks["gutenberg-ant-design/image"] = {
+  Component: ({ block }: { block: GutenbergAntDesignImageBlockProps }) => {
+    const Image = dynamic(() => import("antd").then((mod) => mod.Image));
+    const { attributes } = block;
+    console.log(attributes);
+    const { api, settings } = attributes;
+    const { src, alt } = api;
+    const imageProps = {
+      alt: alt ? alt : src.alt,
+      src: src.url,
+      width: settings?.size?.width ? settings.size.width : src.width,
+      height: settings?.size?.height ? settings.size.height : src.height,
+      preview: api?.preview,
+    };
+
+    const { useToken } = theme;
+    const { token } = useToken();
+
+    const className = "ant-image";
+    const Component = ({ className }: { className: string }) => (
+      <Image className={className} {...imageProps} />
     );
 
     return (

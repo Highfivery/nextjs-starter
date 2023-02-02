@@ -11,6 +11,8 @@ import { Providers } from "./providers";
 /**
  * Import application global styles/CSS framework below.
  */
+import "@/styles/atomic-design/style.scss";
+import "@/styles/ant-design/style.scss";
 
 export default function RootLayout({
   children,

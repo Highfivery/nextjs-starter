@@ -42,11 +42,13 @@ export default function generateStyles(
       return `background-image: url('${value.originalImageURL}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
-    } else if (property === "max-width") {
+    } else if (property === "max-width" && value !== "full-width") {
       return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value}px;\n`;
-    } else {
+    } else if (property !== "max-width'") {
       return `${property}: ${value};\n`;
     }
+
+    return null;
   };
 
   const {
@@ -98,4 +100,6 @@ export default function generateStyles(
 
     return cssStyles;
   }
+
+  return null;
 }
