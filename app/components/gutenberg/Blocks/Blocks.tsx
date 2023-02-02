@@ -1,21 +1,44 @@
 "use client";
 
-// Import component dependencies
+/**
+ * Import internal component dependencies
+ */
 import Block from "../Block/Block";
 
+/**
+ * Import @antd dependencies
+ */
+import { theme } from "antd";
+
+/**
+ * Import internal function dependencies
+ */
+import antDesignStyles from "@/functions/gutenberg/antDesignStyles";
+
 // Import TypeScript definitions
-import { GutenbergBlockProps } from "@/types/gutenberg";
+import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
 export default function Blocks(props: { blocks: GutenbergBlockProps[] }) {
+  const { useToken } = theme;
+  const { token } = useToken();
+
   return (
     <>
       {
         // If there are blocks, loop over and display.
         !!props?.blocks?.length &&
-          props.blocks.map((block: GutenbergBlockProps, index: number) => (
-            <Block key={index} block={block} />
-          ))
+          props.blocks.map(
+            (block: GutenbergGlobalBlockProps, index: number) => (
+              <Block key={index} block={block} />
+            )
+          )
       }
+      <style jsx>{
+        // @TODO: Find a way to ensure this only get's loaded once per page, not per Blocks component. Styles shouldn't be scoped.
+        `
+          ${antDesignStyles(token)}
+        `
+      }</style>
     </>
   );
 }

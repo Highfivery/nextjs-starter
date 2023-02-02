@@ -9,7 +9,7 @@ import {
 
 export interface GutenbergAntDesignAttributes {
   api?: {};
-  visibility?: {};
+  visibility?: [];
   styles?:
     | {
         // @TODO: key should be one of the screen sizes: xs, sm, md, etc.

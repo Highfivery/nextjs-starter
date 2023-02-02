@@ -1,9 +1,10 @@
 // Import Next.js dependencies
 import dynamic from "next/dynamic";
 
-// Import antd dependencies
-import { Grid, theme } from "antd";
-const { useBreakpoint } = Grid;
+/**
+ * Import @antd dependencies
+ */
+import { theme } from "antd";
 
 // Import internal component dependencies
 import Blocks from "../Blocks/Blocks";
@@ -213,13 +214,7 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
 };
 
 export default function Block({ block }: { block: GutenbergGlobalBlockProps }) {
-  const currentScreens = useBreakpoint();
-  const {
-    name,
-    attributes: { visibility },
-  } = block;
-
-  // Check visibility
+  const { name } = block;
 
   if (typeof RegisteredBlocks[name] === "undefined") {
     return <div>Unregistered block: {name}</div>;

@@ -1,16 +1,24 @@
-// Import Next.js dependencies
+/**
+ * Import Next.js dependencies
+ */
 import { notFound } from "next/navigation";
 
-// Import WordPress dependencies
+/**
+ * Import @wordpress dependencies
+ */
 import connector from "@/lib/wordpress/connector";
 import queryPageById from "@/lib/wordpress/pages/queryPageById";
 import formatBlockData from "@/functions/gutenberg/formatBlockData";
 
-// Import component dependencies
+/**
+ * Import internal component dependencies
+ */
 import Blocks from "@/components/gutenberg/Blocks/Blocks";
 
-// Import TypeScript definitions
-import { GutenbergBlockProps } from "@/types/gutenberg";
+/**
+ * Import type definitions
+ */
+import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
 export default async function Page() {
   // @TODO: Looking at the console, it appears this component is getting called twice. Likely for a good reason, but would like to find out why.
@@ -24,5 +32,9 @@ export default async function Page() {
     ? await formatBlockData(JSON.parse(page?.blocksJSON))
     : [];
 
-  return <Blocks blocks={blocks as GutenbergBlockProps[]} />;
+  return (
+    <>
+      <Blocks blocks={blocks as GutenbergGlobalBlockProps[]} />
+    </>
+  );
 }
