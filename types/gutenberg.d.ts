@@ -1,5 +1,11 @@
 // Import antd dependencies
-import { RowProps, ColProps, TypographyProps } from "antd";
+import {
+  RowProps,
+  ColProps,
+  TypographyProps,
+  ButtonProps,
+  ImageProps,
+} from "antd";
 
 export interface GutenbergAntDesignAttributes {
   api?: {};
@@ -48,6 +54,25 @@ export interface GutenbergAntDesignParagraphBlockProps
   };
 }
 
-export type GutenbergBlockProps =
-  | GutenbergAntDesignRowBlockProps
-  | GutenbergAntDesignColBlockProps;
+export interface GutenbergAntDesignButtonBlockProps
+  extends GutenbergGlobalBlockProps {
+  attributes: {
+    api: ButtonProps & { text: string };
+  };
+}
+
+export interface GutenbergAntDesignImageBlockProps
+  extends GutenbergGlobalBlockProps {
+  attributes: {
+    api: Omit<ImageProps, "src"> & {
+      text: string;
+      src: { alt: string; url: string; width: number; height: number };
+    };
+    settings?: {
+      size?: {
+        width?: number;
+        height?: number;
+      };
+    };
+  };
+}
