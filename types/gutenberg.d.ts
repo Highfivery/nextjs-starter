@@ -22,7 +22,7 @@ export interface GutenbergAntDesignAttributes {
 
 export interface GutenbergGlobalBlockProps {
   name: string;
-  innerBlocks?: GutenbergBlockProps[];
+  innerBlocks?: GutenbergGlobalBlockProps[];
   attributes: GutenbergAntDesignAttributes;
 }
 
@@ -73,6 +73,26 @@ export interface GutenbergAntDesignImageBlockProps
         width?: number;
         height?: number;
       };
+    };
+  };
+}
+
+export interface GutenbergCoreQueryBlockProps
+  extends GutenbergGlobalBlockProps {
+  attributes: {
+    query: {
+      author: string;
+      exclude: [];
+      inherit: boolean;
+      perPage: number;
+      pages: number;
+      offset: number;
+      order: "asc" | "desc";
+      orderBy: string;
+      pages: number;
+      postType: string;
+      search: string;
+      sticky: string;
     };
   };
 }

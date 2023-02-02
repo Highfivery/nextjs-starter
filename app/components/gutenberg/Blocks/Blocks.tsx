@@ -18,7 +18,10 @@ import antDesignStyles from "@/functions/gutenberg/antDesignStyles";
 // Import TypeScript definitions
 import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
-export default function Blocks(props: { blocks: GutenbergBlockProps[] }) {
+export default function Blocks(props: {
+  blocks: GutenbergGlobalBlockProps[];
+  post: {};
+}) {
   const { useToken } = theme;
   const { token } = useToken();
 
@@ -29,7 +32,7 @@ export default function Blocks(props: { blocks: GutenbergBlockProps[] }) {
         !!props?.blocks?.length &&
           props.blocks.map(
             (block: GutenbergGlobalBlockProps, index: number) => (
-              <Block key={index} block={block} />
+              <Block key={index} block={block} post={props?.post} />
             )
           )
       }
