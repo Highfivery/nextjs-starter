@@ -181,7 +181,7 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
   Component: ({ block }: { block: GutenbergAntDesignImageBlockProps }) => {
     const Image = dynamic(() => import("antd").then((mod) => mod.Image));
     const { attributes } = block;
-    console.log(attributes);
+
     const { api, settings } = attributes;
     const { src, alt } = api;
     const imageProps = {
@@ -197,6 +197,7 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
 
     const className = "ant-image";
     const Component = ({ className }: { className: string }) => (
+      /* @TODO: Fix TypeScript error. alt is defined in the object above & can is requried. Why would TS complain, does it need to be explicitly defined?  */
       <Image className={className} {...imageProps} />
     );
 

@@ -64,6 +64,15 @@ export interface GutenbergAntDesignButtonBlockProps
 export interface GutenbergAntDesignImageBlockProps
   extends GutenbergGlobalBlockProps {
   attributes: {
-    api: ImageProps & { text: string };
+    api: Omit<ImageProps, "src"> & {
+      text: string;
+      src: { alt: string; url: string; width: number; height: number };
+    };
+    settings?: {
+      size?: {
+        width?: number;
+        height?: number;
+      };
+    };
   };
 }
