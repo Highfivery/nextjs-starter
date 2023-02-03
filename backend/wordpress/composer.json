@@ -38,8 +38,8 @@
     "highfivery/wordpress-headless": "dev-main",
     "ashhitch/wp-graphql-yoast-seo": "^4.21.0",
     "wpackagist-plugin/wp-graphql": "^1.13.7",
+    "wpackagist-plugin/wordpress-seo": "^20.0",
     "pristas-peter/wp-graphql-gutenberg": "^0.4.1",
-    "wp-graphql/wp-graphql-jwt-authentication": "^0.4.0",
-    "yoast/wordpress-seo": "^19.14"
+    "wp-graphql/wp-graphql-jwt-authentication": "^0.4.0"
   }
 }
