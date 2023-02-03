@@ -29,7 +29,7 @@ export default function generateStyles(
     property: string | undefined,
     value:
       | {
-          originalImageURL: string;
+          url: string;
         }
       | string
       | undefined
@@ -39,7 +39,7 @@ export default function generateStyles(
     }
 
     if (property === "background-image" && typeof value === "object") {
-      return `background-image: url('${value.originalImageURL}');\n`;
+      return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {

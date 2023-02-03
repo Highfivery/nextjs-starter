@@ -1,19 +1,24 @@
-// Import Next.js dependencies
+/**
+ * Import Next.js dependencies
+ */
 import { notFound } from "next/navigation";
 
-// Import functions
-import getPostTypeStaticPaths from "@/functions/wordpress/postTypes/getPostTypeStaticPaths";
-
-// Import WordPress dependencies
+/**
+ * Import @wordpress dependencies
+ */
 import connector from "@/lib/wordpress/connector";
 import queryPageById from "@/lib/wordpress/pages/queryPageById";
 import formatBlockData from "@/functions/gutenberg/formatBlockData";
 
-// Import component dependencies
+/**
+ * Import internal component dependencies
+ */
 import Blocks from "@/components/gutenberg/Blocks/Blocks";
 
-// Import TypeScript definitions
-import { GutenbergBlockProps } from "@/types/gutenberg";
+/**
+ * Import type definitions
+ */
+import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
 export default async function Page({
   params,
@@ -24,17 +29,17 @@ export default async function Page({
 }) {
   const { page } = await connector(queryPageById, { id: params?.slug });
   if (!page) {
-    notFound();
+    // Not found.
+    return <>Not found</>;
   }
 
   const blocks = page?.blocksJSON
     ? await formatBlockData(JSON.parse(page?.blocksJSON))
     : [];
-  return  <Blocks blocks={blocks as GutenbergBlockProps[]} />;
-}
 
-export async function generateStaticParams() {
-  const pages = await getPostTypeStaticPaths("page");
-
-  return pages;
+  return (
+    <>
+      <Blocks blocks={blocks as GutenbergGlobalBlockProps[]} />
+    </>
+  );
 }
