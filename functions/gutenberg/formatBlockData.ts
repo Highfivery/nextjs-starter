@@ -1,7 +1,6 @@
 // Import TypeScript definitions
 import {
   GutenbergGlobalBlockProps,
-  GutenbergBlockProps,
 } from "@/types/gutenberg";
 
 /**
@@ -24,7 +23,7 @@ export default async function formatBlockData(
     const { name, attributes, innerBlocks } = block;
     const innerBlocksFormatted = (await formatBlockData(
       innerBlocks
-    )) as GutenbergBlockProps[];
+    )) as GutenbergGlobalBlockProps[];
     formattedData.push({ name, attributes, innerBlocks: innerBlocksFormatted });
   }
   return formattedData;

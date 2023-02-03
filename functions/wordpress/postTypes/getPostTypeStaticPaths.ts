@@ -37,7 +37,7 @@ export default async function getPostTypeStaticPaths(postType: keyof typeof post
     //@TODO: Assign type for posts if required
     .map((post: any) => {
       // Trim leading and trailing slashes then split into array on inner slashes.
-      const slug = post.node[pathField].replace(/^\/|\/$/g, "");
+      const slug = post.node[pathField]?.replace(/^\/|\/$/g, "");
 
       return {
         slug,
@@ -48,7 +48,7 @@ export default async function getPostTypeStaticPaths(postType: keyof typeof post
     .filter((post: any) =>
       Array.isArray(post.slug)
         ? !!post.slug.join("/").length
-        : !!post.slug.length
+        : !!post.slug?.length
     );
 
   return paths;
