@@ -3,7 +3,7 @@
 /**
  * Import @antd dependencies
  */
-import { ConfigProvider, Typography, Col, Row, Card, Space } from "antd";
+import { ConfigProvider, Typography, Col, Row, Card } from "antd";
 const { Title, Paragraph, Text, Link } = Typography;
 
 /**

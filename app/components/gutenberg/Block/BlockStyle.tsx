@@ -1,8 +1,16 @@
-// Import internal functions
+/**
+ * Import external dependencies
+ */
+import cn from "classnames";
+
+/**
+ * Import internal functions
+ */
 import generateStyles from "@/functions/gutenberg/generateStyles";
 
 // Screen size
-const screens: { [key: string]: { antdToken: string } } = {
+// @TODO: Convert these to be dynamic, pulled from @antd
+export const screens: { [key: string]: { antdToken: string } } = {
   xs: {
     antdToken: "screenXS",
   },
@@ -24,13 +32,11 @@ const screens: { [key: string]: { antdToken: string } } = {
 };
 
 interface BlockStyleProps {
-  // classname
   className: string;
-  // needs to be any
+  // @TODO: Needs to be properly scoped
   block: any;
-  // style token object
+  // @TODO: Needs to be a more specific type
   token: Object;
-  // component that needs to be rendered
   Component: ({ className }: { className: string }) => JSX.Element;
 }
 
@@ -40,13 +46,20 @@ export const BlockStyle = ({
   token,
   Component,
 }: BlockStyleProps) => {
-  // Handle custom CSS
-  if (block?.attributes?.styles?.custom) {
+  const classNames = [className];
+
+  // Handle visibility
+  if (block?.attributes?.visibility) {
+    for (const [screenSize] of Object.entries(screens)) {
+      if (!block.attributes.visibility.includes(screenSize)) {
+        classNames.push(`gutenberg-ant-design-${screenSize}-hide`);
+      }
+    }
   }
 
   return (
     <>
-      <Component className={className} />
+      <Component className={cn(classNames)} />
       <style jsx>{`
         .${className} {
           ${generateStyles(block, "xs")}
@@ -55,7 +68,12 @@ export const BlockStyle = ({
         ${
           /* @TODO: Find a way to make the class name scoped, see #11 */
           block?.attributes?.styles?.xs?.custom &&
-          block.attributes.styles.xs.custom.replace("selector", `.${className}`)
+          block?.attributes?.styles?.xs?.custom.length
+            ? block.attributes.styles.xs.custom.replace(
+                "selector",
+                `.${className}`
+              )
+            : ``
         }
 
         @media (min-width: ${token[

@@ -44,22 +44,21 @@ export default function generateStyles(
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {
       return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value}px;\n`;
-    } else if (property !== "max-width'") {
+    } else if (property !== "max-width") {
       return `${property}: ${value};\n`;
     }
 
-    return null;
+    return false;
   };
 
   const {
     attributes: { styles },
   } = block;
 
+  let cssStyles = ``;
+
   const stylesArr = styles as GutenbergGlobalBlockProps["attributes"]["styles"];
-
   if (stylesArr?.[screenSize as keyof typeof styles]) {
-    let cssStyles = ``;
-
     // Handle background types
     const backgroundType =
       typeof stylesArr[screenSize] !== "undefined" &&
@@ -91,15 +90,14 @@ export default function generateStyles(
       const key =
         style as keyof GutenbergGlobalBlockProps["attributes"]["styles"];
       if (stylesArr?.[screenSize as keyof typeof styles]?.[key]) {
-        cssStyles += definitionOutput(
-          filteredAvailableStyles[style],
-          stylesArr?.[screenSize as keyof typeof styles]?.[key]
-        );
+        cssStyles +=
+          definitionOutput(
+            filteredAvailableStyles[style],
+            stylesArr?.[screenSize as keyof typeof styles]?.[key]
+          ) || ``;
       }
     }
-
-    return cssStyles;
   }
 
-  return null;
+  return cssStyles;
 }

@@ -1,9 +1,12 @@
-// Import Next.js dependencies
+/**
+ * Import Next.js dependencies
+ */
 import dynamic from "next/dynamic";
 
-// Import antd dependencies
-import { Grid, theme } from "antd";
-const { useBreakpoint } = Grid;
+/**
+ * Import @antd dependencies
+ */
+import { theme } from "antd";
 
 // Import internal component dependencies
 import Blocks from "../Blocks/Blocks";
@@ -19,6 +22,7 @@ import {
   GutenbergAntDesignParagraphBlockProps,
   GutenbergAntDesignButtonBlockProps,
   GutenbergAntDesignImageBlockProps,
+  GutenbergCoreQueryBlockProps,
 } from "@/types/gutenberg";
 
 // Registered blocks
@@ -29,8 +33,50 @@ const RegisteredBlocks: {
   };
 } = {};
 
+export interface RegisteredBlocksComponentProps {
+  post?: {};
+}
+
+RegisteredBlocks["core/query"] = {
+  Component: ({
+    block,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergCoreQueryBlockProps;
+  }) => {
+    const {
+      attributes: { query },
+      innerBlocks,
+    } = block;
+
+    if (!innerBlocks) {
+      return null;
+    }
+
+    // Build & query WPGraphQL
+    // @TODO: Build this functionality
+    const posts = [{}];
+
+    return (
+      <div>
+        {posts.map((post, index) => {
+          return (
+            <div key={index}>
+              <Blocks blocks={innerBlocks} post={post} />
+            </div>
+          );
+        })}
+      </div>
+    );
+  },
+};
+
 RegisteredBlocks["gutenberg-ant-design/title"] = {
-  Component: ({ block }: { block: GutenbergAntDesignTitleBlockProps }) => {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignTitleBlockProps;
+  }) => {
     const Title = dynamic(() =>
       import("antd").then((mod) => mod.Typography.Title)
     );
@@ -61,7 +107,12 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
 };
 
 RegisteredBlocks["gutenberg-ant-design/row"] = {
-  Component: ({ block }: { block: GutenbergAntDesignRowBlockProps }) => {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignRowBlockProps;
+  }) => {
     const Row = dynamic(() => import("antd").then((mod) => mod.Row));
     const { innerBlocks, attributes } = block;
 
@@ -90,7 +141,12 @@ RegisteredBlocks["gutenberg-ant-design/row"] = {
 };
 
 RegisteredBlocks["gutenberg-ant-design/col"] = {
-  Component: ({ block }: { block: GutenbergAntDesignColBlockProps }) => {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignColBlockProps;
+  }) => {
     const Col = dynamic(() => import("antd").then((mod) => mod.Col));
     const { innerBlocks, attributes } = block;
 
@@ -118,7 +174,12 @@ RegisteredBlocks["gutenberg-ant-design/col"] = {
 };
 
 RegisteredBlocks["gutenberg-ant-design/paragraph"] = {
-  Component: ({ block }: { block: GutenbergAntDesignParagraphBlockProps }) => {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignParagraphBlockProps;
+  }) => {
     const Paragraph = dynamic(() =>
       import("antd").then((mod) => mod.Typography.Paragraph)
     );
@@ -149,7 +210,12 @@ RegisteredBlocks["gutenberg-ant-design/paragraph"] = {
 };
 
 RegisteredBlocks["gutenberg-ant-design/button"] = {
-  Component: ({ block }: { block: GutenbergAntDesignButtonBlockProps }) => {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignButtonBlockProps;
+  }) => {
     const Button = dynamic(() => import("antd").then((mod) => mod.Button));
     const { attributes } = block;
 
@@ -178,7 +244,12 @@ RegisteredBlocks["gutenberg-ant-design/button"] = {
 };
 
 RegisteredBlocks["gutenberg-ant-design/image"] = {
-  Component: ({ block }: { block: GutenbergAntDesignImageBlockProps }) => {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignImageBlockProps;
+  }) => {
     const Image = dynamic(() => import("antd").then((mod) => mod.Image));
     const { attributes } = block;
 
@@ -212,20 +283,21 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
   },
 };
 
-export default function Block({ block }: { block: GutenbergGlobalBlockProps }) {
-  const currentScreens = useBreakpoint();
-  const {
-    name,
-    attributes: { visibility },
-  } = block;
-
-  // Check visibility
+export default function Block({
+  block,
+  post,
+}: {
+  block: GutenbergGlobalBlockProps;
+  post: {};
+}) {
+  const { name } = block;
 
   if (typeof RegisteredBlocks[name] === "undefined") {
+    console.log(block);
     return <div>Unregistered block: {name}</div>;
   }
 
   const Component = RegisteredBlocks[name].Component;
 
-  return <Component block={block} />;
+  return <Component block={block} post={post} />;
 }
