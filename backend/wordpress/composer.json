@@ -35,6 +35,7 @@
   },
   "require": {
     "highfivery/wordpress-gutenberg-ant-design": "dev-main",
+    "highfivery/wordpress-headless": "dev-main",
     "ashhitch/wp-graphql-yoast-seo": "^4.21.0",
     "wpackagist-plugin/wp-graphql": "^1.13.7",
     "pristas-peter/wp-graphql-gutenberg": "^0.4.1",
