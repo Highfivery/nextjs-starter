@@ -65,7 +65,7 @@ export const BlockStyle = ({
     <>
       <Component className={cn(classNames)} />
       <style jsx>{`
-        ${selector}.${className} {
+        ${selector ? selector : ""}.${className} {
           ${generateStyles(block, "xs", token)}
         }
 
