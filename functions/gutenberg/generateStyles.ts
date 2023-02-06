@@ -6,7 +6,8 @@ import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
  */
 export default function generateStyles(
   block: GutenbergGlobalBlockProps,
-  screenSize: string
+  screenSize: string,
+  token: {}
 ) {
   const availableStyles: { [key: string]: string } = {
     backgroundGradient: "background",
@@ -19,8 +20,13 @@ export default function generateStyles(
     paddingTop: "padding-top",
     paddingRight: "padding-right",
     paddingBottom: "padding-bottom",
+    marginLeft: "margin-left",
+    marginTop: "margin-top",
+    marginRight: "margin-right",
+    marginBottom: "margin-bottom",
     color: "color",
-    contentWidth: "max-width",
+    containerWidth: "max-width",
+    containerHeight: "height",
     fontSize: "font-size",
     fontFamily: "font-family",
   };
@@ -38,7 +44,13 @@ export default function generateStyles(
       return null;
     }
 
-    if (property === "background-image" && typeof value === "object") {
+    if (property.startsWith("padding-") || property.startsWith("margin-")) {
+      if (typeof token[value] !== "undefined") {
+        return `${property}: ${token[value]}px;\n`;
+      } else {
+        return `${property}: ${value};\n`;
+      }
+    } else if (property === "background-image" && typeof value === "object") {
       return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
@@ -89,13 +101,12 @@ export default function generateStyles(
     for (const [style] of Object.entries(filteredAvailableStyles)) {
       const key =
         style as keyof GutenbergGlobalBlockProps["attributes"]["styles"];
-      if (stylesArr?.[screenSize as keyof typeof styles]?.[key]) {
-        cssStyles +=
-          definitionOutput(
-            filteredAvailableStyles[style],
-            stylesArr?.[screenSize as keyof typeof styles]?.[key]
-          ) || ``;
-      }
+
+      cssStyles +=
+        definitionOutput(
+          filteredAvailableStyles[style],
+          stylesArr?.[screenSize as keyof typeof styles]?.[key]
+        ) || ``;
     }
   }
 

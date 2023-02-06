@@ -101,6 +101,7 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
         block={block}
         token={token}
         Component={Component}
+        selector={`h${titleProps.level}`}
       />
     );
   },

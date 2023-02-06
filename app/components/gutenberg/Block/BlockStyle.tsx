@@ -38,6 +38,8 @@ interface BlockStyleProps {
   // @TODO: Needs to be a more specific type
   token: Object;
   Component: ({ className }: { className: string }) => JSX.Element;
+  /** CSS selector for additional specificity */
+  selector?: string;
 }
 
 export const BlockStyle = ({
@@ -45,7 +47,9 @@ export const BlockStyle = ({
   block,
   token,
   Component,
+  selector,
 }: BlockStyleProps) => {
+  console.log(selector);
   const classNames = [className];
 
   // Handle visibility
@@ -61,8 +65,8 @@ export const BlockStyle = ({
     <>
       <Component className={cn(classNames)} />
       <style jsx>{`
-        .${className} {
-          ${generateStyles(block, "xs")}
+        ${selector}.${className} {
+          ${generateStyles(block, "xs", token)}
         }
 
         ${
@@ -79,40 +83,40 @@ export const BlockStyle = ({
         @media (min-width: ${token[
           screens.sm.antdToken as keyof typeof token
         ]}px) {
-          .${className} {
-            ${generateStyles(block, "sm")}
+          ${selector}.${className} {
+            ${generateStyles(block, "sm", token)}
           }
         }
 
         @media (min-width: ${token[
             screens.md.antdToken as keyof typeof token
           ]}px) {
-          .${className} {
-            ${generateStyles(block, "md")}
+          ${selector}.${className} {
+            ${generateStyles(block, "md", token)}
           }
         }
 
         @media (min-width: ${token[
             screens.lg.antdToken as keyof typeof token
           ]}px) {
-          .${className} {
-            ${generateStyles(block, "lg")}
+          ${selector}.${className} {
+            ${generateStyles(block, "lg", token)}
           }
         }
 
         @media (min-width: ${token[
             screens.xl.antdToken as keyof typeof token
           ]}px) {
-          .${className} {
-            ${generateStyles(block, "xl")}
+          ${selector}.${className} {
+            ${generateStyles(block, "xl", token)}
           }
         }
 
         @media (min-width: ${token[
             screens.xxl.antdToken as keyof typeof token
           ]}px) {
-          .${className} {
-            ${generateStyles(block, "xxl")}
+          ${selector}.${className} {
+            ${generateStyles(block, "xxl", token)}
           }
         }
       `}</style>
