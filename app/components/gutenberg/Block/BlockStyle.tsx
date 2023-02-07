@@ -7,6 +7,7 @@ import cn from "classnames";
  * Import internal functions
  */
 import generateStyles from "@/functions/gutenberg/generateStyles";
+import css from "styled-jsx/css";
 
 /**
  * Import typeScript definitions
@@ -56,7 +57,6 @@ export const BlockStyle = ({
   Component,
   selector,
 }: BlockStyleProps) => {
-
   const classNames = [className];
 
   // Handle visibility
@@ -68,6 +68,20 @@ export const BlockStyle = ({
     }
   }
 
+  // Get scoped class names for each screen-size and add it to classNames array.
+  const scopedStyles = Object?.entries(block?.attributes?.styles || {})?.reduce(
+    (acc: any, [key, value]: any) => {
+      const { className, newStyles } = scopeStyles(value.custom);
+      acc[key] = { className, newStyles };
+      if(newStyles) {
+        classNames.push(className);
+      }
+      return acc;
+    },
+    {}
+  );
+
+  // @TODO: Find a better way to manage styles. 
   return (
     <>
       <Component className={cn(classNames)} />
@@ -75,24 +89,14 @@ export const BlockStyle = ({
         ${selector ? selector : ""}.${className} {
           ${generateStyles(block, "xs", token)}
         }
-
-        ${
-          /* @TODO: Find a way to make the class name scoped, see #11 */
-          block?.attributes?.styles?.xs?.custom &&
-          block?.attributes?.styles?.xs?.custom.length
-            ? block.attributes.styles.xs.custom.replace(
-                "selector",
-                `.${className}`
-              )
-            : ``
-        }
-
+        ${scopedStyles['xs'].newStyles}
         @media (min-width: ${token[
-          screens.sm.antdToken as keyof typeof token
-        ]}px) {
+            screens.sm.antdToken as keyof typeof token
+          ]}px) {
           ${selector}.${className} {
             ${generateStyles(block, "sm", token)}
           }
+          ${scopedStyles['sm']?.newStyles && scopedStyles['sm'].newStyles}
         }
 
         @media (min-width: ${token[
@@ -101,6 +105,7 @@ export const BlockStyle = ({
           ${selector}.${className} {
             ${generateStyles(block, "md", token)}
           }
+          ${scopedStyles['md']?.newStyles && scopedStyles['md'].newStyles}
         }
 
         @media (min-width: ${token[
@@ -109,6 +114,7 @@ export const BlockStyle = ({
           ${selector}.${className} {
             ${generateStyles(block, "lg", token)}
           }
+          ${scopedStyles['lg']?.newStyles && scopedStyles['lg'].newStyles}
         }
 
         @media (min-width: ${token[
@@ -117,6 +123,7 @@ export const BlockStyle = ({
           ${selector}.${className} {
             ${generateStyles(block, "xl", token)}
           }
+          ${scopedStyles['xl']?.newStyles && scopedStyles['xl'].newStyles}
         }
 
         @media (min-width: ${token[
@@ -125,8 +132,21 @@ export const BlockStyle = ({
           ${selector}.${className} {
             ${generateStyles(block, "xxl", token)}
           }
+          ${scopedStyles['xxl']?.newStyles && scopedStyles['xxl'].newStyles}
         }
       `}</style>
     </>
   );
+};
+
+// returns a scoped class and a styled scoped class object.
+const scopeStyles = (value: string) => {
+  // generates a unique class
+  const { className } = css.resolve`
+    ${value}
+  `;
+  // replaces a selector value with the uniqueClass
+  const newStyles = value?.replace("selector", `.${className}`);
+
+  return { newStyles, className };
 };
