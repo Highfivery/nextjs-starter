@@ -20,8 +20,8 @@ export const globalTypes = {
         { value: "antDark", title: "Ant-Dark theme" },
         { value: "atomic", title: "Atomic Styles" },
         {
-          value: "wordpress",
-          title: "WordPress Styles",
+          value: "gutenberg",
+          title: "Gutenberg Styles",
         },
       ],
     },
