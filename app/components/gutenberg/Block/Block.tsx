@@ -28,8 +28,8 @@ import {
 // Registered blocks
 const RegisteredBlocks: {
   [key: string]: {
-    // @TODO: Fix, define a type
-    Component: any;
+    // No need to define a type for args as types are being assigned explicity on function params.
+    Component: (arg1: any, arg2: any) => JSX.Element | null;
   };
 } = {};
 
@@ -101,6 +101,7 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
         block={block}
         token={token}
         Component={Component}
+        selector={`h${titleProps.level}`}
       />
     );
   },
@@ -256,20 +257,20 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
     const { api, settings } = attributes;
     const { src, alt } = api;
     const imageProps = {
-      alt: alt ? alt : src.alt ? src.alt : "",
       src: src.url,
       width: settings?.size?.width ? settings.size.width : src.width,
       height: settings?.size?.height ? settings.size.height : src.height,
       preview: api?.preview,
     };
+    const imageAlt = alt ? alt : src.alt ? src.alt : "";
 
     const { useToken } = theme;
     const { token } = useToken();
 
     const className = "ant-image";
     const Component = ({ className }: { className: string }) => (
-      /* @TODO: Fix TypeScript error. alt is defined in the object above & can is requried. Why would TS complain, does it need to be explicitly defined?  */
-      <Image className={className} {...imageProps} />
+      /* Alt prop needs to be explicitly defined https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/93f78856655696a55309440593e0948c6fb96134/docs/rules/alt-text.md#bad  */
+      <Image className={className} alt={imageAlt} {...imageProps} />
     );
 
     return (
@@ -288,7 +289,7 @@ export default function Block({
   post,
 }: {
   block: GutenbergGlobalBlockProps;
-  post: {};
+  post?: {};
 }) {
   const { name } = block;
 

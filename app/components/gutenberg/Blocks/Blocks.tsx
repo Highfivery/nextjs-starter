@@ -20,7 +20,7 @@ import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
 export default function Blocks(props: {
   blocks: GutenbergGlobalBlockProps[];
-  post: {};
+  post?: {};
 }) {
   const { useToken } = theme;
   const { token } = useToken();
