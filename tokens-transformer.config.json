@@ -1,9 +1,9 @@
 {
   "version": 5,
   "source": {
-    "tokensFile": "figma-tokens/tokens.json"
+    "tokensFile": "figma/tokens.json"
   },
   "target": {
-    "jsonsDir": "figma-tokens"
+    "jsonsDir": "figma"
   }
 }
