@@ -2,7 +2,6 @@
 import { ReactElement } from "react";
 
 // Import types
-import PropTypes from "prop-types";
 import { NavigationItemProps } from "@/components/atomic-design/molecules/Navigation/Navigation";
 
 // Import component dependencies
@@ -26,7 +25,3 @@ export interface HeaderProps {
   /** Array of menu items. */
   menu?: NavigationItemProps[];
 }
-
-Header.propTypes = {
-  menu: PropTypes.arrayOf(PropTypes.object),
-};

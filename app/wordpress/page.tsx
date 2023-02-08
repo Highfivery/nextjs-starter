@@ -25,7 +25,7 @@ export default async function Page() {
   const { page } = await connector(queryPageById, { id: "/" });
   if (!page) {
     // Not found.
-    return <>Not found</>;
+    notFound();
   }
 
   const blocks = page?.blocksJSON
