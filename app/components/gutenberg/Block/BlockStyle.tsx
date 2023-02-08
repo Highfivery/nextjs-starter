@@ -89,7 +89,7 @@ export const BlockStyle = ({
         ${selector ? selector : ""}.${className} {
           ${generateStyles(block, "xs", token)}
         }
-        ${scopedStyles['xs'].newStyles}
+        ${scopedStyles['xs']?.newStyles}
         @media (min-width: ${token[
             screens.sm.antdToken as keyof typeof token
           ]}px) {
