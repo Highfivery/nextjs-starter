@@ -6,12 +6,6 @@ import { ReactElement, ReactNode } from "react";
  */
 import { Providers } from "../providers";
 
-/**
- * Import application global styles/CSS framework below.
- */
-
-import "@/styles/gutenberg/style.scss";
-
 export default async function RootLayout({
   children,
 }: {

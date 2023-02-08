@@ -20,17 +20,11 @@ import Blocks from "@/components/gutenberg/Blocks/Blocks";
  */
 import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
-export default async function Page({
-  params,
-  searchParams,
-}: {
-  params: { slug: string };
-  searchParams: { id: string };
-}) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const { page } = await connector(queryPageById, { id: params?.slug });
   if (!page) {
     // Not found.
-    return <>Not found</>;
+    notFound();
   }
 
   const blocks = page?.blocksJSON

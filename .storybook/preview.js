@@ -37,9 +37,10 @@ export const parameters = {
     },
   },
   storySort: {
+    // @TODO: Look into this, doesn't appear it's working
     order: [
       "Atomic Design",
-      ["Atoms", "Molecules", "Organisms", "Templates"],
+      ["Atoms", "Molecules", "Organisms", "Templates", "Pages"],
       "Ant Design",
       [
         "Components",

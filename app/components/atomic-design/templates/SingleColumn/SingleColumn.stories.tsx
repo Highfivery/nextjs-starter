@@ -1,6 +1,3 @@
-// @ts-nocheck
-// @TODO: Fix TS issue, see https://github.com/storybookjs/storybook/issues/19872
-
 // Import React.js dependencies
 import React from "react";
 
@@ -11,7 +8,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { default as PageComponent } from ".";
 
 export default {
-  title: "Atomic Design/Templates/Page",
+  title: "Atomic Design/Templates/Single Column",
   component: PageComponent,
   parameters: {
     layout: "fullscreen",
@@ -30,8 +27,8 @@ const Template: ComponentStory<typeof PageComponent> = (args) => (
   </PageComponent>
 );
 
-export const Page = Template.bind({});
-Page.args = {
+export const SingleColumn = Template.bind({});
+SingleColumn.args = {
   menu: [
     {
       label: "Home",
@@ -40,12 +37,14 @@ Page.args = {
     {
       label: "About",
       path: "/about",
-      children: [
-        {
-          label: "Our Story",
-          path: "/about/our-story",
-        },
-      ],
+      children: {
+        items: [
+          {
+            label: "Our Story",
+            path: "/about/our-story",
+          },
+        ],
+      },
     },
   ],
 };
