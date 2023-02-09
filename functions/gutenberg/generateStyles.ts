@@ -1,5 +1,6 @@
 // Import TypeScript definitions
 import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
+import { GlobalToken } from "antd/es/theme/interface";
 
 /**
  * Converts the Gutenberg Ant Design plugin styles attribute to styles
@@ -7,7 +8,7 @@ import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 export default function generateStyles(
   block: GutenbergGlobalBlockProps,
   screenSize: string,
-  token: {}
+  token: GlobalToken & { [key: string]: any }
 ) {
   const availableStyles: { [key: string]: string } = {
     backgroundGradient: "background",
@@ -33,19 +34,14 @@ export default function generateStyles(
 
   const definitionOutput = (
     property: string | undefined,
-    value:
-      | {
-          url: string;
-        }
-      | string
-      | undefined
+    value: string | { url: string }
   ) => {
     if (typeof property == "undefined") {
       return null;
     }
 
     if (property.startsWith("padding-") || property.startsWith("margin-")) {
-      if (typeof token[value] !== "undefined") {
+      if (typeof value !== "undefined" && typeof value === "string") {
         return `${property}: ${token[value]}px;\n`;
       } else {
         return `${property}: ${value};\n`;

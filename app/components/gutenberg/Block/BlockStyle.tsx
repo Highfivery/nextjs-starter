@@ -8,6 +8,13 @@ import cn from "classnames";
  */
 import generateStyles from "@/functions/gutenberg/generateStyles";
 
+/**
+ * Import typeScript definitions
+ */
+import { GlobalToken } from "antd/es/theme/interface";
+
+
+
 // Screen size
 // @TODO: Convert these to be dynamic, pulled from @antd
 export const screens: { [key: string]: { antdToken: string } } = {
@@ -35,8 +42,8 @@ interface BlockStyleProps {
   className: string;
   // @TODO: Needs to be properly scoped
   block: any;
-  // @TODO: Needs to be a more specific type
-  token: Object;
+  /** antd theme token */
+  token: GlobalToken
   Component: ({ className }: { className: string }) => JSX.Element;
   /** CSS selector for additional specificity */
   selector?: string;
@@ -49,7 +56,7 @@ export const BlockStyle = ({
   Component,
   selector,
 }: BlockStyleProps) => {
-  console.log(selector);
+
   const classNames = [className];
 
   // Handle visibility

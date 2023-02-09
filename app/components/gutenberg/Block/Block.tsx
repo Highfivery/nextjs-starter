@@ -83,7 +83,7 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
     const { attributes } = block;
 
     const { api } = attributes;
-    const { text, ...titleProps } = api;
+    const { text, ...titleProps }  = api;
 
     const { useToken } = theme;
     const { token } = useToken();
@@ -294,7 +294,6 @@ export default function Block({
   const { name } = block;
 
   if (typeof RegisteredBlocks[name] === "undefined") {
-    console.log(block);
     return <div>Unregistered block: {name}</div>;
   }
 

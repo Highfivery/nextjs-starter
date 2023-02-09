@@ -5,6 +5,7 @@ import {
   TypographyProps,
   ButtonProps,
   ImageProps,
+  TitleProps
 } from "antd";
 
 export interface GutenbergAntDesignAttributes {
@@ -43,7 +44,7 @@ export interface GutenbergAntDesignColBlockProps
 export interface GutenbergAntDesignTitleBlockProps
   extends GutenbergGlobalBlockProps {
   attributes: {
-    api: TypographyProps & { text: string };
+    api: TitleProps & { text: string };
   };
 }
 
@@ -96,3 +97,4 @@ export interface GutenbergCoreQueryBlockProps
     };
   };
 }
+
