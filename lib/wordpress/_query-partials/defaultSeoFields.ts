@@ -1,30 +1,35 @@
 const defaultSeoFields = `
 seo {
-  canonical
-  breadcrumbs {
-    text
-    url
+  social {
+    facebook {
+      url
+    }
+    facebook {
+      url
+    }
+    instagram {
+      url
+    }
+    linkedIn {
+      url
+    }
+    mySpace {
+      url
+    }
+    pinterest {
+      url
+    }
+    twitter {
+      cardType
+      username
+    }
+    wikipedia {
+      url
+    }
+    youTube {
+      url
+    }
   }
-  cornerstone
-  focuskw
-  fullHead
-  metaDesc
-  metaKeywords
-  metaRobotsNofollow
-  metaRobotsNoindex
-  opengraphAuthor
-  opengraphDescription
-  readingTime
-  opengraphUrl
-  opengraphType
-  opengraphTitle
-  opengraphSiteName
-  opengraphPublisher
-  opengraphPublishedTime
-  opengraphModifiedTime
-  title
-  twitterDescription
-  twitterTitle
 }`;
 
 export default defaultSeoFields;

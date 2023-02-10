@@ -36,7 +36,7 @@ export default function generateStyles(
     property: string | undefined,
     value: string | { url: string }
   ) => {
-    if (typeof property == "undefined") {
+    if (typeof property == "undefined" || typeof value == "undefined" || value === '') {
       return null;
     }
 

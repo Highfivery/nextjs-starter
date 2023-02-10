@@ -1,21 +1,33 @@
 "use client";
 
-import PropTypes from "prop-types";
-
-// Import React.js dependencies
+/**
+ * Import react dependencies
+ */
 import { ReactElement, ReactNode } from "react";
 
-// Import Next.js dependencies
+/**
+ * Impoer next dependencies
+ */
 import { usePathname } from "next/navigation";
 
-// Import functions
+/**
+ * Import external dependencies
+ */
 import cn from "classnames";
+
+/**
+ * Import internal dependencies
+ */
 import isLinkActive from "@/functions/isLinkActive";
 
-// Import component dependencies
+/**
+ * Import internal component dependencies
+ */
 import Link from "@/components/atomic-design/atoms/Link";
 
-// Import styles
+/**
+ * Import scoped styles
+ */
 import styles from "./Navigation.module.scss";
 
 /**
@@ -58,7 +70,7 @@ function NavigationMenu({
               {item.label}
             </Link>
 
-            {(item?.children?.items && item.children.items.length > 0) && (
+            {item?.children?.items && item.children.items.length > 0 && (
               <>
                 {item?.children?.Title && item.children.Title}
                 <ul
@@ -97,10 +109,6 @@ export interface NavigationItemProps {
   };
 }
 
-NavigationMenu.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object),
-};
-
 /**
  * Render the Navigation component.
  */
@@ -133,9 +141,3 @@ export interface NavigationProps {
   /** Inline container styles */
   style?: {};
 }
-
-Navigation.propTypes = {
-  className: PropTypes.string,
-  items: PropTypes.arrayOf(PropTypes.object),
-  style: PropTypes.object,
-};

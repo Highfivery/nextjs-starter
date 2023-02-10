@@ -1,4 +1,4 @@
-// Import WordPress dependencies
+// Import internal wordpress dependencies
 import connector from "@/lib/wordpress/connector";
 import queryPageById from "@/lib/wordpress/pages/queryPageById";
 

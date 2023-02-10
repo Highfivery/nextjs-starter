@@ -1,10 +1,10 @@
 /**
- * Import React.js dependencies
+ * Import react dependencies
  */
 import { ReactElement, ReactNode } from "react";
 
 /**
- * Import provider dependencies
+ * Import internal dependencies
  */
 import { Providers } from "./providers";
 

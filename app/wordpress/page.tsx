@@ -1,5 +1,5 @@
 /**
- * Import Next.js dependencies
+ * Import @next dependencies
  */
 import { notFound } from "next/navigation";
 
@@ -9,6 +9,11 @@ import { notFound } from "next/navigation";
 import connector from "@/lib/wordpress/connector";
 import queryPageById from "@/lib/wordpress/pages/queryPageById";
 import formatBlockData from "@/functions/gutenberg/formatBlockData";
+
+/**
+ * Import internal dependencies
+ */
+import getMenus from "@/functions/wordpress/menus/getMenus";
 
 /**
  * Import internal component dependencies

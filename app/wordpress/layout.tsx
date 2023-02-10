@@ -1,19 +1,23 @@
-// Import React.js dependencies
+/**
+ * Import react dependencies
+ */
 import { ReactElement, ReactNode } from "react";
 
 /**
- * Import provider dependencies
+ * Import internal dependencies
  */
 import { Providers } from "../providers";
 
-export default async function RootLayout({
+/**
+ * Import internal component dependencies
+ */
+import SingleColumn from "@/components/atomic-design/templates/SingleColumn";
+
+export default function RootLayout({
   children,
 }: {
   children: ReactElement | ReactNode;
 }) {
-  //const data = await queryDefaultPageData();
-  //console.log(data);
-
   return (
     <html lang="en">
       {/*
@@ -22,7 +26,9 @@ export default async function RootLayout({
       */}
       <head />
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <SingleColumn>{children}</SingleColumn>
+        </Providers>
       </body>
     </html>
   );
