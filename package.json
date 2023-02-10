@@ -10,8 +10,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "todo": "leasot '**/*.tsx' '**/*.js' '**/*.scss' '**/*.ts' --ignore '**/node_modules' '**/schema.generated.ts'",
-    "commit": "git-cz",
-    "generate-ant-design-css-vars": "node generate-ant-design-css-vars.js"
+    "commit": "git-cz"
   },
   "config": {
     "commitizen": {

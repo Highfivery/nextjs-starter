@@ -10,10 +10,24 @@ import { ReactElement, ReactNode } from "react";
  */
 import { ConfigProvider } from "antd";
 
+// import style dependencies
+import light from "../figma/light.json";
+import { convertJsonToCssVariables } from "../generate-ant-design-css-vars";
+
+// convert json style object to css variables.
+const cssVars = convertJsonToCssVariables(light);
+
 export function Providers({
   children,
 }: {
   children: ReactElement | ReactNode;
 }) {
-  return <ConfigProvider>{children}</ConfigProvider>;
+  return (
+    <ConfigProvider>
+      <style jsx global>{`
+        ${cssVars}
+      `}</style>
+      {children}
+    </ConfigProvider>
+  );
 }
