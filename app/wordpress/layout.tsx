@@ -1,9 +1,14 @@
-// Import React.js dependencies
+/**
+ * Import react dependencies
+ */
 import { ReactElement, ReactNode } from "react";
 
 /**
- * Import provider dependencies
+ * Import internal dependencies
  */
+import connector from "@/lib/wordpress/connector";
+import queryPageById from "@/lib/wordpress/pages/queryPageById";
+import getMenus from "@/functions/wordpress/menus/getMenus";
 import { Providers } from "../providers";
 
 export default async function RootLayout({
@@ -11,8 +16,9 @@ export default async function RootLayout({
 }: {
   children: ReactElement | ReactNode;
 }) {
-  //const data = await queryDefaultPageData();
-  //console.log(data);
+  const { menus } = await connector(queryPageById, { id: "/" });
+
+  const parsedMenus = getMenus(menus);
 
   return (
     <html lang="en">
