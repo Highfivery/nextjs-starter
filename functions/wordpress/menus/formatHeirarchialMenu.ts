@@ -9,14 +9,18 @@
  * @return {Array}                   Array containing a updated menu list.
  */
 export default function formatHeirarchialMenu(
-  data: [] = [],
+  data: {
+    [key: string]: [];
+  }[] = [],
   { idKey = "id", parentKey = "parentId", childrenKey = "children" } = {}
 ) {
-  const tree = [];
-  const childrenOf = {};
+  const tree: {}[] = [];
+  const childrenOf: { [key: string]: {} } = {};
+
   data.forEach((item) => {
     const newItem = { ...item };
     const { [idKey]: id, [parentKey]: parentId = 0 } = newItem;
+
     childrenOf[id] = childrenOf[id] || [];
     newItem[childrenKey] = childrenOf[id];
     parentId

@@ -6,20 +6,18 @@ import { ReactElement, ReactNode } from "react";
 /**
  * Import internal dependencies
  */
-import connector from "@/lib/wordpress/connector";
-import queryPageById from "@/lib/wordpress/pages/queryPageById";
-import getMenus from "@/functions/wordpress/menus/getMenus";
 import { Providers } from "../providers";
 
-export default async function RootLayout({
+/**
+ * Import internal component dependencies
+ */
+import SingleColumn from "@/components/atomic-design/templates/SingleColumn";
+
+export default function RootLayout({
   children,
 }: {
   children: ReactElement | ReactNode;
 }) {
-  const { menus } = await connector(queryPageById, { id: "/" });
-
-  const parsedMenus = getMenus(menus);
-
   return (
     <html lang="en">
       {/*
@@ -28,7 +26,9 @@ export default async function RootLayout({
       */}
       <head />
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <SingleColumn>{children}</SingleColumn>
+        </Providers>
       </body>
     </html>
   );
