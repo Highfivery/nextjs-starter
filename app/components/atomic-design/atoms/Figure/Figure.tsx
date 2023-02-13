@@ -4,9 +4,6 @@ import { ReactNode } from "react";
 // Import functions
 import cn from "classnames";
 
-// Import types
-import PropTypes from "prop-types";
-
 // Import component dependencies
 import RichText from "../RichText";
 
@@ -18,7 +15,7 @@ import styles from "./Figure.module.scss";
  */
 export default function Figure(props: FigureProps) {
   return (
-    <figure className={cn(props?.className, styles.figure)}>
+    <figure className={cn(props?.className, styles.figure)} style={props.style}>
       {props.children}
       {props?.caption && <RichText Tag="figcaption">{props.caption}</RichText>}
     </figure>
@@ -32,10 +29,6 @@ export interface FigureProps {
   className?: string;
   /** Figure caption. */
   caption?: string;
+  /** Inline styles. */
+  style?: {};
 }
-
-Figure.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  className: PropTypes.string,
-  caption: PropTypes.string,
-};

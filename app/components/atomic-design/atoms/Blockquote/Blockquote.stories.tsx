@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof BlockquoteComponent> = (args) => (
   <BlockquoteComponent {...args}>{args.children}</BlockquoteComponent>
 );
 
-export const Blockquote = Template.bind({});
-Blockquote.args = {
+export const Default = Template.bind({});
+Default.args = {
   children: <>Lorem ipsum dolor sit amet, consectetur adipiscing elit</>,
 };
