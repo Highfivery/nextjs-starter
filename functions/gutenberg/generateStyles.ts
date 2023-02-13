@@ -30,18 +30,27 @@ export default function generateStyles(
     containerHeight: "height",
     fontSize: "font-size",
     fontFamily: "font-family",
+    textAlignment: "text-align",
   };
 
   const definitionOutput = (
     property: string | undefined,
     value: string | { url: string }
   ) => {
-    if (typeof property == "undefined" || typeof value == "undefined" || value === '') {
+    if (
+      typeof property == "undefined" ||
+      typeof value == "undefined" ||
+      value === ""
+    ) {
       return null;
     }
 
     if (property.startsWith("padding-") || property.startsWith("margin-")) {
-      if (typeof value !== "undefined" && typeof value === "string") {
+      if (
+        typeof value !== "undefined" &&
+        typeof value === "string" &&
+        typeof token[value] !== "undefined"
+      ) {
         return `${property}: ${token[value]}px;\n`;
       } else {
         return `${property}: ${value};\n`;
@@ -51,7 +60,7 @@ export default function generateStyles(
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value}px;\n`;
+      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\nwidth: 100%;\n`;
     } else if (property !== "max-width") {
       return `${property}: ${value};\n`;
     }

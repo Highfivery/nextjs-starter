@@ -83,7 +83,7 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
     const { attributes } = block;
 
     const { api } = attributes;
-    const { text, ...titleProps }  = api;
+    const { text, ...titleProps } = api;
 
     const { useToken } = theme;
     const { token } = useToken();
@@ -163,6 +163,42 @@ RegisteredBlocks["gutenberg-ant-design/col"] = {
         {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
       </Col>
     );
+    return (
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
+    );
+  },
+};
+
+RegisteredBlocks["gutenberg-ant-design/text"] = {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignParagraphBlockProps;
+  }) => {
+    const Text = dynamic(() =>
+      import("antd").then((mod) => mod.Typography.Text)
+    );
+    const { attributes } = block;
+
+    const { api } = attributes;
+    const { text, ...paragraphProps } = api;
+
+    const { useToken } = theme;
+    const { token } = useToken();
+
+    const className = "ant-typography";
+    const Component = ({ className }: { className: string }) => (
+      <Text className={className} {...paragraphProps}>
+        <RichText>{text}</RichText>
+      </Text>
+    );
+
     return (
       <BlockStyle
         className={className}

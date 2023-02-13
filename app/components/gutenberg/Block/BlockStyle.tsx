@@ -89,50 +89,50 @@ export const BlockStyle = ({
         ${selector ? selector : ""}.${className} {
           ${generateStyles(block, "xs", token)}
         }
-        ${scopedStyles['xs']?.newStyles}
+        ${scopedStyles['xs']?.newStyles ? scopedStyles['xs']?.newStyles : ''}
         @media (min-width: ${token[
             screens.sm.antdToken as keyof typeof token
           ]}px) {
-          ${selector}.${className} {
+          ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "sm", token)}
           }
-          ${scopedStyles['sm']?.newStyles && scopedStyles['sm'].newStyles}
+          ${scopedStyles['sm']?.newStyles ? scopedStyles['sm'].newStyles : ''}
         }
 
         @media (min-width: ${token[
             screens.md.antdToken as keyof typeof token
           ]}px) {
-          ${selector}.${className} {
+          ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "md", token)}
           }
-          ${scopedStyles['md']?.newStyles && scopedStyles['md'].newStyles}
+          ${scopedStyles['md']?.newStyles ? scopedStyles['md'].newStyles : ''}
         }
 
         @media (min-width: ${token[
             screens.lg.antdToken as keyof typeof token
           ]}px) {
-          ${selector}.${className} {
+          ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "lg", token)}
           }
-          ${scopedStyles['lg']?.newStyles && scopedStyles['lg'].newStyles}
+          ${scopedStyles['lg']?.newStyles ? scopedStyles['lg'].newStyles : ''}
         }
 
         @media (min-width: ${token[
             screens.xl.antdToken as keyof typeof token
           ]}px) {
-          ${selector}.${className} {
+          ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "xl", token)}
           }
-          ${scopedStyles['xl']?.newStyles && scopedStyles['xl'].newStyles}
+          ${scopedStyles['xl']?.newStyles ? scopedStyles['xl'].newStyles : ''}
         }
 
         @media (min-width: ${token[
             screens.xxl.antdToken as keyof typeof token
           ]}px) {
-          ${selector}.${className} {
+          ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "xxl", token)}
           }
-          ${scopedStyles['xxl']?.newStyles && scopedStyles['xxl'].newStyles}
+          ${scopedStyles['xxl']?.newStyles ? scopedStyles['xxl'].newStyles : ''}
         }
       `}</style>
     </>
