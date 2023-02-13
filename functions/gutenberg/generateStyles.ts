@@ -60,7 +60,7 @@ export default function generateStyles(
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\n`;
+      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\nwidth: 100%;\n`;
     } else if (property !== "max-width") {
       return `${property}: ${value};\n`;
     }
