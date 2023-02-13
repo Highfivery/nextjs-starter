@@ -46,7 +46,11 @@ export default function generateStyles(
     }
 
     if (property.startsWith("padding-") || property.startsWith("margin-")) {
-      if (typeof value !== "undefined" && typeof value === "string") {
+      if (
+        typeof value !== "undefined" &&
+        typeof value === "string" &&
+        typeof token[value] !== "undefined"
+      ) {
         return `${property}: ${token[value]}px;\n`;
       } else {
         return `${property}: ${value};\n`;
