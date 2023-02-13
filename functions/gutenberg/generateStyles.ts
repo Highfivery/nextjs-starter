@@ -30,13 +30,18 @@ export default function generateStyles(
     containerHeight: "height",
     fontSize: "font-size",
     fontFamily: "font-family",
+    textAlignment: "text-align",
   };
 
   const definitionOutput = (
     property: string | undefined,
     value: string | { url: string }
   ) => {
-    if (typeof property == "undefined" || typeof value == "undefined" || value === '') {
+    if (
+      typeof property == "undefined" ||
+      typeof value == "undefined" ||
+      value === ""
+    ) {
       return null;
     }
 
@@ -51,7 +56,7 @@ export default function generateStyles(
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value}px;\n`;
+      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\n`;
     } else if (property !== "max-width") {
       return `${property}: ${value};\n`;
     }
