@@ -8,10 +8,17 @@ import dynamic from "next/dynamic";
  */
 import { theme } from "antd";
 
+/**
+ * Import internal dependencies
+ */
+import getGfFormById from "@/functions/wordpress/gravityForms/getGfFormById";
+
 // Import internal component dependencies
 import Blocks from "../Blocks/Blocks";
 import { BlockStyle } from "./BlockStyle";
 import RichText from "@/components/atomic-design/atoms/RichText";
+
+import Form from "@/components/gutenberg/gravity-forms/Form/Form";
 
 // Import TypeScript definitions
 import {
@@ -317,6 +324,19 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
         Component={Component}
       />
     );
+  },
+};
+
+RegisteredBlocks["gravityforms/form"] = {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignRowBlockProps;
+  }) => {
+    const formId = block.attributes.formId;
+    console.log(block);
+    return <Form formId={formId} />;
   },
 };
 
