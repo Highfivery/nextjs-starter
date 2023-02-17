@@ -1,3 +1,6 @@
+/**
+ * Import external dependencies
+ */
 import { gql } from "graphql-request";
 
 // Log user into WP.

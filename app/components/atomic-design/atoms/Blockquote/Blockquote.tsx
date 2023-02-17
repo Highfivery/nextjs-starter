@@ -4,9 +4,6 @@ import { ReactNode, ReactElement } from "react";
 // Import functions
 import cn from "classnames";
 
-// Import types
-import PropTypes from "prop-types";
-
 // Import styles
 import styles from "./Blockquote.module.scss";
 
@@ -18,6 +15,7 @@ export default function Blockquote(props: BlockquoteProps) {
     <blockquote
       cite={props?.cite}
       className={cn(props?.className, styles.blockquote)}
+      style={props?.style}
     >
       {props.children}
     </blockquote>
@@ -27,19 +25,10 @@ export default function Blockquote(props: BlockquoteProps) {
 export interface BlockquoteProps {
   /** Child component(s) to render. */
   children: ReactElement | ReactNode;
-  /** Optional classNames. */
+  /** Class names. */
   className?: string;
-  /** Optional citation URL */
+  /** Citation URL */
   cite?: string;
+  /** Inline styles */
+  style?: {};
 }
-
-Blockquote.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.element,
-    PropTypes.node,
-  ]).isRequired,
-  className: PropTypes.string,
-  cite: PropTypes.string,
-};

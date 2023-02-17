@@ -1,6 +1,3 @@
-// Import package dependencies
-import { gql } from "graphql-request";
-
 // Import library dependencies
 import { postTypes } from "@/lib/wordpress/_config/postTypes";
 import connector from "@/lib/wordpress/connector";
@@ -9,7 +6,9 @@ import connector from "@/lib/wordpress/connector";
 import isValidPostType from "./isValidPostType";
 import isHierarchicalPostType from "./isHierarchicalPostType";
 
-export default async function getPostTypeStaticPaths(postType: keyof typeof postTypes) {
+export default async function getPostTypeStaticPaths(
+  postType: keyof typeof postTypes
+) {
   if (!postType || !isValidPostType(postType)) {
     return null;
   }
@@ -23,7 +22,8 @@ export default async function getPostTypeStaticPaths(postType: keyof typeof post
   // Determine path field based on hierarchy.
   const pathField = isHierarchical || postType === "post" ? "uri" : "slug";
 
-  const posts = await connector(`query GET_SLUGS {
+  const posts = await connector(
+    `query GET_SLUGS {
     ${pluralName}(first: 10000) {
       edges {
         node {
@@ -31,7 +31,9 @@ export default async function getPostTypeStaticPaths(postType: keyof typeof post
         }
       }
     }
-  }`, '').then((response) => response?.[pluralName]?.edges ?? []);
+  }`,
+    ""
+  ).then((response) => response?.[pluralName]?.edges ?? []);
 
   const paths = posts
     //@TODO: Assign type for posts if required
@@ -44,7 +46,7 @@ export default async function getPostTypeStaticPaths(postType: keyof typeof post
       };
     })
     // Filter out certain posts with custom routes (e.g., homepage).
-     //@TODO: Assign type for posts if required
+    //@TODO: Assign type for posts if required
     .filter((post: any) =>
       Array.isArray(post.slug)
         ? !!post.slug.join("/").length

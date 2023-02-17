@@ -36,7 +36,7 @@ export default async function SingleColumn({
   const { menus } = await connector(queryPageById, { id: "/" });
 
   const allMenus = getMenus(menus);
-  const primaryMenu = formatNavigationMenu(allMenus?.primary_menu);
+  const primaryMenu = formatNavigationMenu(allMenus?.primary_menu) as NavigationItemProps[];
 
   return (
     <>

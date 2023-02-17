@@ -4,15 +4,17 @@
 import classnames from "classnames";
 
 /**
- * WordPress dependencies
+ * React dependencies
  */
-import { useEffect } from "@wordpress/element";
+import { useEffect, useState } from "react";
+import { ConfigProvider } from 'antd';
 
 /**
- * Internal dependencies
+ * Import styles
  */
-import basicStyles from "@/styles/atomic-design/base.scss";
-import wordPressStyles from "@/styles/wordpress/style.scss";
+import light from '@/tokens/light.json';
+import dark from '@/tokens/dark.json';
+import atomicStyles from "!css-loader!sass-loader!@/styles/atomic-design/style.scss"
 
 /**
  * A Storybook decorator to inject global CSS.
@@ -22,26 +24,33 @@ import wordPressStyles from "@/styles/wordpress/style.scss";
  */
 
 const config = {
-  none: {
+  shared: {
     lazyStyles: [],
     externalStyles: [],
     classes: [],
   },
-  basic: {
-    lazyStyles: [basicStyles],
+  antLight: {
+    lazyStyles: [
+      light
+    ],
     externalStyles: [],
     classes: [],
   },
-  wordpress: {
-    lazyStyles: [wordPressStyles],
-    externalStyles: [
-      // wp-admin loads "global" stylesheets which contain some broadly scoped styles
-      // that affect wp-components
-      "https://wordpress.org/gutenberg/wp-admin/css/common.min.css",
-      "https://wordpress.org/gutenberg/wp-admin/css/forms.min.css",
-      // Icon components need to support dashicons for backwards compatibility
-      "https://wordpress.org/gutenberg/wp-includes/css/dashicons.min.css",
+  antDark: {
+    lazyStyles: [
+      dark
     ],
+  },
+  atomic: {
+    lazyStyles: [
+      atomicStyles
+    ],
+    externalStyles: [],
+    classes: [],
+  },
+  gutenberg: {
+    lazyStyles: [],
+    externalStyles: [],
     // In wp-admin, these classes are added to the body element,
     // which is used as a class scope for some relevant styles in the external
     // stylesheets listed above. We simulate that here by adding the classes to a wrapper element.
@@ -52,18 +61,29 @@ const config = {
 export const WithGlobalCSS = (Story, context) => {
   const { lazyStyles, externalStyles, classes } = config[context.globals.css];
 
+  const [styles, setStyles] = useState([]);
+  const [token, setToken] = useState(light);
+
+  // useEffect - Changes the lazy styles as per the selected option
   useEffect(() => {
-    lazyStyles.forEach((style) => style.use());
-    return () => lazyStyles.forEach((style) => style.unuse());
-  }, [context.globals.css]);
+    if(context.globals.css === 'antDark' || context.globals.css === 'antLight') {
+      setToken(...lazyStyles)
+    } else {
+      setStyles(lazyStyles)
+    }
+  }, [context.globals.css], lazyStyles);
 
   return (
     <div className={classnames(classes)}>
-      {externalStyles.map((stylesheet) => (
+      {externalStyles?.map((stylesheet) => (
         <link key={stylesheet} rel="stylesheet" href={stylesheet} />
       ))}
-
-      <Story {...context} />
+      {styles?.map((style) => (
+        <style>{style.toString()}</style>
+      ))}
+       <ConfigProvider theme={{token}}>
+        <Story {...context} />
+      </ConfigProvider>
     </div>
   );
 };
