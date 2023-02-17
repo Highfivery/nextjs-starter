@@ -30,6 +30,7 @@ import {
   GutenbergAntDesignButtonBlockProps,
   GutenbergAntDesignImageBlockProps,
   GutenbergCoreQueryBlockProps,
+  GutenbergFormProps,
 } from "@/types/gutenberg";
 
 // Registered blocks
@@ -332,10 +333,17 @@ RegisteredBlocks["gravityforms/form"] = {
     block,
     post,
   }: RegisteredBlocksComponentProps & {
-    block: GutenbergAntDesignRowBlockProps;
+    block: GutenbergAntDesignRowBlockProps & GutenbergFormProps;
   }) => {
     const formId = block.attributes.formId;
-    console.log(block);
+    {
+      /**
+       * Disable type checking for Server component as it is not yet supported.
+       * Docs: https://beta.nextjs.org/docs/data-fetching/fetching#asyncawait-in-server-components
+       * Open issue: https://github.com/vercel/next.js/issues/42292
+       */
+    }
+    {/* @ts-expect-error Server Component */}
     return <Form formId={formId} />;
   },
 };

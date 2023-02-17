@@ -27,6 +27,12 @@ export default function RootLayout({
       <head />
       <body>
         <Providers>
+          {/**
+           * Disable type checking for Server component as it is not yet supported.
+           * Docs: https://beta.nextjs.org/docs/data-fetching/fetching#asyncawait-in-server-components
+           * Open issue: https://github.com/vercel/next.js/issues/42292
+           */}
+          {/* @ts-expect-error Server Component */}
           <SingleColumn>{children}</SingleColumn>
         </Providers>
       </body>

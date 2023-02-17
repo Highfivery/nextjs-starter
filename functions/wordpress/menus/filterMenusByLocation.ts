@@ -1,14 +1,16 @@
 import formatHeirarchialMenu from "./formatHeirarchialMenu";
 
+
+// @TODO: Set proper types for menu. 
 export default function filterMenusByLocation(
-  menus: [] | undefined,
-  locations: []
+  menus: any[] | undefined,
+  locations: any[]
 ) {
   if (typeof menus === "undefined") {
     return undefined;
   }
 
-  const data = {};
+  const data = {} as any;
 
   // Loop each menu location.
   locations.forEach((location) => {

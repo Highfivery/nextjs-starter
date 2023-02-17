@@ -98,3 +98,8 @@ export interface GutenbergCoreQueryBlockProps
   };
 }
 
+export interface GutenbergFormProps {
+  attributes: {
+    formId: string;
+  }
+}
