@@ -3,11 +3,11 @@
  */
 import getGfFormById from "@/functions/wordpress/gravityForms/getGfFormById";
 
-export default async function Form(props: { formId: string }) {
+export default function Form(props: { formId: string }) {
   const { formId } = props;
 
-  const form = await getGfFormById(formId);
-  console.log(form);
+  //const form = await getGfFormById(formId);
+  //console.log(form);
   /*try {
     const template = require(`@/components/gutenberg/gravity-forms/form-${formId}`);
   } catch (ex) {

@@ -1,8 +1,12 @@
-// Import React.js dependencies
+/**
+ * Import react dependencies
+ */
 import { ReactElement } from "react";
 
-// Import types
-import PropTypes from "prop-types";
+/**
+ * Import external dependencies
+ */
+import parse from "html-react-parser";
 
 /**
  * Render the Meta component.
@@ -20,7 +24,7 @@ export default function Meta({ seo }: MetaProps): ReactElement {
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       <meta name="robots" content={robots.join(", ")} />
       <title>{seo?.title}</title>
-      {/*seo?.fullHead ? parse(seo.fullHead) : null*/}
+      {seo?.fullHead ? parse(seo.fullHead) : null}
       <meta name="msapplication-TileColor" content="#fffff" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#fff" />
@@ -55,7 +59,3 @@ export interface MetaProps {
     metaRobotsNoindex?: string;
   };
 }
-
-Meta.propTypes = {
-  seo: PropTypes.object,
-};
