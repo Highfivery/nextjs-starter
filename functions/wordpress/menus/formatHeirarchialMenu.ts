@@ -1,25 +1,34 @@
+// Types
+
+// Menu Object key value.
+type MenuDataItem = { [key: string]: unknown };
+
+// The array containing menu data.
+type MenuData = MenuDataItem[];
+
+type MenuOptions = {
+  // id key
+  idKey?: string;
+  // parent key
+  parentKey?: string;
+  // children key
+  childrenKey?: string;
+};
+
 /**
  * Format a flat list WP nav menu into a heirarchial list.
- *
- * @param  {Array}  data             The array containing menu data.
- * @param  {object} keys             Object keys.
- * @param  {string} keys.idKey       ID key.
- * @param  {string} keys.parentKey   Parent key.
- * @param  {string} keys.childrenKey Children key.
- * @return {Array}                   Array containing a updated menu list.
  */
 export default function formatHeirarchialMenu(
-  data: {
-    [key: string]: [];
-  }[] = [],
-  { idKey = "id", parentKey = "parentId", childrenKey = "children" } = {}
+  data: MenuData = [],
+  { idKey = "id", parentKey = "parentId", childrenKey = "children" }: MenuOptions = {}
 ) {
-  const tree: {}[] = [];
-  const childrenOf: { [key: string]: {} } = {};
+  const tree: MenuData = [];
+  const childrenOf: { [key: string]: MenuDataItem[] } = {};
 
   data.forEach((item) => {
     const newItem = { ...item };
-    const { [idKey]: id, [parentKey]: parentId = 0 } = newItem;
+    const id = newItem[idKey] as string;
+    const parentId = newItem[parentKey] as string;
 
     childrenOf[id] = childrenOf[id] || [];
     newItem[childrenKey] = childrenOf[id];

@@ -14,7 +14,6 @@ import { ConfigProvider } from 'antd';
  */
 import light from '@/tokens/light.json';
 import dark from '@/tokens/dark.json';
-import gutenbergStyles from "!css-loader!sass-loader!@/styles/gutenberg/style.scss";
 import atomicStyles from "!css-loader!sass-loader!@/styles/atomic-design/style.scss"
 
 /**
@@ -50,9 +49,7 @@ const config = {
     classes: [],
   },
   gutenberg: {
-    lazyStyles: [
-      gutenbergStyles,
-    ],
+    lazyStyles: [],
     externalStyles: [],
     // In wp-admin, these classes are added to the body element,
     // which is used as a class scope for some relevant styles in the external

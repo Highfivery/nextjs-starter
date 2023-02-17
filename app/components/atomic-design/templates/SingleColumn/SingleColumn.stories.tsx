@@ -7,15 +7,22 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 // Import component dependencies
 import { default as PageComponent } from ".";
 
+/** @TODO: This won't work as the component is a next13 async component. 
+ *  Storybook components should not have any sideEffects.
+ */
+{/* @ts-expect-error Server Component */}
 export default {
   title: "Atomic Design/Templates/Single Column",
   component: PageComponent,
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof PageComponent>;
+} as ComponentMeta<any>;
 
+{/* @ts-expect-error Server Component */}
 const Template: ComponentStory<typeof PageComponent> = (args) => (
+  <>
+  {/* @ts-expect-error Server Component */}
   <PageComponent {...args}>
     <p>
       Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula
@@ -25,6 +32,7 @@ const Template: ComponentStory<typeof PageComponent> = (args) => (
       amet fermentum. Donec id elit non mi porta gravida at eget metus.
     </p>
   </PageComponent>
+  </>
 );
 
 export const SingleColumn = Template.bind({});

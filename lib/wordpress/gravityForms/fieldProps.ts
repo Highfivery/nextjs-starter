@@ -1,5 +1,9 @@
 // Define Gravity Form field names and unique props.
-const fieldProps = {
+
+/** Ts tip: Here, we are using the Record utility type to create
+ * a type that describes an object with string keys and string values.
+**/
+const fieldProps: Record<string, string> = {
   AddressField: `
     label
     adminLabel
