@@ -60,6 +60,7 @@ function NavigationMenu({
             }}
             className={cn(
               styles[`menu__item`],
+              item?.liClassName,
               item?.children?.items?.length
                 ? styles[`menu__item--has-children`]
                 : ""
@@ -68,7 +69,10 @@ function NavigationMenu({
             <Link
               href={item.path}
               target={item.target ? item.target : "_self"}
-              className={cn(isLinkActive(pathname, item.path) && styles.active)}
+              className={cn(
+                isLinkActive(pathname, item.path) && styles.active,
+                item?.linkClassName
+              )}
               onClick={(e) => {
                 item?.onLinkClick && item.onLinkClick(e, index, item);
               }}
@@ -113,6 +117,10 @@ export interface NavigationItemProps {
   onLiMouseEnter?: (index: number, item: NavigationItemProps) => void;
   /** li mouse leave handler. */
   onLiMouseLeave?: (index: number, item: NavigationItemProps) => void;
+  /** li class name. */
+  liClassName?: string;
+  /** Link class name. */
+  linkClassName?: string;
   /** Children */
   children?: {
     items: NavigationItemProps[];
