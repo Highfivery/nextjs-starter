@@ -52,6 +52,12 @@ function NavigationMenu({
         return (
           <li
             key={index}
+            onMouseEnter={() => {
+              item?.onLiMouseEnter && item.onLiMouseEnter(index, item);
+            }}
+            onMouseLeave={() => {
+              item?.onLiMouseLeave && item.onLiMouseLeave(index, item);
+            }}
             className={cn(
               styles[`menu__item`],
               item?.children?.items?.length
@@ -97,11 +103,17 @@ export interface NavigationItemProps {
   path: string;
   /** Link target. */
   target?: string;
+  /** Link click handler. */
   onLinkClick?: (
     event: React.MouseEvent<Element, MouseEvent>,
     itemIndex: number,
     item: NavigationItemProps
   ) => void;
+  /** li mouse enter handler. */
+  onLiMouseEnter?: (index: number, item: NavigationItemProps) => void;
+  /** li mouse leave handler. */
+  onLiMouseLeave?: (index: number, item: NavigationItemProps) => void;
+  /** Children */
   children?: {
     items: NavigationItemProps[];
     className?: string;
