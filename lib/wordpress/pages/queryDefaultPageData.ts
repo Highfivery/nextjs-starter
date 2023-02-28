@@ -7,7 +7,7 @@ const queryDefaultPageData = async () => {
     generalSettings {
       title
     }
-  }`, '');
+  }`, {});
 };
 
 export default queryDefaultPageData;
