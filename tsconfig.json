@@ -27,7 +27,7 @@
       "@/styles/*": ["styles/*"],
       "@/app/*": ["app/*"],
       "@/types/*": ["types/*"],
-      "@/tokens/*": ["figma-tokens/*"]
+      "@/tokens/*": ["figma/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

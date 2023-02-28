@@ -7,14 +7,13 @@ import classnames from "classnames";
  * React dependencies
  */
 import { useEffect, useState } from "react";
-import { ConfigProvider } from 'antd';
+import { ConfigProvider } from "antd";
 
 /**
  * Import styles
  */
-import light from '@/tokens/light.json';
-import dark from '@/tokens/dark.json';
-import atomicStyles from "!css-loader!sass-loader!@/styles/atomic-design/style.scss"
+import light from "@/tokens/light.json";
+import atomicStyles from "!css-loader!sass-loader!@/styles/atomic-design/style.scss";
 
 /**
  * A Storybook decorator to inject global CSS.
@@ -30,21 +29,12 @@ const config = {
     classes: [],
   },
   antLight: {
-    lazyStyles: [
-      light
-    ],
+    lazyStyles: [light],
     externalStyles: [],
     classes: [],
   },
-  antDark: {
-    lazyStyles: [
-      dark
-    ],
-  },
   atomic: {
-    lazyStyles: [
-      atomicStyles
-    ],
+    lazyStyles: [atomicStyles],
     externalStyles: [],
     classes: [],
   },
@@ -65,13 +55,20 @@ export const WithGlobalCSS = (Story, context) => {
   const [token, setToken] = useState(light);
 
   // useEffect - Changes the lazy styles as per the selected option
-  useEffect(() => {
-    if(context.globals.css === 'antDark' || context.globals.css === 'antLight') {
-      setToken(...lazyStyles)
-    } else {
-      setStyles(lazyStyles)
-    }
-  }, [context.globals.css], lazyStyles);
+  useEffect(
+    () => {
+      if (
+        context.globals.css === "antDark" ||
+        context.globals.css === "antLight"
+      ) {
+        setToken(...lazyStyles);
+      } else {
+        setStyles(lazyStyles);
+      }
+    },
+    [context.globals.css],
+    lazyStyles
+  );
 
   return (
     <div className={classnames(classes)}>
@@ -81,7 +78,7 @@ export const WithGlobalCSS = (Story, context) => {
       {styles?.map((style) => (
         <style>{style.toString()}</style>
       ))}
-       <ConfigProvider theme={{token}}>
+      <ConfigProvider theme={{ token }}>
         <Story {...context} />
       </ConfigProvider>
     </div>
