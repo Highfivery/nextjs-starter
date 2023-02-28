@@ -20,6 +20,7 @@ export default function Wrapper({
   tag = "div",
   children,
   xPadding = true,
+  className,
   ...props
 }: WrapperProps) {
   const Tag = tag;
@@ -28,6 +29,7 @@ export default function Wrapper({
     <Tag
       className={cn(
         styles.wrapper,
+        className,
         xPadding ? styles["wrapper--xpadding"] : false
       )}
       {...props}
