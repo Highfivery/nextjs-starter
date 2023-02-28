@@ -38,6 +38,7 @@ const singleFormFragment = gql`
         node {
           id
           type
+           ${getFormFieldsPartial()}
         }
       }
     }
