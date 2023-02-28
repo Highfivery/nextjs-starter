@@ -66,6 +66,7 @@ function NavigationMenu({
                 : ""
             )}
           >
+            {item?.beforeLabel && item.beforeLabel}
             <Link
               href={item.path}
               target={item.target ? item.target : "_self"}
@@ -79,6 +80,7 @@ function NavigationMenu({
             >
               {item.label}
             </Link>
+            {item?.afterLabel && item.afterLabel}
 
             {item?.children?.items && item.children.items.length > 0 && (
               <>
@@ -103,6 +105,10 @@ function NavigationMenu({
 export interface NavigationItemProps {
   /** Item label. */
   label: string;
+  /** After label. */
+  afterLabel: string | ReactElement | ReactNode;
+  /** Before label. */
+  beforeLabel: string | ReactElement | ReactNode;
   /** Item path. */
   path: string;
   /** Link target. */
