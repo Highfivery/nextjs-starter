@@ -12,6 +12,10 @@
     "todo": "leasot '**/*.tsx' '**/*.js' '**/*.scss' '**/*.ts' --ignore '**/node_modules' '**/schema.generated.ts'",
     "commit": "git-cz"
   },
+  "engines": {
+    "npm": ">=9.5.0",
+    "node": ">=16.0.0 <17.0.0"
+  },
   "config": {
     "commitizen": {
       "path": "@commitlint/cz-commitlint"
