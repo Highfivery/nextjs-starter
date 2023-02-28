@@ -10,8 +10,10 @@ import { Fields } from './Fields/Fields';
 
 // Types
 interface AntFormProps  {
+  // @TODO: Add types for form data.
   formData?: any;
   formRef: RefObject<FormInstance<any>>;
+  // @TODO: Add type for callback argument
   onFinish: (values: any) => void;
   style?: React.CSSProperties;
   layout: {

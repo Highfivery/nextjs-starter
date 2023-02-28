@@ -156,6 +156,10 @@ RegisteredBlocks["gutenberg-ant-design/col"] = {
   }: RegisteredBlocksComponentProps & {
     block: GutenbergAntDesignColBlockProps;
   }) => {
+    /**
+     * Adding SSR false here cuz dynamic import of columns fail when 
+     * there is a FORM component present inside a grid.
+    **/
     const Col = dynamic(() => import("antd").then((mod) => mod.Col), {ssr: false});
     const { innerBlocks, attributes } = block;
 

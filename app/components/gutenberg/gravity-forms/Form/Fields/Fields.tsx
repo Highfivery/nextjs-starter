@@ -5,7 +5,7 @@ import { Select } from "./Select";
 import { Text } from "./Text";
 import { TextArea } from "./TextArea";
 
-// @TODO: Add type definitions.
+// @TODO: Add type definitions for fields.
 export const Fields = ({ fields }: any) => {
   return (
     <>
