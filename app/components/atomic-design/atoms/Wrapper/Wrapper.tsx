@@ -47,4 +47,6 @@ export interface WrapperProps {
   children: ReactElement | ReactNode;
   /** Control if horizontal padding is added. */
   xPadding?: boolean;
+  /** Class name. */
+  className?: string;
 }
