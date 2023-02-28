@@ -106,9 +106,9 @@ export interface NavigationItemProps {
   /** Item label. */
   label: string;
   /** After label. */
-  afterLabel: string | ReactElement | ReactNode;
+  afterLabel?: string | ReactElement | ReactNode;
   /** Before label. */
-  beforeLabel: string | ReactElement | ReactNode;
+  beforeLabel?: string | ReactElement | ReactNode;
   /** Item path. */
   path: string;
   /** Link target. */
