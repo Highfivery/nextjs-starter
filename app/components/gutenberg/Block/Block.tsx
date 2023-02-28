@@ -156,7 +156,11 @@ RegisteredBlocks["gutenberg-ant-design/col"] = {
   }: RegisteredBlocksComponentProps & {
     block: GutenbergAntDesignColBlockProps;
   }) => {
-    const Col = dynamic(() => import("antd").then((mod) => mod.Col));
+    /**
+     * Adding SSR false here cuz dynamic import of columns fail when 
+     * there is a FORM component present inside a grid.
+    **/
+    const Col = dynamic(() => import("antd").then((mod) => mod.Col), {ssr: false});
     const { innerBlocks, attributes } = block;
 
     const { api } = attributes;
@@ -343,7 +347,6 @@ RegisteredBlocks["gravityforms/form"] = {
        * Open issue: https://github.com/vercel/next.js/issues/42292
        */
     }
-    {/* @ts-expect-error Server Component */}
     return <Form formId={formId} />;
   },
 };

@@ -1,8 +1,12 @@
-// Import React.js dependencies
+/**
+ * Import react dependencies
+ */
 import { ReactElement } from "react";
 
-// Import types
-import PropTypes from "prop-types";
+/**
+ * Import external dependencies
+ */
+import parse from "html-react-parser";
 
 /**
  * Render the Meta component.
@@ -55,7 +59,3 @@ export interface MetaProps {
     metaRobotsNoindex?: string;
   };
 }
-
-Meta.propTypes = {
-  seo: PropTypes.object,
-};
