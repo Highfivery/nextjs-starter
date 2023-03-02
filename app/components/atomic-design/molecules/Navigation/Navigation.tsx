@@ -104,7 +104,7 @@ function NavigationMenu({
 
 export interface NavigationItemProps {
   /** Item label. */
-  label: string;
+  label: string | ReactElement | ReactNode;
   /** After label. */
   afterLabel?: string | ReactElement | ReactNode;
   /** Before label. */
