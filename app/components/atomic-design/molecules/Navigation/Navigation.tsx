@@ -82,19 +82,21 @@ function NavigationMenu({
             </Link>
             {item?.afterLabel && item.afterLabel}
 
-            {item?.children?.items && item.children.items.length > 0 && (
-              <>
-                {item?.children?.Title && item.children.Title}
-                <ul
-                  className={cn(
-                    styles["menu"],
-                    item?.children?.className ? item?.children?.className : ""
-                  )}
-                >
-                  <NavigationMenu items={item.children.items} />
-                </ul>
-              </>
-            )}
+            {item?.showChildren &&
+              item?.children?.items &&
+              item.children.items.length > 0 && (
+                <>
+                  {item?.children?.Title && item.children.Title}
+                  <ul
+                    className={cn(
+                      styles["menu"],
+                      item?.children?.className ? item?.children?.className : ""
+                    )}
+                  >
+                    <NavigationMenu items={item.children.items} />
+                  </ul>
+                </>
+              )}
           </li>
         );
       })}
@@ -127,6 +129,8 @@ export interface NavigationItemProps {
   liClassName?: string;
   /** Link class name. */
   linkClassName?: string;
+  /** Determines if child menu items should be displayed. */
+  showChildren?: boolean;
   /** Children */
   children?: {
     items: NavigationItemProps[];
