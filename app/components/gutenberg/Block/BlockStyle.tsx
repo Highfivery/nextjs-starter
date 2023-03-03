@@ -14,8 +14,6 @@ import css from "styled-jsx/css";
  */
 import { GlobalToken } from "antd/es/theme/interface";
 
-
-
 // Screen size
 // @TODO: Convert these to be dynamic, pulled from @antd
 export const screens: { [key: string]: { antdToken: string } } = {
@@ -44,10 +42,12 @@ interface BlockStyleProps {
   // @TODO: Needs to be properly scoped
   block: any;
   /** antd theme token */
-  token: GlobalToken
+  token: GlobalToken;
   Component: ({ className }: { className: string }) => JSX.Element;
   /** CSS selector for additional specificity */
   selector?: string;
+  /** CSS child selector for additional specificity */
+  childSelector?: string;
 }
 
 export const BlockStyle = ({
@@ -56,6 +56,7 @@ export const BlockStyle = ({
   token,
   Component,
   selector,
+  childSelector,
 }: BlockStyleProps) => {
   const classNames = [className];
 
@@ -73,7 +74,7 @@ export const BlockStyle = ({
     (acc: any, [key, value]: any) => {
       const { className, newStyles } = scopeStyles(value.custom);
       acc[key] = { className, newStyles };
-      if(newStyles) {
+      if (newStyles) {
         classNames.push(className);
       }
       return acc;
@@ -81,22 +82,24 @@ export const BlockStyle = ({
     {}
   );
 
-  // @TODO: Find a better way to manage styles. 
+  // @TODO: Find a better way to manage styles.
   return (
     <>
       <Component className={cn(classNames)} />
       <style jsx>{`
-        ${selector ? selector : ""}.${className} {
+        ${selector ? selector : ""}.${className}${childSelector
+          ? ` ${childSelector}`
+          : ""} {
           ${generateStyles(block, "xs", token)}
         }
-        ${scopedStyles['xs']?.newStyles ? scopedStyles['xs']?.newStyles : ''}
+        ${scopedStyles["xs"]?.newStyles ? scopedStyles["xs"]?.newStyles : ""}
         @media (min-width: ${token[
-            screens.sm.antdToken as keyof typeof token
-          ]}px) {
+          screens.sm.antdToken as keyof typeof token
+        ]}px) {
           ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "sm", token)}
           }
-          ${scopedStyles['sm']?.newStyles ? scopedStyles['sm'].newStyles : ''}
+          ${scopedStyles["sm"]?.newStyles ? scopedStyles["sm"].newStyles : ""}
         }
 
         @media (min-width: ${token[
@@ -105,7 +108,7 @@ export const BlockStyle = ({
           ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "md", token)}
           }
-          ${scopedStyles['md']?.newStyles ? scopedStyles['md'].newStyles : ''}
+          ${scopedStyles["md"]?.newStyles ? scopedStyles["md"].newStyles : ""}
         }
 
         @media (min-width: ${token[
@@ -114,7 +117,7 @@ export const BlockStyle = ({
           ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "lg", token)}
           }
-          ${scopedStyles['lg']?.newStyles ? scopedStyles['lg'].newStyles : ''}
+          ${scopedStyles["lg"]?.newStyles ? scopedStyles["lg"].newStyles : ""}
         }
 
         @media (min-width: ${token[
@@ -123,7 +126,7 @@ export const BlockStyle = ({
           ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "xl", token)}
           }
-          ${scopedStyles['xl']?.newStyles ? scopedStyles['xl'].newStyles : ''}
+          ${scopedStyles["xl"]?.newStyles ? scopedStyles["xl"].newStyles : ""}
         }
 
         @media (min-width: ${token[
@@ -132,7 +135,7 @@ export const BlockStyle = ({
           ${selector ? selector : ""}.${className} {
             ${generateStyles(block, "xxl", token)}
           }
-          ${scopedStyles['xxl']?.newStyles ? scopedStyles['xxl'].newStyles : ''}
+          ${scopedStyles["xxl"]?.newStyles ? scopedStyles["xxl"].newStyles : ""}
         }
       `}</style>
     </>

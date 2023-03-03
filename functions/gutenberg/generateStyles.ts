@@ -31,6 +31,10 @@ export default function generateStyles(
     fontSize: "font-size",
     fontFamily: "font-family",
     textAlignment: "text-align",
+    width: "width",
+    height: "height",
+    maxWidth: "max-width",
+    maxHeight: "max-height",
   };
 
   const definitionOutput = (
@@ -59,13 +63,9 @@ export default function generateStyles(
       return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
-    } else if (property === "max-width" && value !== "full-width") {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\nwidth: 100%;\n`;
-    } else if (property !== "max-width") {
+    } else {
       return `${property}: ${value};\n`;
     }
-
-    return false;
   };
 
   const {
