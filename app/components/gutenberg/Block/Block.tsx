@@ -131,23 +131,23 @@ RegisteredBlocks["gutenberg-ant-design/row"] = {
     const { token } = useToken();
 
     // Convert antd tokens.
-    api.gutter = api?.gutter?.map((screenSizes) => {
-      const parsed = {};
+    if (api?.gutter) {
+      api.gutter = api?.gutter?.map((screenSizes) => {
+        const parsed = {};
 
-      for (const [screenSize, value] of Object.entries(screenSizes)) {
-        if (value) {
-          if (isNaN(value) && typeof token[value] !== "undefined") {
-            parsed[screenSize] = token[value];
-          } else if (!isNaN(value)) {
-            parsed[screenSize] = parseInt(value);
+        for (const [screenSize, value] of Object.entries(screenSizes)) {
+          if (value) {
+            if (isNaN(value) && typeof token[value] !== "undefined") {
+              parsed[screenSize] = token[value];
+            } else if (!isNaN(value)) {
+              parsed[screenSize] = parseInt(value);
+            }
           }
         }
-      }
 
-      return parsed;
-    });
-
-    console.log(api);
+        return parsed;
+      });
+    }
 
     const className = "ant-row";
 
