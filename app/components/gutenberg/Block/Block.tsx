@@ -371,6 +371,36 @@ RegisteredBlocks["gravityforms/form"] = {
   },
 };
 
+RegisteredBlocks["gutenberg-ant-design/group"] = {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignColBlockProps;
+  }) => {
+    const { innerBlocks, attributes } = block;
+
+    const { useToken } = theme;
+    const { token } = useToken();
+
+    const className = "gutenberg-ant-design-group";
+
+    const Component = ({ className }: { className: string }) => (
+      <div className={className}>
+        {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
+      </div>
+    );
+    return (
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
+    );
+  },
+};
+
 export default function Block({
   block,
   post,
