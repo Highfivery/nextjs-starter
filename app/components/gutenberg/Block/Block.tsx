@@ -130,6 +130,25 @@ RegisteredBlocks["gutenberg-ant-design/row"] = {
     const { useToken } = theme;
     const { token } = useToken();
 
+    // Convert antd tokens.
+    api.gutter = api?.gutter?.map((screenSizes) => {
+      const parsed = {};
+
+      for (const [screenSize, value] of Object.entries(screenSizes)) {
+        if (value) {
+          if (isNaN(value) && typeof token[value] !== "undefined") {
+            parsed[screenSize] = token[value];
+          } else if (!isNaN(value)) {
+            parsed[screenSize] = parseInt(value);
+          }
+        }
+      }
+
+      return parsed;
+    });
+
+    console.log(api);
+
     const className = "ant-row";
 
     const Component = ({ className }: { className: string }) => (
@@ -157,10 +176,12 @@ RegisteredBlocks["gutenberg-ant-design/col"] = {
     block: GutenbergAntDesignColBlockProps;
   }) => {
     /**
-     * Adding SSR false here cuz dynamic import of columns fail when 
+     * Adding SSR false here cuz dynamic import of columns fail when
      * there is a FORM component present inside a grid.
-    **/
-    const Col = dynamic(() => import("antd").then((mod) => mod.Col), {ssr: false});
+     **/
+    const Col = dynamic(() => import("antd").then((mod) => mod.Col), {
+      ssr: false,
+    });
     const { innerBlocks, attributes } = block;
 
     const { api } = attributes;
@@ -299,18 +320,16 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
   }: RegisteredBlocksComponentProps & {
     block: GutenbergAntDesignImageBlockProps;
   }) => {
+    console.log(block);
     const Image = dynamic(() => import("antd").then((mod) => mod.Image));
     const { attributes } = block;
 
-    const { api, settings } = attributes;
-    const { src, alt } = api;
+    const { settings, api } = attributes;
+    const { url, alt } = settings.image;
     const imageProps = {
-      src: src.url,
-      width: settings?.size?.width ? settings.size.width : src.width,
-      height: settings?.size?.height ? settings.size.height : src.height,
+      src: url,
       preview: api?.preview,
     };
-    const imageAlt = alt ? alt : src.alt ? src.alt : "";
 
     const { useToken } = theme;
     const { token } = useToken();
@@ -318,7 +337,7 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
     const className = "ant-image";
     const Component = ({ className }: { className: string }) => (
       /* Alt prop needs to be explicitly defined https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/93f78856655696a55309440593e0948c6fb96134/docs/rules/alt-text.md#bad  */
-      <Image className={className} alt={imageAlt} {...imageProps} />
+      <Image className={className} alt={alt} {...imageProps} />
     );
 
     return (
@@ -327,6 +346,7 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
         block={block}
         token={token}
         Component={Component}
+        selector="div"
       />
     );
   },

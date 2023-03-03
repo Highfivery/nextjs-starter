@@ -5,7 +5,7 @@ import {
   TypographyProps,
   ButtonProps,
   ImageProps,
-  TitleProps
+  TitleProps,
 } from "antd";
 
 export interface GutenbergAntDesignAttributes {
@@ -69,10 +69,12 @@ export interface GutenbergAntDesignImageBlockProps
       text: string;
       src: { alt: string; url: string; width: number; height: number };
     };
-    settings?: {
-      size?: {
-        width?: number;
-        height?: number;
+    settings: {
+      image: {
+        alt: string;
+        url: string;
+        width: number;
+        height: number;
       };
     };
   };
@@ -101,5 +103,5 @@ export interface GutenbergCoreQueryBlockProps
 export interface GutenbergFormProps {
   attributes: {
     formId: string;
-  }
+  };
 }
