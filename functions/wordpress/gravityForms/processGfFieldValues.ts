@@ -1,6 +1,12 @@
-// Returns formatted form submission values as per the gravity form schema
+/**
+ * @returns formatted submission data as per the gravity form schema.
+ * since the submitted values from antd-form don't match the required payload,
+ * we need to do some extra processing to convert that data into the required field values.
+ * Docs (https://github.com/harness-software/wp-graphql-gravity-forms/blob/develop/docs/submitting-forms.md) referring
+ * to submission schema required for different field types
+ */
 // @TODO: Add types for values and formData
-export const formatGFSubmissionData = (values: any, formData: any) => {
+export const processGfFieldValues = (values: any, formData: any) => {
   const fields = formData?.formFields?.edges;
 
   if (!(fields.length > 0)) {

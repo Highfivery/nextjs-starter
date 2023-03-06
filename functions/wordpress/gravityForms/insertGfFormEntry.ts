@@ -1,6 +1,6 @@
 // Internal dependencies.
 import mutationInsertFormEntry from "@/lib/wordpress/gravityForms/mutationInsertFormEntry"
-import { formatGFSubmissionData } from "./formatGFSubmissionData"
+import { processGfFieldValues } from "./processGfFieldValues"
 
 // Process form submission and submit it via graphql
 export default async function insertGfFormEntry(
@@ -10,7 +10,7 @@ export default async function insertGfFormEntry(
 ) {
 
   // Format Gravity form submission data as per the required payload.
-  const fieldValues = formatGFSubmissionData(values, formData)
+  const fieldValues = processGfFieldValues(values, formData)
 
   // Create a fetch request to submit graphql data
   const response = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/graphql`, {
