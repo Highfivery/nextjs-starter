@@ -16,7 +16,7 @@ import { Form as FormComponent, Button, message } from "antd";
  */
 import AntForm from "./AntForm";
 import getGfFormById from "@/functions/wordpress/gravityForms/getGfFormById";
-import processGfFormSubmission from "@/functions/wordpress/gravityForms/processGfFormSubmission";
+import insertGfFormEntry from "@/functions/wordpress/gravityForms/insertGfFormEntry";
 
 export default function Form(props: { formId: string }) {
   const { formId } = props;
@@ -47,7 +47,7 @@ export default function Form(props: { formId: string }) {
   // @TODO: Add type for function parameter
   const onFinish = async (values: any) => {
     setLoading(true)
-    const response = await processGfFormSubmission(formId, values, formData);
+    const response = await insertGfFormEntry(formId, values, formData);
     /**
      * @TODO: Find a way to add support for server side validation error if possible.
      * Look at Remix framework and check if we can implement something similar for next forms.

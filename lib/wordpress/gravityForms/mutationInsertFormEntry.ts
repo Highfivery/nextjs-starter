@@ -1,4 +1,4 @@
-const mutationSubmitForm = `
+const mutationInsertFormEntry = `
   mutation submitForm($id: ID!, $fieldValues: [FormFieldValuesInput]!) {
     submitGfForm(input: {
       id: $id
@@ -20,4 +20,4 @@ const mutationSubmitForm = `
   }
 `;
 
-export default mutationSubmitForm;
+export default mutationInsertFormEntry;

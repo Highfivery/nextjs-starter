@@ -1,8 +1,9 @@
 // Internal dependencies.
-import mutationSubmitForm from "@/lib/wordpress/gravityForms/mutationSubmit"
+import mutationInsertFormEntry from "@/lib/wordpress/gravityForms/mutationInsertFormEntry"
 import { formatGFSubmissionData } from "./formatGFSubmissionData"
 
-export default async function processGfFormSubmission(
+// Process form submission and submit it via graphql
+export default async function insertGfFormEntry(
   formId: number | string,
   values: any,
   formData: any
@@ -16,7 +17,7 @@ export default async function processGfFormSubmission(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      query: mutationSubmitForm, 
+      query: mutationInsertFormEntry, 
       variables: {
         id: formId,
         fieldValues: fieldValues
