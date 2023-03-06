@@ -99,7 +99,7 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
     const className = "ant-typography";
     const Component = ({ className }: { className: string }) => (
       <Title className={className} {...titleProps}>
-        {text}
+        <RichText tag={false}>{text}</RichText>
       </Title>
     );
 

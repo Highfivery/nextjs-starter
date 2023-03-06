@@ -72,26 +72,26 @@ export default function RichText({
   dropCap = false,
   id,
   style,
-  Tag = "div",
+  tag,
 }: RichTextProps) {
-  const tagClassName = Tag !== "div" ? Tag : "";
-
   const html = parse(String(children), options);
+  const Tag = tag;
 
   return (
-    <Tag
-      {...attributes}
-      id={id || undefined}
-      style={style}
-      className={cn(
-        styles.richtext,
-        styles?.[tagClassName],
-        dropCap && styles.dropcap,
-        className
+    <>
+      {Tag ? (
+        <Tag
+          {...attributes}
+          id={id || undefined}
+          style={style}
+          className={cn(styles.richtext, dropCap && styles.dropcap, className)}
+        >
+          {html}
+        </Tag>
+      ) : (
+        html
       )}
-    >
-      {html}
-    </Tag>
+    </>
   );
 }
 
@@ -109,5 +109,5 @@ export interface RichTextProps {
   /** Inline styles. */
   style?: {};
   /** The type of element to render. */
-  Tag?: keyof JSX.IntrinsicElements;
+  tag?: keyof JSX.IntrinsicElements;
 }
