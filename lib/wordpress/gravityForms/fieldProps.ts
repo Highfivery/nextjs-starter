@@ -76,6 +76,10 @@ const fieldProps: Record<string, string> = {
       value
     }
   }
+  inputs {
+    id
+    label
+  }
   description
   errorMessage
   inputName
