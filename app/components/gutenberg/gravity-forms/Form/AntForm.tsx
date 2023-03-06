@@ -1,5 +1,5 @@
 // React dependencies
-import React, { RefObject } from 'react';
+import React from 'react';
 
 // Antd dependenies
 import { Form } from 'antd';
@@ -12,7 +12,7 @@ import { Fields } from './Fields/Fields';
 interface AntFormProps  {
   // @TODO: Add types for form data.
   formData?: any;
-  formRef: RefObject<FormInstance<any>>;
+  form: FormInstance;
   // @TODO: Add type for callback argument
   onFinish: (values: any) => void;
   style?: React.CSSProperties;
@@ -22,14 +22,14 @@ interface AntFormProps  {
   children: React.ReactNode;
 }
 const AntForm = (props: AntFormProps) => {
-  const {formData, formRef, onFinish, style, layout, children} = props;
+  const {formData, form, onFinish, style, layout, children} = props;
 
   const fields = formData?.formFields?.edges;
 
   return (
     <Form
       {...layout}
-      ref={formRef}
+      form={form}
       name="control-ref"
       onFinish={onFinish}
       style={style}
