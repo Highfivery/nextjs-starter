@@ -99,7 +99,7 @@ RegisteredBlocks["gutenberg-ant-design/title"] = {
     const className = "ant-typography";
     const Component = ({ className }: { className: string }) => (
       <Title className={className} {...titleProps}>
-        {text}
+        <RichText tag={false}>{text}</RichText>
       </Title>
     );
 
@@ -320,7 +320,6 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
   }: RegisteredBlocksComponentProps & {
     block: GutenbergAntDesignImageBlockProps;
   }) => {
-    console.log(block);
     const Image = dynamic(() => import("antd").then((mod) => mod.Image));
     const { attributes } = block;
 
