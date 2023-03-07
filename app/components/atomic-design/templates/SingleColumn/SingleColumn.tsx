@@ -28,7 +28,7 @@ import Footer from "@/components/atomic-design/organisms/Footer/Footer";
 //import styles from "./SingleColumn.module.scss";
 
 /**
- * Render the Header component.
+ * Render the component.
  */
 export default async function SingleColumn({
   children,
@@ -36,7 +36,9 @@ export default async function SingleColumn({
   const { menus } = await connector(queryPageById, { id: "/" });
 
   const allMenus = getMenus(menus);
-  const primaryMenu = formatNavigationMenu(allMenus?.primary_menu) as NavigationItemProps[];
+  const primaryMenu = formatNavigationMenu(
+    allMenus?.primary_menu
+  ) as NavigationItemProps[];
 
   return (
     <>
