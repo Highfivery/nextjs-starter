@@ -128,27 +128,29 @@ RegisteredBlocks["gutenberg-ant-design/row"] = {
     const { api } = attributes;
 
     const { useToken } = theme;
-    const { token } = useToken();
+    const { token } = useToken() as { [key: string]: any };
+
+
 
     // Convert antd tokens.
-    if (api?.gutter) {
-      api.gutter = api?.gutter?.map((screenSizes) => {
-        const parsed = {};
+    if (api?.gutter && Array.isArray(api.gutter)) {
 
-        for (const [screenSize, value] of Object.entries(screenSizes)) {
+      const screenSizes = api.gutter as { [key: string]: number | string }[];
+      api.gutter = screenSizes.map((screenSize) => {
+        const parsed : { [key: string]: number | string }= {};
+        for (const [key, value] of Object.entries(screenSize)) {
           if (value) {
-            if (isNaN(value) && typeof token[value] !== "undefined") {
-              parsed[screenSize] = token[value];
-            } else if (!isNaN(value)) {
-              parsed[screenSize] = parseInt(value);
+            if (typeof token[value] !== "undefined") {
+              parsed[key] = token[value];
+            } else {
+              parsed[key] = parseInt(value as string);
             }
           }
         }
 
         return parsed;
-      });
+      }) as GutenbergAntDesignRowBlockProps["attributes"]["api"]["gutter"];
     }
-
     const className = "ant-row";
 
     const Component = ({ className }: { className: string }) => (
@@ -336,7 +338,7 @@ RegisteredBlocks["gutenberg-ant-design/image"] = {
     const className = "ant-image";
     const Component = ({ className }: { className: string }) => (
       /* Alt prop needs to be explicitly defined https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/93f78856655696a55309440593e0948c6fb96134/docs/rules/alt-text.md#bad  */
-      <Image className={className} alt={alt} {...imageProps} />
+      <Image rootClassName={className} alt={alt} {...imageProps} />
     );
 
     return (

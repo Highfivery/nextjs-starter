@@ -17,7 +17,7 @@ export default function Figure(props: FigureProps) {
   return (
     <figure className={cn(props?.className, styles.figure)} style={props.style}>
       {props.children}
-      {props?.caption && <RichText Tag="figcaption">{props.caption}</RichText>}
+      {props?.caption && <RichText tag="figcaption">{props.caption}</RichText>}
     </figure>
   );
 }
