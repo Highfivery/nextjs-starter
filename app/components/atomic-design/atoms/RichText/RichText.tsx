@@ -109,5 +109,5 @@ export interface RichTextProps {
   /** Inline styles. */
   style?: {};
   /** The type of element to render. */
-  tag?: keyof JSX.IntrinsicElements;
+  tag?: keyof JSX.IntrinsicElements | false;
 }
