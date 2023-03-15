@@ -41,6 +41,22 @@ export interface GutenbergAntDesignColBlockProps
   };
 }
 
+export interface GutenbergAntDesignListItemBlockProps
+  extends GutenbergGlobalBlockProps {
+  attributes: {
+    settings: {};
+  };
+}
+
+export interface GutenbergAntDesignListBlockProps
+  extends GutenbergGlobalBlockProps {
+  attributes: {
+    settings: {
+      type: "ol" | "ul";
+    };
+  };
+}
+
 export interface GutenbergAntDesignTitleBlockProps
   extends GutenbergGlobalBlockProps {
   attributes: {

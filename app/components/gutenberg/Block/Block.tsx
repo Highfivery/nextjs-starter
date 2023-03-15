@@ -31,6 +31,8 @@ import {
   GutenbergAntDesignImageBlockProps,
   GutenbergCoreQueryBlockProps,
   GutenbergFormProps,
+  GutenbergAntDesignListBlockProps,
+  GutenbergAntDesignListItemBlockProps,
 } from "@/types/gutenberg";
 
 // Registered blocks
@@ -130,14 +132,11 @@ RegisteredBlocks["gutenberg-ant-design/row"] = {
     const { useToken } = theme;
     const { token } = useToken() as { [key: string]: any };
 
-
-
     // Convert antd tokens.
     if (api?.gutter && Array.isArray(api.gutter)) {
-
       const screenSizes = api.gutter as { [key: string]: number | string }[];
       api.gutter = screenSizes.map((screenSize) => {
-        const parsed : { [key: string]: number | string }= {};
+        const parsed: { [key: string]: number | string } = {};
         for (const [key, value] of Object.entries(screenSize)) {
           if (value) {
             if (typeof token[value] !== "undefined") {
@@ -220,9 +219,10 @@ RegisteredBlocks["gutenberg-ant-design/text"] = {
       import("antd").then((mod) => mod.Typography.Text)
     );
     const { attributes } = block;
+    console.log(block);
 
     const { api } = attributes;
-    const { text, ...paragraphProps } = api;
+    const { text, ...paragraphProps } = api || {};
 
     const { useToken } = theme;
     const { token } = useToken();
@@ -230,7 +230,7 @@ RegisteredBlocks["gutenberg-ant-design/text"] = {
     const className = "ant-typography";
     const Component = ({ className }: { className: string }) => (
       <Text className={className} {...paragraphProps}>
-        <RichText>{text}</RichText>
+        {text && <RichText>{text}</RichText>}
       </Text>
     );
 
@@ -304,6 +304,77 @@ RegisteredBlocks["gutenberg-ant-design/button"] = {
       </Button>
     );
 
+    return (
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
+    );
+  },
+};
+
+RegisteredBlocks["gutenberg-ant-design/list"] = {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignListBlockProps;
+  }) => {
+    const Typography = dynamic(() =>
+      import("antd").then((mod) => mod.Typography)
+    );
+    const { innerBlocks, attributes } = block;
+
+    const { settings } = attributes;
+
+    const { useToken } = theme;
+    const { token } = useToken();
+
+    const className = "ant-list";
+
+    const Tag = settings?.type ? settings.type : "ul";
+
+    const Component = ({ className }: { className: string }) => (
+      <Typography>
+        <Tag className={className}>
+          {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
+        </Tag>
+      </Typography>
+    );
+    return (
+      <BlockStyle
+        className={className}
+        block={block}
+        token={token}
+        Component={Component}
+      />
+    );
+  },
+};
+
+RegisteredBlocks["gutenberg-ant-design/list-item"] = {
+  Component: ({
+    block,
+    post,
+  }: RegisteredBlocksComponentProps & {
+    block: GutenbergAntDesignListItemBlockProps;
+  }) => {
+    const { innerBlocks, attributes } = block;
+
+    const { settings } = attributes;
+
+    const { useToken } = theme;
+    const { token } = useToken();
+
+    const className = "ant-list-item";
+
+    const Component = ({ className }: { className: string }) => (
+      <li className={className}>
+        {!!innerBlocks?.length && <Blocks blocks={innerBlocks} />}
+      </li>
+    );
     return (
       <BlockStyle
         className={className}
