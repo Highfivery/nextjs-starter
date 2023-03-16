@@ -11,7 +11,7 @@ import { theme } from "antd";
 /**
  * Import internal dependencies
  */
-import getGfFormById from "@/functions/wordpress/gravityForms/getGfFormById";
+import { customGutenbergBlocks } from "../_config";
 
 // Import internal component dependencies
 import Blocks from "../Blocks/Blocks";
@@ -41,7 +41,7 @@ const RegisteredBlocks: {
     // No need to define a type for args as types are being assigned explicity on function params.
     Component: (arg1: any, arg2: any) => JSX.Element | null;
   };
-} = {};
+} = { ...customGutenbergBlocks };
 
 export interface RegisteredBlocksComponentProps {
   post?: {};
