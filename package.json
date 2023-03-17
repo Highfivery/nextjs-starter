@@ -46,6 +46,7 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-responsive": "^9.0.2",
     "react-svg": "^15.1.12",
     "sass-loader": "^13.2.0",
     "storybook-addon-next": "^1.7.1",
