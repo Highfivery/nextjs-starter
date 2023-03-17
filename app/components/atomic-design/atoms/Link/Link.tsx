@@ -8,9 +8,6 @@ import type { LinkProps as NextLinkProps } from "next/link";
 // Import library dependencies
 import { isRelativeUrl } from "@/functions/isRelativeUrl";
 
-// Import types
-import PropTypes from "prop-types";
-
 /**
  * Render a link component.
  */
@@ -50,10 +47,3 @@ export interface LinkProps extends NextLinkProps {
   /** Optional classNames. */
   className?: string;
 }
-
-Link.propTypes = {
-  href: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  className: PropTypes.string,
-  target: PropTypes.string,
-};
