@@ -18,13 +18,15 @@ export default function Meta({ seo }: MetaProps): ReactElement {
     ...(seo?.metaRobotsNoindex ? [seo.metaRobotsNoindex] : []),
   ];
 
+  const fullHead = parse(String(seo?.fullHead));
+
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       <meta name="robots" content={robots.join(", ")} />
       <title>{seo?.title}</title>
-      {/*seo?.fullHead ? parse(seo.fullHead) : null*/}
+      {fullHead}
       <meta name="msapplication-TileColor" content="#fffff" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#fff" />
