@@ -1,4 +1,5 @@
-@import 'base';
+@import 'core';
+@import 'normalize.css';
 
 html {
   box-sizing: border-box;
@@ -17,4 +18,34 @@ svg {
   height: auto;
   -ms-interpolation-mode: bicubic; /* stylelint-disable-line property-no-vendor-prefix */
   max-width: 100%;
+}
+
+body {
+  color: var(--body-color, var(--color));
+  font-family: var(--body-font, var(--font-sans));
+  font-size: var(--body-font-size, var(--sizeSM));
+  letter-spacing: var(--body-letter-spacing, var(--letter-spacing));
+  line-height: var(--body-line-height, var(--line-height));
+
+  @include breakpoint(md) {
+    font-size: var(--body-font-size, var(--size));
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--headline-line-height, var(--line-height));
+  margin: var(--headline-margin, 0 0 calc(var(--size) * 1.5) 0);
+}
+
+h1 {
+  font-size: var(--headline-1, var(--sizeXXL));
+}
+
+p {
+  margin: var(--paragraph-margin, 0 0 calc(var(--size) * 1.5) 0);
 }

@@ -1,19 +1,19 @@
 /**
- * External dependencies
- */
-import classnames from "classnames";
-
-/**
- * React dependencies
+ * react dependencies
  */
 import { useEffect, useState } from "react";
+
+/**
+ * Import antd dependencies
+ */
 import { ConfigProvider } from "antd";
 
 /**
  * Import styles
  */
 import light from "@/tokens/light.json";
-import atomicStyles from "!css-loader!sass-loader!@/styles/atomic-design/style.scss";
+import projectStyles from "!css-loader!sass-loader!@/styles/atomic-design/style.scss";
+import projectTheme from "!css-loader!sass-loader!@/styles/atomic-design/themes/default.scss";
 
 /**
  * A Storybook decorator to inject global CSS.
@@ -23,33 +23,18 @@ import atomicStyles from "!css-loader!sass-loader!@/styles/atomic-design/style.s
  */
 
 const config = {
-  shared: {
-    lazyStyles: [],
+  project: {
+    lazyStyles: [projectStyles, projectTheme],
     externalStyles: [],
-    classes: [],
   },
   antLight: {
     lazyStyles: [light],
     externalStyles: [],
-    classes: [],
-  },
-  atomic: {
-    lazyStyles: [atomicStyles],
-    externalStyles: [],
-    classes: [],
-  },
-  gutenberg: {
-    lazyStyles: [],
-    externalStyles: [],
-    // In wp-admin, these classes are added to the body element,
-    // which is used as a class scope for some relevant styles in the external
-    // stylesheets listed above. We simulate that here by adding the classes to a wrapper element.
-    classes: ["wp-admin", "wp-core-ui"],
   },
 };
 
 export const WithGlobalCSS = (Story, context) => {
-  const { lazyStyles, externalStyles, classes } = config[context.globals.css];
+  const { lazyStyles, externalStyles } = config[context.globals.css];
 
   const [styles, setStyles] = useState([]);
   const [token, setToken] = useState(light);
@@ -71,7 +56,14 @@ export const WithGlobalCSS = (Story, context) => {
   );
 
   return (
-    <div className={classnames(classes)}>
+    <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&display=swap"
+        rel="stylesheet"
+      ></link>
+
       {externalStyles?.map((stylesheet) => (
         <link key={stylesheet} rel="stylesheet" href={stylesheet} />
       ))}
@@ -81,6 +73,6 @@ export const WithGlobalCSS = (Story, context) => {
       <ConfigProvider theme={{ token }}>
         <Story {...context} />
       </ConfigProvider>
-    </div>
+    </>
   );
 };

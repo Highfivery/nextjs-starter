@@ -11,23 +11,16 @@ export const globalTypes = {
   css: {
     name: "Global CSS",
     description: "Inject global CSS that may be loaded in certain contexts.",
-    defaultValue: "shared",
+    defaultValue: "project",
     toolbar: {
       icon: "document",
       items: [
-        { value: "shared", title: "Shared Styles" },
-        { value: "antLight", title: "Ant-Light theme" },
-        { value: "antDark", title: "Ant-Dark theme" },
-        { value: "atomic", title: "Atomic Styles" },
-        {
-          value: "gutenberg",
-          title: "Gutenberg Styles",
-        },
+        { value: "project", title: "Project Styles" },
+        { value: "antLight", title: "Ant Design - Light" },
       ],
     },
   },
 };
-
 
 export const decorators = [WithGlobalCSS];
 

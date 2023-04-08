@@ -7,9 +7,9 @@ import { ConfigProvider, Typography, Col, Row, Card } from "antd";
 const { Title, Paragraph, Text, Link } = Typography;
 
 /**
- * Default component
+ * Component output
  */
-export default function Homepage() {
+export default function Example() {
   return (
     <ConfigProvider>
       <Typography className="wrapper">

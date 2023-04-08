@@ -44,3 +44,17 @@
       + 'Available breakpoints are: #{map-keys($breakpoints)}.';
   }
 }
+
+/// Wrapper
+@mixin wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--wrapper-width, var(--width));
+  width: 100%;
+}
+
+/// Screen padding
+@mixin screen-padding {
+  padding-left: var(--screen-padding, var(--gutter));
+  padding-right: var(--screen-padding, var(--gutter));
+}
