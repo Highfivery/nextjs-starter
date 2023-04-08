@@ -1,8 +1,8 @@
 /**
  * Import the page template
  */
-import Homepage from "@/components/atomic-design/pages/Homepage";
+import Example from "@/components/atomic-design/pages/Example";
 
 export default function Page() {
-  return <Homepage />;
+  return <Example />;
 }
