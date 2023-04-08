@@ -49,3 +49,8 @@ h1 {
 p {
   margin: var(--paragraph-margin, 0 0 calc(var(--size) * 1.5) 0);
 }
+
+a {
+  color: var(--link-color);
+  text-decoration: var(--link-decoration);
+}
