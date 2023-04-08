@@ -1,0 +1,45 @@
+/**
+ * Application Sass variables
+ * @see https://sass-lang.com/documentation/variables
+ */
+
+// Project breakpoints
+$breakpoints: (
+  'xs': (
+    min-width: 0
+  ),
+  'xs-only': (
+    max-width: 480px
+  ),
+  'sm': (
+    min-width: 576px
+  ),
+  'sm-only': (
+    min-width: 480px,
+    max-width: 576px
+  ),
+  'md': (
+    min-width: 768px
+  ),
+  'md-only': (
+    min-width: 576px,
+    max-width: 768px
+  ),
+  'lg': (
+    min-width: 992px
+  ),
+  'lg-only': (
+    min-width: 768px,
+    max-width: 992px
+  ),
+  'xl': (
+    min-width: 1200px
+  ),
+  'xl-only': (
+    min-width: 992px,
+    max-width: 1200px
+  ),
+  'xxl': (
+    min-width: 1600px
+  )
+) !default;
