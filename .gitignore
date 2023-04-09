@@ -41,3 +41,5 @@ tokens-transformer.secret.json
 # project files
 app/components/atomic-design/pages/project
 app/components/atomic-design/organisms/project
+app/components/atomic-design/templates/project
+public/project

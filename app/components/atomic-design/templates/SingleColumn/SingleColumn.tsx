@@ -17,12 +17,6 @@ import getMenus from "@/functions/wordpress/menus/getMenus";
 import formatNavigationMenu from "@/functions/wordpress/menus/formatNavigationMenu";
 
 /**
- * Import internal component dependencies
- */
-import Header from "@/components/atomic-design/organisms/Header/Header";
-import Footer from "@/components/atomic-design/organisms/Footer/Footer";
-
-/**
  * Import scoped styles
  */
 //import styles from "./SingleColumn.module.scss";
@@ -40,13 +34,7 @@ export default async function SingleColumn({
     allMenus?.primary_menu
   ) as NavigationItemProps[];
 
-  return (
-    <>
-      <Header menu={primaryMenu} />
-      {children}
-      <Footer menu={primaryMenu} />
-    </>
-  );
+  return <>{children}</>;
 }
 
 export interface SingleColumnTemplateProps {
