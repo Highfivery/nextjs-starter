@@ -15,7 +15,6 @@ import formatBlockData from "@/functions/gutenberg/formatBlockData";
  * Import internal component dependencies
  */
 import Blocks from "@/components/gutenberg/Blocks/Blocks";
-import Article from "@/components/atomic-design/templates/Article/Article";
 
 /**
  * Import type definitions
@@ -24,20 +23,17 @@ import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   let entity;
-  let postType;
   const slug = Array.isArray(params.slug) ? params.slug.join("/") : params.slug;
   const { page } = await connector(queryPageById, { id: slug });
   if (!page) {
     const { post } = await connector(queryPostById, { id: slug });
     if (post) {
       entity = post;
-      postType = "post";
     } else {
       notFound();
     }
   } else {
     entity = page;
-    postType = "page";
   }
 
   const blocks = entity?.blocksJSON
@@ -46,14 +42,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      {postType === "page" && (
-        <Blocks blocks={blocks as GutenbergGlobalBlockProps[]} />
-      )}
-      {postType === "post" && (
-        <Article article={entity}>
-          <Blocks blocks={blocks as GutenbergGlobalBlockProps[]} />
-        </Article>
-      )}
+      <Blocks blocks={blocks as GutenbergGlobalBlockProps[]} />
     </>
   );
 }

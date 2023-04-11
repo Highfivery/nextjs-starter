@@ -15,8 +15,6 @@ import parse, {
 
 // Import component dependencies
 import Link from "../Link";
-import Figure from "../Figure";
-import Blockquote from "../Blockquote";
 
 // Import styles
 import styles from "./RichText.module.scss";
@@ -46,16 +44,6 @@ const options: HTMLReactParserOptions = {
           <Link href={href} className={className}>
             {domToReact(domNode.children)}
           </Link>
-        );
-      }
-
-      if (domNode.name === "blockquote") {
-        const { class: className } = domNode.attribs;
-
-        return (
-          <Figure className={className}>
-            <Blockquote>{domToReact(domNode.children)}</Blockquote>
-          </Figure>
         );
       }
     }

@@ -1,0 +1,21 @@
+@import 'core';
+@import 'normalize.css';
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+svg {
+  display: inline-block;
+  height: auto;
+  -ms-interpolation-mode: bicubic; /* stylelint-disable-line property-no-vendor-prefix */
+  max-width: 100%;
+}
