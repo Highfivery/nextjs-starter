@@ -33,6 +33,7 @@ export default async function getPostTypeStaticPaths(
     }
   }`,
     {}
+    // @ts-ignore
   ).then((response) => response?.[pluralName]?.edges ?? []);
 
   const paths = posts

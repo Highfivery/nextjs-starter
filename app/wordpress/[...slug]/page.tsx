@@ -20,13 +20,18 @@ import Blocks from "@/components/gutenberg/Blocks/Blocks";
  * Import type definitions
  */
 import { GutenbergGlobalBlockProps } from "@/types/gutenberg";
+import { WordPressPostProps } from "@/types/wordpress/posts";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   let entity;
   const slug = Array.isArray(params.slug) ? params.slug.join("/") : params.slug;
-  const { page } = await connector(queryPageById, { id: slug });
+  const { page } = (await connector(queryPageById, {
+    id: slug,
+  })) as WordPressPostProps;
   if (!page) {
-    const { post } = await connector(queryPostById, { id: slug });
+    const { post } = (await connector(queryPostById, {
+      id: slug,
+    })) as WordPressPostProps;
     if (post) {
       entity = post;
     } else {

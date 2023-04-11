@@ -1,4 +1,9 @@
-export function convertJsonToCssVariables(json, prefix: string) {
+export function convertJsonToCssVariables(
+  json: {
+    [key: string]: string;
+  },
+  prefix: string
+) {
   let cssVars = ":root {\n";
 
   for (const key in json) {

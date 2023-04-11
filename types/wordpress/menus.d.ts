@@ -1,4 +1,4 @@
-export interface MenuItemProps {
+export interface WordPressMenuItemProps {
   __typename: "MenuItem";
   id: string;
   parentId?: string;

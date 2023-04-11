@@ -1,10 +1,12 @@
 /**
  * Import type definitions
  */
-import { MenuItemProps } from "@/types/wordpress/menus";
+import { WordPressMenuItemProps } from "@/types/wordpress/menus";
 
-export default function formatNavigationMenu(menuItems: MenuItemProps[]): {} {
-  return menuItems?.map((item: MenuItemProps) => {
+export default function formatNavigationMenu(
+  menuItems: WordPressMenuItemProps[]
+): {} {
+  return menuItems?.map((item: WordPressMenuItemProps) => {
     const { children, ...itemProps } = item;
 
     return {

@@ -30,23 +30,22 @@ export default function Form(props: { formId: string }) {
   // Form success and error message.
   const success = () => {
     messageApi.open({
-      type: 'success',
-      content: 'Your form was successfully submitted',
+      type: "success",
+      content: "Your form was successfully submitted",
     });
   };
 
   const error = () => {
     messageApi.open({
-      type: 'error',
-      content: 'Something went wrong please try again',
+      type: "error",
+      content: "Something went wrong please try again",
     });
   };
-
 
   // On form Submit.
   // @TODO: Add type for function parameter
   const onFinish = async (values: any) => {
-    setLoading(true)
+    setLoading(true);
     const response = await insertGfFormEntry(formId, values, formData);
     /**
      * @TODO: Find a way to add support for server side validation error if possible.
@@ -54,13 +53,13 @@ export default function Form(props: { formId: string }) {
      */
     if (response?.errors?.length > 0) {
       // Set form error as per the requirement.
-      error()
+      error();
     } else {
       // Navigate user to success page or set a success message as required
-      success()
+      success();
       form.resetFields();
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   // Form Layout for Fields
@@ -84,6 +83,7 @@ export default function Form(props: { formId: string }) {
     const fetchData = async () => {
       const response = await getGfFormById(formId);
       if (response) {
+        // @ts-ignore
         setFormData(response.gfForm);
       }
     };
